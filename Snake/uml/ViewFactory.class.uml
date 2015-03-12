@@ -1,0 +1,39 @@
+@startuml
+
+class ViewController {
+}
+
+
+ViewController .left.> LevelView : use
+ViewController .right.> ViewFactory : use
+
+interface ViewFactory {
+	+getLevelView()
+	+getMazeView()
+	+getGameOverView()
+}
+class TerminalViewFactory {
+}
+ViewFactory <|-- TerminalViewFactory
+class SwingViewFactory {
+}
+ViewFactory <|-- SwingViewFactory
+
+
+interface LevelView {
+}
+class TerminalLevelView {
+}
+LevelView <|-- TerminalLevelView
+class SwingLevelView {
+}
+LevelView <|-- SwingLevelView
+
+
+
+TerminalViewFactory..>TerminalLevelView : instantiate
+
+SwingViewFactory..>SwingLevelView : instantiate
+
+
+@enduml

@@ -1,0 +1,39 @@
+@startuml
+participant App
+
+group create
+
+create Model
+App -> Model : new
+
+create Presenter
+App -> Presenter: new( Model ) 
+
+create View
+App -> View :  new ( Presenter )
+
+end
+
+loop
+
+	
+	control Timer
+	actor User 
+	
+	opt 
+		User -> View : act
+	else	
+		Timer -> View : tick
+	end	
+		
+		View -> Presenter : user action
+		Presenter -> Model : update model
+	
+	Model -> Presenter : state change
+	Presenter -> View : update
+	View -> User : show 
+
+end
+
+
+@enduml
