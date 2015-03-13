@@ -15,4 +15,7 @@ Populator <|- CompositePopulator
 
 CompositePopulator "1" *-- "1..n" Populator : contains >
 
+SphericTopology --|> Topology
+EndlessTopology --|> Topology
+
 @enduml
