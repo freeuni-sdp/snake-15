@@ -1,0 +1,26 @@
+@startuml
+
+Presenter -> GameFacade : makeMove(direction)
+
+GameFacade -> Snake : setDirection(direction)
+GameFacade -> Universe : move
+
+loop every being
+
+	Universe -> Being : move 
+
+end
+
+GameFacade -> Universe : interact
+loop every being
+
+	Universe -> Being : interact 
+
+end
+
+GameFacade -> Universe : removeZombies
+GameFacade -> Populator : populate
+Populator -> Universe : add(being)
+
+
+@enduml

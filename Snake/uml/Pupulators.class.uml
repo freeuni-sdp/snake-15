@@ -1,0 +1,18 @@
+@startuml
+
+interface Populator
+
+class Level {
+	+String getName()
+}
+
+Level "1" o-- "1" Topology
+Level "1" o-- "1" Populator
+
+Populator <|-- RandomPositionPopulator
+
+Populator <|- CompositePopulator
+
+CompositePopulator "1" *-- "1..n" Populator : contains >
+
+@enduml
