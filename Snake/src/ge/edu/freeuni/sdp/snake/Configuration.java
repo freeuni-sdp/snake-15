@@ -6,18 +6,18 @@ import java.util.List;
 
 public class Configuration {
 
-	private int _width;
-	private int _height;
 	private List<Level> _levels;
 	private Level _selectedLevel;
+	private Size _size;
 
 	private static Configuration _singleton;
 
-	public static void init(int width, int height, List<Level> levels) {
+	public static void init(Size size, List<Level> levels) {
 		if (_singleton != null)
 			throw new IllegalStateException("Can not initialize twice.");
-		_singleton = new Configuration(width, height, levels);
+		_singleton = new Configuration(size, levels);
 	}
+	
 
 	public static Configuration getInstance() {
 		if (_singleton == null)
@@ -25,20 +25,14 @@ public class Configuration {
 		return _singleton;
 	}
 
-	private Configuration(int width, int height, List<Level> levels) {
-		_width = width;
-		_height = height;
+	private Configuration(Size size, List<Level> levels) {
+		_size = size;
 		_levels = levels;
 	}
 
-	public int getWidth() {
-		return _width;
+	public Size getSize() {
+		return _size;
 	}
-
-	public int getHeight() {
-		return _height;
-	}
-
 	public Level getSelectedLevel() {
 		return _selectedLevel;
 	}

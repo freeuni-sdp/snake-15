@@ -18,15 +18,8 @@ public class App {
 
 	public static void main(String[] args) {
 
-		Terminal terminal = TerminalFacade.createTerminal(System.in,
-				System.out, Charset.forName("UTF8"));
-		terminal.enterPrivateMode();
-		terminal.clearScreen();
-		terminal.setCursorVisible(false);
-
-		TerminalSize size = terminal.getTerminalSize();
-		int width = size.getColumns();
-		int height = size.getRows();
+		Terminal terminal = getTerminal();
+		Size size = getSize(terminal);
 
 		List<Level> levels = new ArrayList<Level>();
 
@@ -37,13 +30,30 @@ public class App {
 
 		levels.add(level1);
 
-		Configuration.init(width, height, levels);
-		Configuration.getInstance().selectLevel(0);
-	
+		Configuration.init(size, levels);
+		
 		TerminalViewFactory viewFactory = new TerminalViewFactory(terminal);
 		ViewController controller = new ViewController(viewFactory);
 		controller.run();
 		
 		terminal.exitPrivateMode();
+	}
+
+	private static Terminal getTerminal() {
+		Terminal terminal = TerminalFacade.createTerminal(System.in,
+				System.out, Charset.forName("UTF8"));
+		terminal.enterPrivateMode();
+		terminal.clearScreen();
+		terminal.setCursorVisible(false);
+		return terminal;
+	}
+
+	private static Size getSize(Terminal terminal) {
+		TerminalSize terminalSize = terminal.getTerminalSize();
+		int width = terminalSize.getColumns();
+		int height = terminalSize.getRows();
+		
+		Size size = new Size(width, height);
+		return size;
 	}
 }

@@ -8,8 +8,9 @@ public class SphericTopology extends EndlessTopology {
 	public Point getNextTo(Point point, Direction direction) {
 		Configuration config = Configuration.getInstance();
 		Point result = super.getNextTo(point, direction);
-		return new Point(mod(result.X, config.getWidth()), mod(result.Y,
-				config.getHeight()));
+		return new Point(
+				mod(result.X, config.getSize().getWidth()), 
+				mod(result.Y, config.getSize().getHeight()));
 	}
 
 	private static int mod(int x, int n) {

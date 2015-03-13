@@ -15,8 +15,9 @@ public class GameFacade {
 		_foodGenerator = level.getFoodGenerator();
 		_universe = new Universe(topology);
 
-		Point snakeHead = new Point(config.getWidth() / 2,
-				config.getHeight() / 2);
+		Point snakeHead = new Point(
+				config.getSize().getWidth() / 2,
+				config.getSize().getHeight() / 2);
 		_snake = new Snake(snakeHead);
 		_universe.addBeing(_snake);
 	}
