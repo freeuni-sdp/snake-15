@@ -30,6 +30,7 @@ public class App {
 				new SphericTopology(),
 				new SingleMousePopulator());
 
+		//TODO Add other levels here
 		levels.add(level1);
 
 		Configuration.init(size, levels);

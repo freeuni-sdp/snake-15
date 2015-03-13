@@ -6,5 +6,4 @@ public abstract class EndlessTopology implements Topology {
 	public Point getNextTo(Point point, Direction direction) {
 		return direction.addTo(point);
 	}
-
 }

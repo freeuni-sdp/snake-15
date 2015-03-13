@@ -1,10 +1,10 @@
 package ge.edu.freeuni.sdp.snake.model;
 
-public class CompositeGenerator implements Populator {
+public class CompositePopulator implements Populator {
 
 	private Populator[] _generators;
 
-	public CompositeGenerator(Populator[] generators) {
+	public CompositePopulator(Populator[] generators) {
 		_generators = generators;
 	}
 

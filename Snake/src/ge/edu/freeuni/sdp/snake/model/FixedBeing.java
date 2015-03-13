@@ -1,5 +1,10 @@
 package ge.edu.freeuni.sdp.snake.model;
 
+/**
+ * Being which can not move and has one fixed position whole life
+ * @author George Mamaladze
+ *
+ */
 public abstract class FixedBeing extends Being {
 
 	private final Point _head;

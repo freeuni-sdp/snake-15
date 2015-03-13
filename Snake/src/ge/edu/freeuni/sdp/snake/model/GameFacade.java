@@ -5,13 +5,13 @@ public class GameFacade {
 
 	private Universe _universe;
 	private Snake _snake;
-	private Populator _foodGenerator;
+	private Populator _populator;
 
 	public GameFacade() {
 		Configuration config = Configuration.getInstance();
 		Level level = Configuration.getInstance().getSelectedLevel();
 		Topology topology = level.getTopology();
-		_foodGenerator = level.getFoodGenerator();
+		_populator = level.getFoodGenerator();
 		_universe = new Universe(topology);
 
 		Point snakeHead = new Point(
@@ -33,7 +33,7 @@ public class GameFacade {
 		_universe.move();
 		_universe.interact();
 		_universe.removeZombies();
-		_foodGenerator.populate(_universe);
+		_populator.populate(_universe);
 	}
 
 	public boolean isGameOver() {

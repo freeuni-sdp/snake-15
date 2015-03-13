@@ -1,0 +1,23 @@
+@startuml
+
+abstract class Being
+abstract class FixedBeing
+abstract class MovableBeing
+
+Being <|-- FixedBeing
+Being <|-- MovableBeing
+FixedBeing <|-- MouseBeing
+FixedBeing <|-- PoisonBeing
+
+MovableBeing<|--Snake
+
+PoisonBeing ..> Being : kill >
+Snake ..> Being : kill >
+
+Universe ..> Being : kill >
+Universe "1" *- "0..n" Being : contains >
+
+Populator ..> Being : create >
+Populator .left.> Universe : populate >
+
+@enduml
