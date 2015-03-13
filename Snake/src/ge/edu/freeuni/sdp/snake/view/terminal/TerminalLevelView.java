@@ -18,12 +18,12 @@ public class TerminalLevelView implements LevelView {
 
 	@Override
 	public void show() {
-
+		_terminal.clearScreen();
 		String[] names = _presenter.getLevelNames();
 
 		for (int i = 0; i < names.length; i++) {
 			_terminal.moveCursor(6, 6 + i);
-			writeLine(names[i]);
+			writeLine(String.format("[%1$s] - %2$s", i+1, names[i]));
 		}
 
 		_terminal.flush();
@@ -31,10 +31,11 @@ public class TerminalLevelView implements LevelView {
 		boolean isAccepted = false;
 		while (!isAccepted) {
 			Key p = _terminal.readInput();
-			if (p == null)
-				continue;
+			if (p == null) continue;
 			char ch = p.getCharacter();
-			isAccepted = _presenter.setSelection(ch);
+			if (!Character.isDigit(ch)) continue;
+			int index = Character.getNumericValue(ch) - 1;
+			isAccepted = _presenter.setSelection(index);
 		}
 	}
 

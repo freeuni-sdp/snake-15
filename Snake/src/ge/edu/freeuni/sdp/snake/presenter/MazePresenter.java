@@ -72,7 +72,7 @@ public class MazePresenter {
 	}
 
 	private CellContent[][] initCells() {
-		Configuration config = Configuration.get();
+		Configuration config = Configuration.getInstance();
 		int width = config.getWidth();
 		int height = config.getHeight();
 		CellContent[][] result = new CellContent[width][];

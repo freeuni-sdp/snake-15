@@ -19,7 +19,7 @@ public class Configuration {
 		_singleton = new Configuration(width, height, levels);
 	}
 
-	public static Configuration get() {
+	public static Configuration getInstance() {
 		if (_singleton == null)
 			throw new IllegalStateException("You must call init() first.");
 		return _singleton;

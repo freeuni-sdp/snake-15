@@ -21,7 +21,7 @@ public abstract class RandomPositionPopulator implements Populator {
 
 	protected Point getRandomUnocupied(Universe universe) {
 		while (true) {
-			Configuration config = Configuration.get();
+			Configuration config = Configuration.getInstance();
 			int randomX = _random.nextInt(config.getWidth());
 			int randomY = _random.nextInt(config.getHeight());
 			Point candidate = new Point(randomX, randomY);

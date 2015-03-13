@@ -1,20 +1,27 @@
 package ge.edu.freeuni.sdp.snake.presenter;
 
 import ge.edu.freeuni.sdp.snake.Configuration;
-import ge.edu.freeuni.sdp.snake.model.Topology;
 
 public class LevelPresenter {
 
-	public LevelPresenter(Topology[] mazes, Configuration gameConfiguration) {
+	private Configuration _config;
+	
+	public LevelPresenter() {
+		this(Configuration.getInstance());
+	}
+	
+	public LevelPresenter(Configuration config) {
+		_config = config;
 	}
 
 	public String[] getLevelNames() {
-		String[] result = new String[0];
-		return result;
+		return _config.getLevelNames();
 
 	}
 
-	public boolean setSelection(char ch) {
+	public boolean setSelection(int index) {
+		if (index<0 || index>=getLevelNames().length) return false;
+		_config.selectLevel(index);
 		return true;
 	}
 }

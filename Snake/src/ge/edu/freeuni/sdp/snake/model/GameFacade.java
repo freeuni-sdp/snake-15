@@ -9,8 +9,8 @@ public class GameFacade {
 	private Populator _foodGenerator;
 
 	public GameFacade() {
-		Configuration config = Configuration.get();
-		Level level = Configuration.get().getSelectedLevel();
+		Configuration config = Configuration.getInstance();
+		Level level = Configuration.getInstance().getSelectedLevel();
 		Topology topology = level.getTopology();
 		_foodGenerator = level.getFoodGenerator();
 		_universe = new Universe(topology);

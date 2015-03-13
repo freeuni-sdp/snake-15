@@ -23,6 +23,7 @@ public class TerminalMazeView implements MazeView {
 
 	@Override
 	public void show() {
+		_terminal.clearScreen();
 		while (true) {
 			Key key = _terminal.readInput();
 			if (_presenter.isGameOver())

@@ -1,15 +1,19 @@
 package ge.edu.freeuni.sdp.snake.view;
 
-import ge.edu.freeuni.sdp.snake.presenter.MazePresenter;
-import ge.edu.freeuni.sdp.snake.presenter.PresenterRegistry;
+import ge.edu.freeuni.sdp.snake.presenter.*;
+import ge.edu.freeuni.sdp.snake.view.terminal.TerminalViewFactory;
 
 public class ViewController {
 
 	private ViewFactory _viewFactory;
-	private PresenterRegistry _presenterRegistry;
+	private PresenterFactory _presenterRegistry;
 
+	public ViewController(TerminalViewFactory viewFactory) {
+		this(viewFactory, new PresenterFactory());
+	}
+	
 	public ViewController(ViewFactory viewFactory,
-			PresenterRegistry presenterRegistry) {
+			PresenterFactory presenterRegistry) {
 		_viewFactory = viewFactory;
 		_presenterRegistry = presenterRegistry;
 	}
@@ -18,11 +22,9 @@ public class ViewController {
 
 		// LevelView --> MazeView --> GameOverView
 
-		/*
-		 * LevelPresenter levelPresenter = new LevelPresenter(...); LevelView
-		 * levelView = _viewFactory.getLevelView(levelPresenter);
-		 * levelView.show();
-		 */
+		LevelPresenter levelPresenter = _presenterRegistry.getLevelPresenter();
+		LevelView levelView = _viewFactory.getLevelView(levelPresenter);
+		levelView.show();
 
 		MazePresenter mazePresenter = _presenterRegistry.getMazePresenter();
 		MazeView mazeView = _viewFactory.getMazeView(mazePresenter);

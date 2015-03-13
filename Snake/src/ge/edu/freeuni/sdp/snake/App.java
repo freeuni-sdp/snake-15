@@ -1,11 +1,8 @@
 package ge.edu.freeuni.sdp.snake;
 
-import ge.edu.freeuni.sdp.snake.model.GameFacade;
 import ge.edu.freeuni.sdp.snake.model.Level;
 import ge.edu.freeuni.sdp.snake.model.SingleMousePopulator;
 import ge.edu.freeuni.sdp.snake.model.SphericTopology;
-import ge.edu.freeuni.sdp.snake.presenter.MazePresenter;
-import ge.edu.freeuni.sdp.snake.presenter.PresenterRegistry;
 import ge.edu.freeuni.sdp.snake.view.ViewController;
 import ge.edu.freeuni.sdp.snake.view.terminal.TerminalViewFactory;
 
@@ -33,22 +30,18 @@ public class App {
 
 		List<Level> levels = new ArrayList<Level>();
 
-		Level level1 = new Level("Very Simple Level", new SphericTopology(),
+		Level level1 = new Level(
+				"Very Simple Level", 
+				new SphericTopology(),
 				new SingleMousePopulator());
 
 		levels.add(level1);
 
 		Configuration.init(width, height, levels);
-		Configuration.get().selectLevel(0);
-
-		PresenterRegistry presenterRegistry = new PresenterRegistry();
-		GameFacade game = new GameFacade();
-		MazePresenter mazePresenter = new MazePresenter(game);
-		presenterRegistry.setMazePresenter(mazePresenter);
-
+		Configuration.getInstance().selectLevel(0);
+	
 		TerminalViewFactory viewFactory = new TerminalViewFactory(terminal);
-		ViewController controller = new ViewController(viewFactory,
-				presenterRegistry);
+		ViewController controller = new ViewController(viewFactory);
 		controller.run();
 	}
 }
