@@ -1,7 +1,9 @@
 package ge.edu.freeuni.sdp.snake;
 
+import ge.edu.freeuni.sdp.snake.model.Configuration;
 import ge.edu.freeuni.sdp.snake.model.Level;
 import ge.edu.freeuni.sdp.snake.model.SingleMousePopulator;
+import ge.edu.freeuni.sdp.snake.model.Size;
 import ge.edu.freeuni.sdp.snake.model.SphericTopology;
 import ge.edu.freeuni.sdp.snake.view.ViewController;
 import ge.edu.freeuni.sdp.snake.view.terminal.TerminalViewFactory;

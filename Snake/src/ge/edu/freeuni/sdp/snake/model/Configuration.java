@@ -1,6 +1,4 @@
-package ge.edu.freeuni.sdp.snake;
-
-import ge.edu.freeuni.sdp.snake.model.Level;
+package ge.edu.freeuni.sdp.snake.model;
 
 import java.util.List;
 

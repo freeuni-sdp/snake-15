@@ -1,6 +1,6 @@
 package ge.edu.freeuni.sdp.snake.presenter;
 
-import ge.edu.freeuni.sdp.snake.Configuration;
+import ge.edu.freeuni.sdp.snake.model.Configuration;
 
 public class LevelPresenter {
 

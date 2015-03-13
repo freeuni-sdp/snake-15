@@ -1,6 +1,5 @@
 package ge.edu.freeuni.sdp.snake.model;
 
-import ge.edu.freeuni.sdp.snake.Configuration;
 
 public class GameFacade {
 

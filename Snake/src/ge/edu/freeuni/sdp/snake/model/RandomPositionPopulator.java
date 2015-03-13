@@ -1,7 +1,5 @@
 package ge.edu.freeuni.sdp.snake.model;
 
-import ge.edu.freeuni.sdp.snake.Configuration;
-
 import java.util.Random;
 
 public abstract class RandomPositionPopulator implements Populator {

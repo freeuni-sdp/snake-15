@@ -1,7 +1,7 @@
 package ge.edu.freeuni.sdp.snake.presenter;
 
-import ge.edu.freeuni.sdp.snake.Configuration;
 import ge.edu.freeuni.sdp.snake.model.BeingKind;
+import ge.edu.freeuni.sdp.snake.model.Configuration;
 import ge.edu.freeuni.sdp.snake.model.Direction;
 import ge.edu.freeuni.sdp.snake.model.GameFacade;
 import ge.edu.freeuni.sdp.snake.model.Point;
