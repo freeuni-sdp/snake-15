@@ -43,5 +43,7 @@ public class App {
 		TerminalViewFactory viewFactory = new TerminalViewFactory(terminal);
 		ViewController controller = new ViewController(viewFactory);
 		controller.run();
+		
+		terminal.exitPrivateMode();
 	}
 }
