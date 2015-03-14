@@ -1,7 +1,7 @@
 # FreeUni-SDP-2015-Lab-Realization
 =============================
 
-[=> goto Wiki] (https://github.com/gmamaladze/FreeUni-SDP-2015-Lab-Realization/wiki)
+## [=> goto Wiki] (https://github.com/gmamaladze/FreeUni-SDP-2015-Lab-Realization/wiki)
 
 This is a student project at the [Free university of Tbilisi](http://www.freeuni.edu.ge/en). 
 The goal of the project is to elaborate the modular architecture for the **Snake Game** application.
