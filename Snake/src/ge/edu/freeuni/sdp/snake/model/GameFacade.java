@@ -39,4 +39,8 @@ public class GameFacade {
 	public boolean isGameOver() {
 		return !_snake.isAlive();
 	}
+	
+	public Size getSize() {
+		return Configuration.getInstance().getSize();
+	}
 }

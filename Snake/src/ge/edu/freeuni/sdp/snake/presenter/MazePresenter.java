@@ -1,7 +1,6 @@
 package ge.edu.freeuni.sdp.snake.presenter;
 
 import ge.edu.freeuni.sdp.snake.model.BeingKind;
-import ge.edu.freeuni.sdp.snake.model.Configuration;
 import ge.edu.freeuni.sdp.snake.model.Direction;
 import ge.edu.freeuni.sdp.snake.model.GameFacade;
 import ge.edu.freeuni.sdp.snake.model.Point;
@@ -72,9 +71,8 @@ public class MazePresenter {
 	}
 
 	private CellContent[][] initCells() {
-		Configuration config = Configuration.getInstance();
-		int width = config.getSize().getWidth();
-		int height = config.getSize().getHeight();
+		int width = _game.getSize().getWidth();
+		int height = _game.getSize().getHeight();
 		CellContent[][] result = new CellContent[width][];
 		for (int i = 0; i < width; i++) {
 			result[i] = new CellContent[height];

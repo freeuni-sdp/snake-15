@@ -2,16 +2,16 @@ package ge.edu.freeuni.sdp.snake.model;
 
 public class CompositePopulator implements Populator {
 
-	private Populator[] _generators;
+	private Populator[] _populators;
 
-	public CompositePopulator(Populator[] generators) {
-		_generators = generators;
+	public CompositePopulator(Populator[] populator) {
+		_populators = populator;
 	}
 
 	@Override
 	public void populate(Universe universe) {
-		for (int i = 0; i < _generators.length; i++) {
-			_generators[i].populate(universe);
+		for (int i = 0; i < _populators.length; i++) {
+			_populators[i].populate(universe);
 		}
 	}
 }
