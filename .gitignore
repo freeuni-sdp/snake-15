@@ -10,3 +10,6 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Thus we don't use maven & co. we need to check in libs too
+!/Snake/lib/**/*
