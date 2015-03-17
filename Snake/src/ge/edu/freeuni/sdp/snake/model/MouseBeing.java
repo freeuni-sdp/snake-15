@@ -1,5 +1,8 @@
 package ge.edu.freeuni.sdp.snake.model;
 
+/*
+ * Mouse can be eaten by snake. This mouse is fixed to it's initial position.
+ */
 public class MouseBeing extends FixedBeing {
 
 	public MouseBeing(Point head) {

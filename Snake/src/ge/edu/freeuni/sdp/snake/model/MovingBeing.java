@@ -1,5 +1,8 @@
 package ge.edu.freeuni.sdp.snake.model;
 
+/*
+ * Base class for any being able to move.
+ */
 public abstract class MovingBeing extends Being {
 
 	private Direction _direction;

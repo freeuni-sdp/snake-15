@@ -2,6 +2,10 @@ package ge.edu.freeuni.sdp.snake.model;
 
 import java.util.Random;
 
+/*
+ * A base class for any populator which requires finding a random empty cell
+ * in the universe.
+ */
 public abstract class RandomPositionPopulator implements Populator {
 
 	private Random _random;
@@ -10,6 +14,9 @@ public abstract class RandomPositionPopulator implements Populator {
 		this(new Random());
 	}
 
+	/*
+	 * This constructor is required to avoid randomness in tests
+	 */
 	public RandomPositionPopulator(Random random) {
 		_random = random;
 	}
@@ -17,6 +24,9 @@ public abstract class RandomPositionPopulator implements Populator {
 	@Override
 	public abstract void populate(Universe universe);
 
+	/*
+	 * Finds by probing a random cell which is unoccupied
+	 */
 	protected Point getRandomUnocupied(Universe universe) {
 		while (true) {
 			Configuration config = Configuration.getInstance();

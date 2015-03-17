@@ -1,5 +1,10 @@
 package ge.edu.freeuni.sdp.snake.model;
 
+/**
+ * Is used to combine two or more poulators so that they appear to outside as one
+ * @author George Mamaladze
+ *
+ */
 public class CompositePopulator implements Populator {
 
 	private Populator[] _populators;

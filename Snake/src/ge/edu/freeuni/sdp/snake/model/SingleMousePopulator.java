@@ -1,5 +1,8 @@
 package ge.edu.freeuni.sdp.snake.model;
 
+/*
+ * This populator ensures one living mouse at a time at a random point
+ */
 public class SingleMousePopulator extends RandomPositionPopulator {
 
 	private MouseBeing _mouse;

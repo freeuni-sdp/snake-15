@@ -1,5 +1,9 @@
 package ge.edu.freeuni.sdp.snake.model;
 
+/*
+ * Levels differ in their name, topology, and the way their are populated with beeings.
+ * Level class aggregates and encapsulates all that. 
+ */
 public class Level {
 
 	private final String _name;

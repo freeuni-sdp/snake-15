@@ -1,6 +1,11 @@
 package ge.edu.freeuni.sdp.snake.model;
 
-
+/**
+ * Hides inner structure of model from presenter and provides 
+ * simplified interface to it.
+ * @author George Mamaladze
+ *
+ */
 public class GameFacade {
 
 	private Universe _universe;

@@ -1,5 +1,8 @@
 package ge.edu.freeuni.sdp.snake.model;
 
+/*
+ * Being that kills the snake (or other being) and is fixed to it's initial position
+ */
 public class PoisonBeing extends FixedBeing {
 
 	public PoisonBeing(Point head) {
