@@ -1,7 +1,7 @@
 package ge.edu.freeuni.sdp.snake.model;
 
 /**
- * Is used to combine two or more poulators so that they appear to outside as one
+ * Is used to combine two or more poulators so that they appear to outside as one.
  * @author George Mamaladze
  *
  */
