@@ -52,7 +52,6 @@ public class TerminalHighScoreView implements HighScoreView {
 		int y = _terminal.getTerminalSize().getRows() / 2 - 8;
 		_terminal.moveCursor(x, y++);
 		int score = _presenter.getScore();
-		//int score = 108;
 		writeLine("Your score: " + score);
 		_terminal.moveCursor(x, y++);
 		writeLine("High scores:");

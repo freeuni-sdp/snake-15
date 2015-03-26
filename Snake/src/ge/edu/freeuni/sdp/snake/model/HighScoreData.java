@@ -28,6 +28,7 @@ public class HighScoreData {
 	}
 	
 	public void readFile() {
+		pairsList.clear();
 		try {
 			for (String line : Files.readAllLines(
 					Paths.get("HighScoresTop5.txt"), Charset.defaultCharset())) {
