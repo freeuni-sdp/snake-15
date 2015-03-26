@@ -54,6 +54,9 @@ public class HighScoreData {
 				break;
 			}
 		}
+		if(index == -1 && pairsList.size() < 5){
+			index = pairsList.size();
+		}
 		return index;
 	}
 
@@ -87,10 +90,12 @@ public class HighScoreData {
 	}
 
 	private void removeLastScores(int score) {
-		int checker = pairsList.get(4).getHighScore();
-		for(int i = pairsList.size() - 1; i > 4; i--){
-			if(pairsList.get(i).getHighScore() != checker){
-				pairsList.remove(pairsList.size() - 1);
+		if(pairsList.size() > 4){
+			int checker = pairsList.get(4).getHighScore();
+			for(int i = pairsList.size() - 1; i > 4; i--){
+				if(pairsList.get(i).getHighScore() != checker){
+					pairsList.remove(pairsList.size() - 1);
+				}
 			}
 		}
 	}
@@ -105,12 +110,4 @@ public class HighScoreData {
 			writeToFile(content);
 		}
 	}
-
-	public static void main(String[] args) {
-		HighScoreData data = new HighScoreData();
-		data.readFile();
-
-		data.editFile("sandrroo", 105);
-	}
-
 }
