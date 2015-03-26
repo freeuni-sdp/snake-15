@@ -38,6 +38,8 @@ public class TerminalGameOverView implements GameOverView {
 			_terminal.moveCursor(screenSize.getColumns()/2 - 15 ,screenSize.getRows()/2 - 2 + i);
 			writeLine(String.format("%s", names[i]));
 		}
+
+		_terminal.flush();
 		while (true) {
 			Key p = _terminal.readInput();
 			if (p == null) continue;
