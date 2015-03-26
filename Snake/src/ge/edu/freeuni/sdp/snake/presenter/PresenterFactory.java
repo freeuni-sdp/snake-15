@@ -15,6 +15,6 @@ public class PresenterFactory {
 	}
 
 	public GameOverPresenter getGameOverPresenter() {
-		throw new NotImplementedException();
+		return new GameOverPresenter();
 	}
 }
