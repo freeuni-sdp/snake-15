@@ -22,10 +22,14 @@ public class GameFacade {
 		Point snakeHead = new Point(
 				config.getSize().getWidth() / 2,
 				config.getSize().getHeight() / 2);
-		_snake = new Snake(snakeHead);
+		_snake = new ThreeLivesSnake(snakeHead);
 		_universe.addBeing(_snake);
 	}
 
+	public int getLives(){
+		return _snake.getLives();
+	}
+	
 	public BeingKind getBeingKindAt(Point point) {
 		Being being = _universe.getBeingAt(point);
 		if (being == null)

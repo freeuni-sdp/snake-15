@@ -5,17 +5,34 @@ package ge.edu.freeuni.sdp.snake.model;
  * Implements only alive or dead functionality.
  */
 public abstract class Being {
-
-	boolean _isAlive = true;
-
+	
+	private int _numLives;
+	
+	public Being(){
+		// usual beings live for once.
+		_numLives = 1;
+	}
+	
+	public Being(int numLives){
+		_numLives = numLives;
+	}
+	
+	public void setLives(int numLives){
+		_numLives = numLives;
+	}
+	
+	public  int getLives(){
+		return _numLives;
+	}
+	
 	public abstract BeingKind getKind();
 
 	public final boolean isAlive() {
-		return _isAlive;
+		return _numLives > 0;
 	}
 
 	public final void kill() {
-		_isAlive = false;
+		_numLives--;
 	}
 
 	/**
