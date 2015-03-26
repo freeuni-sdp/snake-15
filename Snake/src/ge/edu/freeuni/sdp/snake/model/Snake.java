@@ -48,4 +48,9 @@ public class Snake extends MovingBeing {
 		while (_body.size() > _length)
 			_body.removeLast();
 	}
+	
+	public int getLength(){
+		return _length;
+	}
+	
 }

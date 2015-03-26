@@ -29,6 +29,11 @@ public class ViewController {
 		MazePresenter mazePresenter = _presenterRegistry.getMazePresenter();
 		MazeView mazeView = _viewFactory.getMazeView(mazePresenter);
 		mazeView.show();
+		
+		HighScorePresenter highPresenter = _presenterRegistry.getHighScorePresenter();
+		HighScoreView highScoreView = _viewFactory.getHighScoreView(highPresenter);
+		highScoreView.show();
+		
 
 		/*
 		 * The same for GameOverView

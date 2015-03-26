@@ -14,6 +14,7 @@ import java.util.List;
 
 import com.googlecode.lanterna.TerminalFacade;
 import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.Terminal.Color;
 import com.googlecode.lanterna.terminal.TerminalSize;
 
 public class App {

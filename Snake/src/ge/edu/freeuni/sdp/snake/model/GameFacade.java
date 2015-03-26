@@ -48,4 +48,9 @@ public class GameFacade {
 	public Size getSize() {
 		return Configuration.getInstance().getSize();
 	}
+	
+	public int getScore(){
+		return _snake.getLength();
+	}
+	
 }
