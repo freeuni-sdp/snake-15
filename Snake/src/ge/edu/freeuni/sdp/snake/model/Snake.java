@@ -5,7 +5,7 @@ import java.util.LinkedList;
 public class Snake extends MovingBeing {
 
 	private LinkedList<Point> _body;
-	private int _length;
+	protected int _length;
 
 	public Snake(Point head) {
 		_body = new LinkedList<Point>();
