@@ -16,8 +16,8 @@ public class HighScoreData {
 	public HighScoreData() {
 		pairsList = new ArrayList<>();
 	}
-	
-	private String deleteWhiteSpace(String str){
+
+	private String deleteWhiteSpace(String str) {
 		String result = "";
 		for (int i = 0; i < str.length(); i++) {
 			if (str.charAt(i) != ' ') {
@@ -26,7 +26,7 @@ public class HighScoreData {
 		}
 		return result;
 	}
-	
+
 	public void readFile() {
 		pairsList.clear();
 		try {
@@ -34,13 +34,15 @@ public class HighScoreData {
 					Paths.get("HighScoresTop5.txt"), Charset.defaultCharset())) {
 				int startIndex = line.indexOf('.');
 				int index = line.lastIndexOf('-');
-				String name = line.substring(startIndex + 1, index);
-				String score = line.substring(index + 1);
-				name = deleteWhiteSpace(name);
-				score = deleteWhiteSpace(score);				
-				int number = Integer.parseInt(score);
-				HighScoreDataPair pair = new HighScoreDataPair(name, number);
-				pairsList.add(pair);
+				if (index != -1 && startIndex != -1) {
+					String name = line.substring(startIndex + 1, index);
+					String score = line.substring(index + 1);
+					name = deleteWhiteSpace(name);
+					score = deleteWhiteSpace(score);
+					int number = Integer.parseInt(score);
+					HighScoreDataPair pair = new HighScoreDataPair(name, number);
+					pairsList.add(pair);
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -55,7 +57,7 @@ public class HighScoreData {
 				break;
 			}
 		}
-		if(index == -1 && pairsList.size() < 5){
+		if (index == -1 && pairsList.size() < 5) {
 			index = pairsList.size();
 		}
 		return index;
@@ -72,7 +74,8 @@ public class HighScoreData {
 				place++;
 			}
 			previous = temp;
-			line = line + place + ". " + pairsList.get(i).getName() + "  - " + temp + "\n";
+			line = line + place + ". " + pairsList.get(i).getName() + "  - "
+					+ temp + "\n";
 			result = result + line;
 		}
 		return result;
@@ -91,17 +94,16 @@ public class HighScoreData {
 	}
 
 	private void removeLastScores(int score) {
-		if(pairsList.size() > 4){
+		if (pairsList.size() > 4) {
 			int checker = pairsList.get(4).getHighScore();
-			for(int i = pairsList.size() - 1; i > 4; i--){
-				if(pairsList.get(i).getHighScore() != checker){
+			for (int i = pairsList.size() - 1; i > 4; i--) {
+				if (pairsList.get(i).getHighScore() != checker) {
 					pairsList.remove(pairsList.size() - 1);
 				}
 			}
 		}
 	}
-	
-	
+
 	public void editFile(String name, int score) {
 		int index = checkIfFileMustBeEdited(score);
 		if (index != -1) {

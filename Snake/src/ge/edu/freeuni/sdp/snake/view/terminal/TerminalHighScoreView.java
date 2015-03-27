@@ -21,7 +21,6 @@ public class TerminalHighScoreView implements HighScoreView {
 	
 	private void waitForResponse(int x,int y,int score){
 		boolean newHighScore = _presenter.checkNewScore(score);
-		_terminal.flush();
 		if(newHighScore){
 			writeLine("Please enter your name:");
 			String name = "";
