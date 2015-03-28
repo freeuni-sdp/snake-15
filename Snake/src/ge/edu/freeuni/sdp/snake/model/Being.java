@@ -53,4 +53,18 @@ public abstract class Being {
 	 * @param direction
 	 */
 	public abstract void setDirection(Direction direction);
+	
+	/**
+	 * Checks if being is connected with another (Being)obj and returns true if so.
+	 * This boolean value is used to decide, whether to call interactWith. 
+	 * @param obj another Being
+	 * @return true or false
+	 */
+	public abstract boolean isConnected(Object obj);
+	
+	/**
+	 * Returns previous head point before current head value.
+	 * @return
+	 */
+	public abstract Point getNeck();
 }

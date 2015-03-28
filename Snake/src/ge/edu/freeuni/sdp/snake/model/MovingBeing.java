@@ -20,4 +20,10 @@ public abstract class MovingBeing extends Being {
 	public final void setDirection(Direction direction) {
 		_direction = direction;
 	}
+	
+	@Override
+	public boolean isConnected(Object obj){
+		return getHead().equals(((Being)obj).getHead()) || (getHead().equals(((Being)obj).getNeck()) && 
+				getNeck().equals(((Being)obj).getHead()));
+	}
 }
