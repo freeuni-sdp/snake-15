@@ -3,6 +3,8 @@
  */
 package ge.edu.freeuni.sdp.snake.view.swing;
 
+import javax.swing.JFrame;
+
 import ge.edu.freeuni.sdp.snake.presenter.GameOverPresenter;
 import ge.edu.freeuni.sdp.snake.presenter.LevelPresenter;
 import ge.edu.freeuni.sdp.snake.presenter.MazePresenter;
@@ -16,6 +18,17 @@ import ge.edu.freeuni.sdp.snake.view.ViewFactory;
  *
  */
 public class SwingViewFactory implements ViewFactory {
+	private JFrame frame;
+
+	/**
+	 * Constructor for different Swing views
+	 * 
+	 * @param frame
+	 *            on which will be painted elements
+	 */
+	public SwingViewFactory(JFrame frame) {
+		this.frame = frame;
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -26,8 +39,7 @@ public class SwingViewFactory implements ViewFactory {
 	 */
 	@Override
 	public LevelView getLevelView(LevelPresenter presenter) {
-		// TODO Auto-generated method stub
-		return null;
+		return new SwingLevelView(presenter, frame);
 	}
 
 	/*
@@ -39,8 +51,7 @@ public class SwingViewFactory implements ViewFactory {
 	 */
 	@Override
 	public MazeView getMazeView(MazePresenter presenter) {
-		// TODO Auto-generated method stub
-		return null;
+		return new SwingMazeView(presenter, frame);
 	}
 
 	/*
@@ -52,8 +63,7 @@ public class SwingViewFactory implements ViewFactory {
 	 */
 	@Override
 	public GameOverView getGameOverView(GameOverPresenter presenter) {
-		// TODO Auto-generated method stub
-		return null;
+		return new SwingGameOverView(presenter, frame);
 	}
 
 }
