@@ -7,6 +7,7 @@ import ge.edu.freeuni.sdp.snake.view.LevelView;
 
 public class SwingLevelView implements LevelView {
 	private LevelPresenter presenter;
+	@SuppressWarnings("unused")
 	private JFrame frame;
 
 	public SwingLevelView(LevelPresenter presenter, JFrame frame) {
@@ -16,8 +17,10 @@ public class SwingLevelView implements LevelView {
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
-		
+		boolean accepted = presenter.setSelection(0);
+		if (!accepted) {
+			System.out.println("Some error occured!");
+		}
 	}
 
 }
