@@ -1,7 +1,11 @@
 package ge.edu.freeuni.sdp.snake;
 
+import ge.edu.freeuni.sdp.snake.model.CompositePopulator;
 import ge.edu.freeuni.sdp.snake.model.Configuration;
+import ge.edu.freeuni.sdp.snake.model.GhostMousePopulator;
+import ge.edu.freeuni.sdp.snake.model.GhostPoisonPopulator;
 import ge.edu.freeuni.sdp.snake.model.Level;
+import ge.edu.freeuni.sdp.snake.model.Populator;
 import ge.edu.freeuni.sdp.snake.model.SingleMousePopulator;
 import ge.edu.freeuni.sdp.snake.model.Size;
 import ge.edu.freeuni.sdp.snake.model.SphericTopology;
@@ -30,9 +34,16 @@ public class App {
 				new SphericTopology(),
 				new SingleMousePopulator());
 
-		//TODO Add other levels here
+		Populator[] populators = {new GhostMousePopulator(), new GhostPoisonPopulator()};
+	
+		Level ghostLevel = new Level(
+				"Ghost mouse and poison", 
+				new SphericTopology(),
+				new CompositePopulator(populators));
+		
 		levels.add(level1);
-
+		levels.add(ghostLevel);
+		
 		Configuration.init(size, levels);
 		
 		TerminalViewFactory viewFactory = new TerminalViewFactory(terminal);
