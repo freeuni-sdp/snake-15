@@ -7,17 +7,23 @@ package ge.edu.freeuni.sdp.snake.model;
 public class Level {
 
 	private final String _name;
+	private final String _description;
 	private final Topology _topology;
 	private final Populator _populator;
 
-	public Level(String name, Topology topology, Populator generator) {
+	public Level(String name, String description, Topology topology, Populator generator) {
 		_name = name;
+		_description = description;
 		_topology = topology;
 		_populator = generator;
 	}
 
 	public String getName() {
 		return _name;
+	}
+	
+	public String getDescription() {
+		return _description;
 	}
 
 	public Topology getTopology() {

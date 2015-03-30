@@ -26,6 +26,7 @@ public class App {
 		List<Level> levels = new ArrayList<Level>();
 
 		Level level1 = new Level(
+				"Level A",
 				"Very Simple Level", 
 				new SphericTopology(),
 				new SingleMousePopulator());
