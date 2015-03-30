@@ -65,6 +65,7 @@ public class App {
 		JPanel screen = new JPanel();
 		screen.setFocusable(true);
 		screen.setPreferredSize(new Dimension(800, 400));
+		
 		frame.add(screen);
 
 		frame.pack();

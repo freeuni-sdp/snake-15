@@ -1,8 +1,10 @@
 package ge.edu.freeuni.sdp.snake.view.swing;
 
+import ge.edu.freeuni.sdp.snake.presenter.CellUpdateListener;
 import ge.edu.freeuni.sdp.snake.presenter.DirectionKey;
 import ge.edu.freeuni.sdp.snake.presenter.MazePresenter;
 import ge.edu.freeuni.sdp.snake.view.MazeView;
+import ge.edu.freeuni.sdp.snake.view.terminal.TerminalMazeViewUpdater;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -27,6 +29,8 @@ public class SwingMazeView implements MazeView, KeyListener {
 		this.frame = frame;
 		this.presenter = presenter;
 		this.key = DirectionKey.None;
+		this.presenter.setCellUpdateListener(new SwingMazeViewUpdater(
+				this.frame));
 	}
 
 	@Override
@@ -62,18 +66,19 @@ public class SwingMazeView implements MazeView, KeyListener {
 			this.key = DirectionKey.None;
 			break;
 		}
+		System.out.println("key pressed");
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-
+		System.out.println("key released");
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-
+		System.out.println("key released");
 	}
 
 }
