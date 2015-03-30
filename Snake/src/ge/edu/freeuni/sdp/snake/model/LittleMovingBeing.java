@@ -46,5 +46,11 @@ public abstract class LittleMovingBeing extends MovingBeing{
 	public Point getNeck() {
 		return previousPoint;
 	}
+	
+	@Override
+	public boolean isConnected(Object obj){
+		return getHead().equals(((Being)obj).getHead()) || (getHead().equals(((Being)obj).getNeck()) && 
+				getNeck().equals(((Being)obj).getHead()));
+	}
 
 }

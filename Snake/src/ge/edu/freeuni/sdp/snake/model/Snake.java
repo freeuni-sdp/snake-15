@@ -54,4 +54,9 @@ public class Snake extends MovingBeing {
 		return _body.get(1);
 	}
 	
+	@Override
+	public boolean isConnected(Object obj){
+		return (((Being)obj).contains(getHead())|| (getHead().equals(((Being)obj).getNeck()) && 
+				getNeck().equals(((Being)obj).getHead())));
+	}
 }
