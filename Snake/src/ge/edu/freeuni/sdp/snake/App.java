@@ -27,12 +27,24 @@ public class App {
 
 		Level level1 = new Level(
 				"Level A",
-				"Very Simple Level", 
+				"Very simple level", 
+				new SphericTopology(),
+				new SingleMousePopulator());
+		Level level2 = new Level(
+				"Level B",
+				"Same simple level as above", 
+				new SphericTopology(),
+				new SingleMousePopulator());
+		Level level3 = new Level(
+				"Level C",
+				"Still the same", 
 				new SphericTopology(),
 				new SingleMousePopulator());
 
 		//TODO Add other levels here
 		levels.add(level1);
+		levels.add(level2);
+		levels.add(level3);
 
 		Configuration.init(size, levels);
 		
