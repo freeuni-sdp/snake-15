@@ -10,12 +10,14 @@ import ge.edu.freeuni.sdp.snake.view.ViewController;
 import ge.edu.freeuni.sdp.snake.view.ViewFactory;
 import ge.edu.freeuni.sdp.snake.view.swing.SwingViewFactory;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import com.googlecode.lanterna.TerminalFacade;
 import com.googlecode.lanterna.terminal.Terminal;
@@ -25,9 +27,9 @@ public class App {
 
 	public static void main(String[] args) {
 
-		Terminal terminal = getTerminal();
-		Size size = getSize(terminal);
-
+		// Terminal terminal = getTerminal();
+		// Size size = getSize(terminal);
+		Size size = new Size(100, 50);
 		List<Level> levels = new ArrayList<Level>();
 
 		Level level1 = new Level("Very Simple Level", new SphericTopology(),
@@ -46,7 +48,7 @@ public class App {
 
 		System.out.println("Hello");
 
-		terminal.exitPrivateMode();
+		// terminal.exitPrivateMode();
 
 		// createFrame();
 	}
@@ -54,12 +56,16 @@ public class App {
 	private static JFrame createFrame() {
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setTitle("Snake");
-		frame.setLayout(new GridLayout(10, 10, 0, 0));
+		frame.setLayout(new GridLayout(1, 1, 0, 0));
 
 		// Screen screen = new Screen();
 		// frame.add(screen);
+		JPanel screen = new JPanel();
+		screen.setFocusable(true);
+		screen.setPreferredSize(new Dimension(800, 400));
+		frame.add(screen);
 
 		frame.pack();
 		frame.setLocationRelativeTo(null);
@@ -68,6 +74,7 @@ public class App {
 
 	}
 
+	@SuppressWarnings("unused")
 	private static Terminal getTerminal() {
 		Terminal terminal = TerminalFacade.createTerminal(System.in,
 				System.out, Charset.forName("UTF8"));
@@ -77,6 +84,7 @@ public class App {
 		return terminal;
 	}
 
+	@SuppressWarnings("unused")
 	private static Size getSize(Terminal terminal) {
 		TerminalSize terminalSize = terminal.getTerminalSize();
 		int width = terminalSize.getColumns();
