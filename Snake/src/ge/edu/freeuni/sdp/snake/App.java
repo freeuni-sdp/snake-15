@@ -9,8 +9,6 @@ import ge.edu.freeuni.sdp.snake.presenter.PresenterFactory;
 import ge.edu.freeuni.sdp.snake.view.ViewController;
 import ge.edu.freeuni.sdp.snake.view.ViewFactory;
 import ge.edu.freeuni.sdp.snake.view.swing.SwingViewFactory;
-import ge.edu.freeuni.sdp.snake.view.swing.elements.Screen;
-import ge.edu.freeuni.sdp.snake.view.terminal.TerminalViewFactory;
 
 import java.awt.GridLayout;
 import java.nio.charset.Charset;
@@ -40,16 +38,17 @@ public class App {
 
 		Configuration.init(size, levels);
 
-//		ViewFactory viewFactory = new TerminalViewFactory(terminal);
+		// ViewFactory viewFactory = new TerminalViewFactory(terminal);
 		ViewFactory viewFactory = new SwingViewFactory(createFrame());
-		ViewController controller = new ViewController(viewFactory, new PresenterFactory());
+		ViewController controller = new ViewController(viewFactory,
+				new PresenterFactory());
 		controller.run();
-		
+
 		System.out.println("Hello");
-		
+
 		terminal.exitPrivateMode();
-		
-//		createFrame();
+
+		// createFrame();
 	}
 
 	private static JFrame createFrame() {
@@ -59,8 +58,8 @@ public class App {
 		frame.setTitle("Snake");
 		frame.setLayout(new GridLayout(10, 10, 0, 0));
 
-//		Screen screen = new Screen();
-//		frame.add(screen);
+		// Screen screen = new Screen();
+		// frame.add(screen);
 
 		frame.pack();
 		frame.setLocationRelativeTo(null);
