@@ -5,6 +5,8 @@ import ge.edu.freeuni.sdp.snake.model.Level;
 import ge.edu.freeuni.sdp.snake.model.SingleMousePopulator;
 import ge.edu.freeuni.sdp.snake.model.Size;
 import ge.edu.freeuni.sdp.snake.model.SphericTopology;
+import ge.edu.freeuni.sdp.snake.model.WormHolePopulator;
+import ge.edu.freeuni.sdp.snake.model.WormHoleTopology;
 import ge.edu.freeuni.sdp.snake.view.ViewController;
 import ge.edu.freeuni.sdp.snake.view.terminal.TerminalViewFactory;
 
@@ -31,7 +33,16 @@ public class App {
 				new SingleMousePopulator());
 
 		//TODO Add other levels here
+		
+
+		Level level2 = new Level(
+				"Wormhole Level", 
+				new WormHoleTopology(),
+				new WormHolePopulator());
+		
+		
 		levels.add(level1);
+		levels.add(level2);
 
 		Configuration.init(size, levels);
 		
