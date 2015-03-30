@@ -20,4 +20,5 @@ public abstract class MovingBeing extends Being {
 	public final void setDirection(Direction direction) {
 		_direction = direction;
 	}
+	
 }

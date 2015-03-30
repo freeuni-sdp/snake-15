@@ -31,4 +31,13 @@ public abstract class FixedBeing extends Being {
 	public final void setDirection(Direction direction) {
 	}
 
+	@Override
+	public Point getNeck() {
+		return null;
+	}
+	
+	@Override
+	public boolean isConnected(Object obj){
+		return contains(((Being) obj).getHead());
+	}
 }

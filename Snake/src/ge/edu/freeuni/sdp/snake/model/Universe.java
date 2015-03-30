@@ -26,17 +26,16 @@ public class Universe {
 	 * is implemented in concrete beings method .interactWith()
 	 */
 	public void interact() {
-
 		for (int i = 0; i < _population.size(); i++) {
 			Being current = _population.get(i);
 			for (int j = 0; j < _population.size(); j++) {
 				Being other = _population.get(j);
-
+				
 				Point head = current.getHead();
 				// Skip if its own head, but don't skip own ass
 				if (current == other && head == other.getHead())
 					continue;
-				if (other.contains(head)) {
+				if (other.isConnected(current)) {
 					other.interactWith(current);
 				}
 			}

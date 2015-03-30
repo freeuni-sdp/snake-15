@@ -1,7 +1,12 @@
 package ge.edu.freeuni.sdp.snake;
 
+import ge.edu.freeuni.sdp.snake.model.CompositePopulator;
 import ge.edu.freeuni.sdp.snake.model.Configuration;
 import ge.edu.freeuni.sdp.snake.model.Level;
+import ge.edu.freeuni.sdp.snake.model.MovingMousePopulator;
+import ge.edu.freeuni.sdp.snake.model.MovingPoisonBeing;
+import ge.edu.freeuni.sdp.snake.model.MovingPoisonPopulator;
+import ge.edu.freeuni.sdp.snake.model.Populator;
 import ge.edu.freeuni.sdp.snake.model.SingleMousePopulator;
 import ge.edu.freeuni.sdp.snake.model.Size;
 import ge.edu.freeuni.sdp.snake.model.SphericTopology;
@@ -29,9 +34,16 @@ public class App {
 				"Very Simple Level", 
 				new SphericTopology(),
 				new SingleMousePopulator());
+		
+		Populator[] array = {new MovingMousePopulator(),new MovingPoisonPopulator()};
+		Level level2 = new Level(
+				"Moving Poison & Mouse Level", 
+				new SphericTopology(),
+				new CompositePopulator(array));
 
 		//TODO Add other levels here
 		levels.add(level1);
+		levels.add(level2);
 
 		Configuration.init(size, levels);
 		

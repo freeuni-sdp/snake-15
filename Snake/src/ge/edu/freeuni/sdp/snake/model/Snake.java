@@ -29,7 +29,7 @@ public class Snake extends MovingBeing {
 	};
 
 	@Override
-	public void interactWith(Being other) {
+	public void interactWith(Being other) {	
 		other.kill();
 		grow();
 	};
@@ -47,5 +47,16 @@ public class Snake extends MovingBeing {
 	private void trim() {
 		while (_body.size() > _length)
 			_body.removeLast();
+	}
+	
+	@Override
+	public Point getNeck() {
+		return _body.get(1);
+	}
+	
+	@Override
+	public boolean isConnected(Object obj){
+		return (((Being)obj).contains(getHead())|| (getHead().equals(((Being)obj).getNeck()) && 
+				getNeck().equals(((Being)obj).getHead())));
 	}
 }
