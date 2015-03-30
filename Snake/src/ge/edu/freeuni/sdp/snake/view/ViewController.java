@@ -26,7 +26,7 @@ public class ViewController {
 		LevelView levelView = _viewFactory.getLevelView(levelPresenter);
 		levelView.show();
 
-		MazePresenter mazePresenter = _presenterRegistry.getMazePresenter();
+		MazePresenter mazePresenter = _presenterRegistry.getHugeMazePresenter();
 		MazeView mazeView = _viewFactory.getMazeView(mazePresenter);
 		mazeView.show();
 

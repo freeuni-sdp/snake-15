@@ -9,9 +9,14 @@ public class PresenterFactory {
 		return new LevelPresenter();
 	}
 
-	public MazePresenter getMazePresenter() {
+	public MazePresenter getFullMazePresenter() {
 		GameFacade game = new GameFacade();
-		return new MazePresenter(game);
+		return new FullMazePresenter(game);
+	}
+	
+	public MazePresenter getHugeMazePresenter() {
+		GameFacade game = new GameFacade();
+		return new HugeMazePresenter(game);
 	}
 
 	public GameOverPresenter getGameOverPresenter() {
