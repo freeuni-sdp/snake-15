@@ -17,8 +17,7 @@ public class SwingLevelView implements LevelView {
 
 	@Override
 	public void show() {
-		boolean accepted = presenter.setSelection(0);
-		if (!accepted) {
+		if (!(presenter.setSelection(0))) {
 			System.out.println("Some error occured!");
 		}
 	}
