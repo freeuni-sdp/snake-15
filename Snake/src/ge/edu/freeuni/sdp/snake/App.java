@@ -7,6 +7,9 @@ import ge.edu.freeuni.sdp.snake.model.Size;
 import ge.edu.freeuni.sdp.snake.model.SphericTopology;
 import ge.edu.freeuni.sdp.snake.view.ViewController;
 import ge.edu.freeuni.sdp.snake.view.terminal.TerminalViewFactory;
+import ge.edu.freeuni.sdp.snake.model.EvilSnakePopulator;
+import ge.edu.freeuni.sdp.snake.model.CompositePopulator;
+import ge.edu.freeuni.sdp.snake.model.Populator;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -32,13 +35,18 @@ public class App {
 
 		//TODO Add other levels here
 		levels.add(level1);
-
+		Populator[] populators = new Populator[2];
+		Populator mouse = new SingleMousePopulator();
+		Populator snake = new EvilSnakePopulator();
+		populators[0] = mouse;
+		populators[1] = snake;
+		Level level2 = new Level("Evil Snake", new SphericTopology(), new CompositePopulator(populators));
+		levels.add(level2);
 		Configuration.init(size, levels);
-		
+		//interact universe <- gamefacade <- prezenterfactory < mazeprezenter
 		TerminalViewFactory viewFactory = new TerminalViewFactory(terminal);
 		ViewController controller = new ViewController(viewFactory);
 		controller.run();
-		
 		terminal.exitPrivateMode();
 	}
 

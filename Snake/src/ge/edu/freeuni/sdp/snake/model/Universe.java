@@ -37,7 +37,7 @@ public class Universe {
 				if (current == other && head == other.getHead())
 					continue;
 				if (other.contains(head)) {
-					other.interactWith(current);
+					current.interactWith(other);
 				}
 			}
 		}
