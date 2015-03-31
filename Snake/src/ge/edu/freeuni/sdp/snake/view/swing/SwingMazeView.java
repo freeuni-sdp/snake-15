@@ -1,10 +1,8 @@
 package ge.edu.freeuni.sdp.snake.view.swing;
 
-import ge.edu.freeuni.sdp.snake.presenter.CellUpdateListener;
 import ge.edu.freeuni.sdp.snake.presenter.DirectionKey;
 import ge.edu.freeuni.sdp.snake.presenter.MazePresenter;
 import ge.edu.freeuni.sdp.snake.view.MazeView;
-import ge.edu.freeuni.sdp.snake.view.terminal.TerminalMazeViewUpdater;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -12,7 +10,6 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 
 public class SwingMazeView implements MazeView, KeyListener {
-	@SuppressWarnings("unused")
 	private JFrame frame;
 	private DirectionKey key;
 	private MazePresenter presenter;

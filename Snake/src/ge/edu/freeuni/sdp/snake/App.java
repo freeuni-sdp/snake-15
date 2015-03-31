@@ -29,7 +29,7 @@ public class App {
 
 		// Terminal terminal = getTerminal();
 		// Size size = getSize(terminal);
-		Size size = new Size(100, 50);
+		Size size = new Size(800, 400);
 		List<Level> levels = new ArrayList<Level>();
 
 		Level level1 = new Level("Very Simple Level", new SphericTopology(),

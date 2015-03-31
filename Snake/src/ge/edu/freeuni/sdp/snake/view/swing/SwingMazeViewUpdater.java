@@ -18,8 +18,8 @@ public class SwingMazeViewUpdater implements CellUpdateListener {
 	@Override
 	public void updateCell(CellPosition position, CellContent content) {
 		java.awt.Graphics graphics = frame.getGraphics();
-		int width = 100;
-		int height = 70;
+		int width = 20;
+		int height = 20;
 		switch (content) {
 		case FoodMouse:
 			graphics.setColor(Color.YELLOW);
