@@ -1,0 +1,99 @@
+package ge.edu.freeuni.sdp.snake.view.swing;
+
+import ge.edu.freeuni.sdp.snake.model.Configuration;
+import ge.edu.freeuni.sdp.snake.model.Size;
+import ge.edu.freeuni.sdp.snake.presenter.LevelPresenter;
+import ge.edu.freeuni.sdp.snake.view.LevelView;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+public class SwingLevelView extends JFrame implements LevelView,Runnable{
+
+	private static final long serialVersionUID = 1L;
+	private LevelPresenter _presenter;
+	private JPanel panel;
+	private JButton okBtn;
+	private Thread thread;
+	private boolean isLevelSelected;
+	private int selection;
+	
+	public SwingLevelView(LevelPresenter presenter) {
+		_presenter = presenter;
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Size size = Configuration.getInstance().getSize();
+		setSize(size.getWidth(), size.getHeight());
+		setTitle("Snake Levels");
+		setResizable(false);
+		init(size);
+	}
+	
+	private void init(){
+		setLayout(new BorderLayout());
+		panel = new JPanel();
+		JScrollPane scroll = new JScrollPane(panel);
+		scroll.setPreferredSize(arg0);
+		add(scroll,BorderLayout.CENTER);
+		okBtn = new JButton();
+		okBtn.setText("Start Game");
+		okBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				isLevelSelected = true;
+				_presenter.setSelection(selection);
+			}
+		});
+		okBtn.setEnabled(false);
+		add(okBtn,BorderLayout.SOUTH);
+		
+		setLocationRelativeTo(null);
+		pack();
+		setVisible(true);
+	}
+	 
+	@Override
+	public void show() {
+		
+		/*isLevelSelected = false;
+		thread = new Thread(this);
+		thread.start();
+		
+		String[] names = _presenter.getLevelNames();
+
+		for (int i = 0; i < names.length; i++) {
+			int index = i+1;
+			JButton levelBtn = new JButton();
+			levelBtn.setText(String.format("%d) %s", index,names[i]));
+			panel.add(levelBtn);
+			levelBtn.addActionListener(new Action(index));
+		}	*/
+	}
+
+	@Override
+	public void run() {
+		while(!isLevelSelected){
+			
+		}
+	}
+	
+	private class Action implements ActionListener{
+		private int index;
+		public Action(int index) {
+			this.index = index;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			selection = index;
+			okBtn.setEnabled(true);
+		}
+		
+	}	
+
+}

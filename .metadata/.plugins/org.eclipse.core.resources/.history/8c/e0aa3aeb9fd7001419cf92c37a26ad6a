@@ -1,0 +1,23 @@
+package ge.edu.freeuni.sdp.snake.view.swing;
+
+import ge.edu.freeuni.sdp.snake.presenter.LevelPresenter;
+import ge.edu.freeuni.sdp.snake.view.LevelView;
+
+public class SwingLevelView implements LevelView{
+
+	private LevelPresenter _presenter;
+	
+	public SwingLevelView(LevelPresenter presenter) {
+		_presenter = presenter;
+	}
+	
+	@Override
+	public void show() {
+		String[] names = _presenter.getLevelNames();
+
+		for (int i = 0; i < names.length; i++) {
+			//TODO add levels to view
+		}
+	}
+
+}

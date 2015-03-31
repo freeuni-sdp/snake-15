@@ -1,0 +1,90 @@
+package ge.edu.freeuni.sdp.snake.view.swing;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeListener;
+
+import javax.swing.Action;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+import ge.edu.freeuni.sdp.snake.model.Configuration;
+import ge.edu.freeuni.sdp.snake.model.Size;
+import ge.edu.freeuni.sdp.snake.presenter.LevelPresenter;
+import ge.edu.freeuni.sdp.snake.view.LevelView;
+
+public class SwingLevelView extends JFrame implements LevelView,Runnable{
+
+	private static final long serialVersionUID = 1L;
+	private LevelPresenter _presenter;
+	private JPanel panel;
+	private Thread thread;
+	private boolean isLevelSelected;
+	private int selection;
+	
+	public SwingLevelView(LevelPresenter presenter) {
+		_presenter = presenter;
+		panel = new JPanel();
+		JScrollPane scroll = new JScrollPane(panel);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(new BorderLayout());
+		add(scroll,BorderLayout.CENTER);
+		JButton ok = new JButton();
+		ok.setText("Start Game");
+		ok.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				isLevelSelected = true;
+				presenter.setSelection(selection);
+			}
+		});
+		add(ok,BorderLayout.SOUTH);
+		Size size = Configuration.getInstance().getSize();
+		setSize(size.getWidth(), size.getHeight());
+		pack();
+		setVisible(true);
+		setFocusable(true);
+	}
+	
+	@Override
+	public void show() {
+		isLevelSelected = false;
+		thread = new Thread(this);
+		thread.start();
+		
+		String[] names = _presenter.getLevelNames();
+
+		for (int i = 0; i < names.length; i++) {
+			JButton levelBtn = new JButton();
+			levelBtn.setText(String.format("%d) %s", i+1,names[i]));
+			panel.add(levelBtn);
+			levelBtn.addActionListener(arg0);
+		}	
+	}
+
+	@Override
+	public void run() {
+		while(true){
+			
+		}
+	}
+	
+	private ActionListener actionListener = new ActionListener() {
+		
+		public ActionListener(){
+			
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	};
+	
+
+}

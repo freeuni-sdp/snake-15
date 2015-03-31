@@ -1,0 +1,15 @@
+package ge.edu.freeuni.sdp.snake.view.swing;
+
+public class Screen {
+
+	public void clearScreen() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void flush() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

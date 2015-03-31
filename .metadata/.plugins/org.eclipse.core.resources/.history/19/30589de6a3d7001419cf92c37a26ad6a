@@ -1,0 +1,10 @@
+package ge.edu.freeuni.sdp.snake.view.swing;
+
+import ge.edu.freeuni.sdp.snake.view.GameOverView;
+
+import javax.swing.JFrame;
+
+public class SwingGameOverView extends JFrame implements GameOverView{
+	private static final long serialVersionUID = 1L;
+
+}

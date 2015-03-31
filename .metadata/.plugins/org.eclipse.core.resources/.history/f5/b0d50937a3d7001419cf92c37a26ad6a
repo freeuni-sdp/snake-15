@@ -1,0 +1,19 @@
+package ge.edu.freeuni.sdp.snake.view.swing;
+
+import javax.swing.JFrame;
+
+import ge.edu.freeuni.sdp.snake.presenter.MazePresenter;
+import ge.edu.freeuni.sdp.snake.view.MazeView;
+
+public class SwingMazeView extends JFrame implements MazeView{
+	
+	public SwingMazeView(MazePresenter presenter) {
+		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public void show() {
+		// TODO
+	}
+
+}

@@ -1,0 +1,38 @@
+package ge.edu.freeuni.sdp.snake.view.swing;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+import ge.edu.freeuni.sdp.snake.model.Configuration;
+import ge.edu.freeuni.sdp.snake.model.Size;
+import ge.edu.freeuni.sdp.snake.presenter.MazePresenter;
+import ge.edu.freeuni.sdp.snake.view.MazeView;
+
+public class SwingMazeView implements MazeView{
+	private MazePresenter _presenter;
+	private JPanel panel;
+	private JFrame frame;
+	
+	public SwingMazeView(MazePresenter presenter) {
+		this._presenter = presenter;
+		JFrame frame = new JFrame();
+		panel = new JPanel();
+		JScrollPane scroll = new JScrollPane(panel);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(new BorderLayout());
+		add(scroll,BorderLayout.CENTER);
+		Size size = Configuration.getInstance().getSize();
+		setSize(size.getWidth(), size.getHeight());
+		setVisible(true);
+	}
+	
+	@Override
+	public void show() {
+		panel.add(new JTextArea("Game is running"));
+	}
+
+}
