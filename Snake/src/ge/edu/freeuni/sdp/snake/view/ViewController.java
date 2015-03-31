@@ -1,14 +1,13 @@
 package ge.edu.freeuni.sdp.snake.view;
 
 import ge.edu.freeuni.sdp.snake.presenter.*;
-import ge.edu.freeuni.sdp.snake.view.terminal.TerminalViewFactory;
 
 public class ViewController {
 
 	private ViewFactory _viewFactory;
 	private PresenterFactory _presenterRegistry;
 
-	public ViewController(TerminalViewFactory viewFactory) {
+	public ViewController(ViewFactory viewFactory) {
 		this(viewFactory, new PresenterFactory());
 	}
 	
