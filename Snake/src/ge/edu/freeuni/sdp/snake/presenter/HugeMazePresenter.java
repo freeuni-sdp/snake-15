@@ -4,6 +4,7 @@ import ge.edu.freeuni.sdp.snake.model.BeingKind;
 import ge.edu.freeuni.sdp.snake.model.Direction;
 import ge.edu.freeuni.sdp.snake.model.GameFacade;
 import ge.edu.freeuni.sdp.snake.model.Point;
+import ge.edu.freeuni.sdp.snake.model.Size;
 
 public class HugeMazePresenter implements MazePresenter {
 
@@ -11,11 +12,13 @@ public class HugeMazePresenter implements MazePresenter {
 	private CellUpdateListener _listener;
 	private CellContent[][] _cellsCache;
 	private Direction _currentDirection;
+	private Camera _camera;
 
 	public HugeMazePresenter(GameFacade game) {
 		_game = game;
 		_currentDirection = Direction.RIGHT;
 		_cellsCache = initCells();
+		_camera = getCamera();
 	}
 
 	public void setCellUpdateListener(CellUpdateListener listener) {
@@ -31,6 +34,7 @@ public class HugeMazePresenter implements MazePresenter {
 		Direction newDirection = convertToDirection(key);
 		tryChangeDirection(newDirection);
 		_game.makeMove(_currentDirection);
+		_camera.step(_currentDirection);
 	}
 
 	private void tryChangeDirection(Direction newDirection) {
@@ -51,11 +55,18 @@ public class HugeMazePresenter implements MazePresenter {
 
 				boolean hasChanged = currentValue != newValue;
 				if (hasChanged) {
-					updateListener(i, j, newValue);
 					_cellsCache[i][j] = newValue;
+				}
+				if(_camera.isVisible(new Point(i, j))){
+					updateListener(i-(_camera.getCenter().X - _camera.getSize().getWidth()/2), j-(_camera.getCenter().Y - _camera.getSize().getHeight()/2), newValue);
+					System.out.println(i+"; "+j);
 				}
 			}
 		}
+		
+
+					
+		
 	}
 
 	private CellContent GetNewValue(int i, int j) {
@@ -109,5 +120,13 @@ public class HugeMazePresenter implements MazePresenter {
 		default:
 			return CellContent.None;
 		}
+	}
+	
+	private Camera getCamera() {
+		//TODO get snake head
+		Point center = new Point(_game.getSize().getWidth()/2, _game.getSize().getHeight()/2);
+		//TODO get camera size
+		Size camSize = new Size(_game.getSize().getWidth()/5, _game.getSize().getHeight()/5);
+		return new Camera(center, camSize, _game.getSize());
 	}
 }

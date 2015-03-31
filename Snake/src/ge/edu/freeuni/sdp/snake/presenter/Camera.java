@@ -45,4 +45,12 @@ public class Camera {
 		return false;
 
 	}
+	
+	public Point getCenter(){
+		return center;
+	}
+	
+	public Size getSize(){
+		return camSize;
+	}
 }
