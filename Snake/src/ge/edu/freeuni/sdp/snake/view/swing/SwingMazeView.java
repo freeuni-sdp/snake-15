@@ -7,10 +7,7 @@ import ge.edu.freeuni.sdp.snake.view.MazeView;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JFrame;
-
 public class SwingMazeView implements MazeView, KeyListener {
-	private JFrame frame;
 	private DirectionKey key;
 	private MazePresenter presenter;
 
@@ -22,12 +19,11 @@ public class SwingMazeView implements MazeView, KeyListener {
 		}
 	}
 
-	public SwingMazeView(MazePresenter presenter, JFrame frame) {
-		this.frame = frame;
+	public SwingMazeView(MazePresenter presenter, SwingScreen screen) {
+		screen.addKeyListener(this);
 		this.presenter = presenter;
 		this.key = DirectionKey.None;
-		this.presenter.setCellUpdateListener(new SwingMazeViewUpdater(
-				this.frame));
+		this.presenter.setCellUpdateListener(new SwingMazeViewUpdater(screen));
 	}
 
 	@Override
@@ -36,6 +32,7 @@ public class SwingMazeView implements MazeView, KeyListener {
 			if (presenter.isGameOver())
 				return;
 			presenter.tick(key);
+			key = DirectionKey.None;
 			this.sleep();
 		}
 	}
@@ -63,19 +60,17 @@ public class SwingMazeView implements MazeView, KeyListener {
 			this.key = DirectionKey.None;
 			break;
 		}
-		System.out.println("key pressed");
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("key released");
+
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("key released");
+
 	}
 
 }

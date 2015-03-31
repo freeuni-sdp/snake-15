@@ -8,8 +8,10 @@ import ge.edu.freeuni.sdp.snake.model.SphericTopology;
 import ge.edu.freeuni.sdp.snake.presenter.PresenterFactory;
 import ge.edu.freeuni.sdp.snake.view.ViewController;
 import ge.edu.freeuni.sdp.snake.view.ViewFactory;
+import ge.edu.freeuni.sdp.snake.view.swing.SwingScreen;
 import ge.edu.freeuni.sdp.snake.view.swing.SwingViewFactory;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.nio.charset.Charset;
@@ -17,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import com.googlecode.lanterna.TerminalFacade;
 import com.googlecode.lanterna.terminal.Terminal;
@@ -25,11 +26,10 @@ import com.googlecode.lanterna.terminal.TerminalSize;
 
 public class App {
 
-	public static void main(String[] args) {
+	private static final int SIZE = 20;
 
-		// Terminal terminal = getTerminal();
-		// Size size = getSize(terminal);
-		Size size = new Size(800, 400);
+	public static void main(String[] args) {
+		Size size = new Size(40, 20);
 		List<Level> levels = new ArrayList<Level>();
 
 		Level level1 = new Level("Very Simple Level", new SphericTopology(),
@@ -40,32 +40,25 @@ public class App {
 
 		Configuration.init(size, levels);
 
-		// ViewFactory viewFactory = new TerminalViewFactory(terminal);
-		ViewFactory viewFactory = new SwingViewFactory(createFrame());
+		SwingScreen screen = new SwingScreen(size, SIZE);
+		screen.setFocusable(true);
+		screen.setPreferredSize(new Dimension(size.getWidth() * SIZE, size
+				.getHeight() * SIZE));
+
+		createFrame(size, screen);
+		ViewFactory viewFactory = new SwingViewFactory(screen);
 		ViewController controller = new ViewController(viewFactory,
 				new PresenterFactory());
 		controller.run();
-
-		System.out.println("Hello");
-
-		// terminal.exitPrivateMode();
-
-		// createFrame();
 	}
 
-	private static JFrame createFrame() {
+	private static JFrame createFrame(Size size, Component screen) {
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(true);
+		frame.setResizable(false);
 		frame.setTitle("Snake");
 		frame.setLayout(new GridLayout(1, 1, 0, 0));
 
-		// Screen screen = new Screen();
-		// frame.add(screen);
-		JPanel screen = new JPanel();
-		screen.setFocusable(true);
-		screen.setPreferredSize(new Dimension(800, 400));
-		
 		frame.add(screen);
 
 		frame.pack();
