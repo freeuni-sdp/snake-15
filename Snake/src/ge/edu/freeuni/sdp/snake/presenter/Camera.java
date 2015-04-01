@@ -22,7 +22,6 @@ public class Camera {
 	
 	
 	public void update(Point center){
-		//BUG
 		this.center = center;
 	}
 	
