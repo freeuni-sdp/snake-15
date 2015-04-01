@@ -8,13 +8,11 @@ public class ReverseGameFacade extends GameFacade{
 	private Snake _snake;
 	private Populator _populator;
 	private ObservableMovingBeing _being;
-	
 	private Random _random;
 	
-	
-	
 	public ReverseGameFacade() {
-		
+	//	RandomPositionPopulator rand = new RandomPositionPopulator(new Random());
+		_being = new EscapingMouse(new Point(2,2));
 		Configuration config = Configuration.getInstance();
 		Level level = Configuration.getInstance().getSelectedLevel();
 		Topology topology = level.getTopology();
@@ -31,7 +29,7 @@ public class ReverseGameFacade extends GameFacade{
 	@Override
 	public void makeMove(Direction direction) {
 	
-//		_being.setDirection(direction);	
+		_being.setDirection(direction);	
 		_universe.move();
 		_universe.interact();
 		_universe.removeZombies();

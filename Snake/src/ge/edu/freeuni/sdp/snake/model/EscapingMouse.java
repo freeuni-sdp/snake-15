@@ -10,7 +10,7 @@ public class EscapingMouse extends ObservableMovingBeing {
 	
 	public EscapingMouse(Point head) {
 		
-	//	this.setDirection(Direction.RIGHT);
+		this.setDirection(Direction.RIGHT);
 		previousPoint = head;
 		position = head;
 		observers = new ArrayList<ObservingSnake>();
@@ -20,9 +20,9 @@ public class EscapingMouse extends ObservableMovingBeing {
 	@Override
 	protected void moveTo(Point point) {
 		
-		previousPoint = position;
-		position = point;
-	//	this.notification();
+		previousPoint = this.position;
+		this.position = point;
+		this.notification();
 		
 	}
 
