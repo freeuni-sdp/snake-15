@@ -53,8 +53,8 @@ public class App {
 
 	private static Size getSize(Terminal terminal) {
 		TerminalSize terminalSize = terminal.getTerminalSize();
-		int width = terminalSize.getColumns() * 5;
-		int height = terminalSize.getRows() * 5;
+		int width = terminalSize.getColumns() * 2;
+		int height = terminalSize.getRows() * 2;
 		
 		Size size = new Size(width, height);
 		return size;

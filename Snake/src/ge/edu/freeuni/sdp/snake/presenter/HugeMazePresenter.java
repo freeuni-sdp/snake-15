@@ -57,18 +57,38 @@ public class HugeMazePresenter implements MazePresenter {
 				if (hasChanged) {
 					_cellsCache[i][j] = newValue;
 				}
-				if(_camera.isVisible(new Point(i, j))){
-					updateListener(i-(_camera.getCenter().X - _camera.getSize().getWidth()/2), j-(_camera.getCenter().Y - _camera.getSize().getHeight()/2), newValue);
-					System.out.println(i+"; "+j);
-				}
 			}
 		}
 		
-
-					
+		for(int i = 0; i < _camera.getSize().getWidth(); i++){
+			for(int j = 0; j < _camera.getSize().getHeight(); j++){
+				int x = (_camera.getCenter().X - _camera.getSize().getWidth()/2) + i;
+				int y = (_camera.getCenter().Y - _camera.getSize().getHeight()/2) + j;
+				Point pb = getBoardPoint(x, y);
+				updateListener(i, j, _cellsCache[pb.X][pb.Y]);
+//				System.out.println(x +";" + y +" => " + pb.X + ";" + pb.Y);
+			}
+		}
+		
+						
 		
 	}
 
+
+	private Point getBoardPoint(int x, int y){
+		return new Point(
+				mod(x, _game.getSize().getWidth()), 
+				mod(y, _game.getSize().getHeight()));
+	}
+
+	private static int mod(int x, int n) {
+		int r = x % n;
+		if (r < 0) {
+			r += n;
+		}
+		return r;
+	}
+	
 	private CellContent GetNewValue(int i, int j) {
 		BeingKind beingKind = _game.getBeingKindAt(new Point(i, j));
 		return convertToCellContent(beingKind);
@@ -123,11 +143,8 @@ public class HugeMazePresenter implements MazePresenter {
 	}
 	
 	private Camera getCamera() {
-		//TODO get snake head
-//		Point center = new Point(_game.getSize().getWidth()/2, _game.getSize().getHeight()/2);
-
 		//TODO get camera size
-		Size camSize = new Size(_game.getSize().getWidth()/5, _game.getSize().getHeight()/5);
+		Size camSize = new Size(_game.getSize().getWidth()/2, _game.getSize().getHeight()/2);
 		return new Camera(_game.getSnakeHead(), camSize, _game.getSize());
 	}
 }
