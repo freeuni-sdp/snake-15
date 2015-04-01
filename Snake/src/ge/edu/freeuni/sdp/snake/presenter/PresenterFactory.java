@@ -1,7 +1,10 @@
 package ge.edu.freeuni.sdp.snake.presenter;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import ge.edu.freeuni.sdp.snake.model.Configuration;
 import ge.edu.freeuni.sdp.snake.model.GameFacade;
+import ge.edu.freeuni.sdp.snake.model.Level;
+import ge.edu.freeuni.sdp.snake.model.ReverseGameFacade;
 
 public class PresenterFactory {
 
@@ -10,7 +13,12 @@ public class PresenterFactory {
 	}
 
 	public MazePresenter getMazePresenter() {
-		GameFacade game = new GameFacade();
+		Level level = Configuration.getInstance().getSelectedLevel();
+		GameFacade game;
+		if (level.getName() != "Swap sides") 
+			game = new GameFacade();
+		else 
+			game = new ReverseGameFacade();
 		return new MazePresenter(game);
 	}
 

@@ -10,7 +10,12 @@ package ge.edu.freeuni.sdp.snake.model;
  * @author toka
  */
 public class SimpleSnakeFactory implements SnakeFactory{
-    @Override
+    
+	public SimpleSnakeFactory() {
+		
+	}
+	
+	@Override
     public Snake createSnake(Point head){
         return new Snake(head);
     }
