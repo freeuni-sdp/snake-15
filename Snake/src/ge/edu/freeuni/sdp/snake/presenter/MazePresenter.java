@@ -1,6 +1,9 @@
 package ge.edu.freeuni.sdp.snake.presenter;
 
+import java.io.File;
+
 import ge.edu.freeuni.sdp.snake.model.BeingKind;
+import ge.edu.freeuni.sdp.snake.model.Caretaker;
 import ge.edu.freeuni.sdp.snake.model.Direction;
 import ge.edu.freeuni.sdp.snake.model.GameFacade;
 import ge.edu.freeuni.sdp.snake.model.Point;
@@ -16,6 +19,14 @@ public class MazePresenter {
 		_game = game;
 		_currentDirection = Direction.RIGHT;
 		_cellsCache = initCells();
+		File f = new File("memento.txt");
+		if(f.exists()){
+			System.out.println("slkfjalksjda");
+			Caretaker caretaker = new Caretaker();
+			restoreState();
+			_currentDirection = caretaker.getMemento().getDirection();
+		}
+		
 	}
 
 	public void setCellUpdateListener(CellUpdateListener listener) {
@@ -30,7 +41,7 @@ public class MazePresenter {
 		scanAndNotify();
 		Direction newDirection = convertToDirection(key);
 		tryChangeDirection(newDirection);
-		_game.makeMove(_currentDirection);
+		_game.makeMove(_currentDirection);	
 	}
 
 	private void tryChangeDirection(Direction newDirection) {
@@ -109,5 +120,12 @@ public class MazePresenter {
 		default:
 			return CellContent.None;
 		}
+	}
+
+	public void saveState() {
+		_game.saveState();
+	}
+	public void restoreState(){
+		_game.restoreState();
 	}
 }

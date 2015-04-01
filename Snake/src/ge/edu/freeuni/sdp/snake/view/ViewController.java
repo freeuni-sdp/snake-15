@@ -1,5 +1,7 @@
 package ge.edu.freeuni.sdp.snake.view;
 
+import java.io.File;
+
 import ge.edu.freeuni.sdp.snake.presenter.*;
 import ge.edu.freeuni.sdp.snake.view.terminal.TerminalViewFactory;
 
@@ -22,10 +24,12 @@ public class ViewController {
 
 		// LevelView --> MazeView --> GameOverView
 
+//		File f = new File("memento");
+//		if(f.exists())
 		LevelPresenter levelPresenter = _presenterRegistry.getLevelPresenter();
 		LevelView levelView = _viewFactory.getLevelView(levelPresenter);
 		levelView.show();
-
+		
 		MazePresenter mazePresenter = _presenterRegistry.getMazePresenter();
 		MazeView mazeView = _viewFactory.getMazeView(mazePresenter);
 		mazeView.show();

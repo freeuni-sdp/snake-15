@@ -48,4 +48,15 @@ public class GameFacade {
 	public Size getSize() {
 		return Configuration.getInstance().getSize();
 	}
+
+	public void saveState() {
+		Caretaker caretaker = new Caretaker();
+		caretaker.addMemento(_snake.saveToMemento());
+	}
+
+	public void restoreState() {
+		Caretaker caretaker = new Caretaker();
+		_snake.restoreFromMemento(caretaker.getMemento());
+		
+	}
 }

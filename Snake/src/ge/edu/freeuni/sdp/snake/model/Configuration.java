@@ -6,6 +6,7 @@ public class Configuration {
 
 	private List<Level> _levels;
 	private Level _selectedLevel;
+	private int _selectedLevelIndex;
 	private Size _size;
 
 	private static Configuration _singleton;
@@ -35,8 +36,12 @@ public class Configuration {
 		return _selectedLevel;
 	}
 
+	public int getSelectedLevelIndex(){
+		return _selectedLevelIndex;
+	}
 	public void selectLevel(int index) {
 		_selectedLevel = _levels.get(index);
+		_selectedLevelIndex = index;
 	}
 
 	public String[] getLevelNames() {
