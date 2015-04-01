@@ -3,6 +3,7 @@ package ge.edu.freeuni.sdp.snake.view.swing;
 import ge.edu.freeuni.sdp.snake.presenter.DirectionKey;
 import ge.edu.freeuni.sdp.snake.presenter.MazePresenter;
 import ge.edu.freeuni.sdp.snake.view.MazeView;
+import ge.edu.freeuni.sdp.snake.view.swing.screen.Screen;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -19,7 +20,7 @@ public class SwingMazeView implements MazeView, KeyListener {
 		}
 	}
 
-	public SwingMazeView(MazePresenter presenter, SwingScreen screen) {
+	public SwingMazeView(MazePresenter presenter, Screen screen) {
 		screen.addKeyListener(this);
 		this.presenter = presenter;
 		this.key = DirectionKey.None;

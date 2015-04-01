@@ -8,8 +8,8 @@ import ge.edu.freeuni.sdp.snake.model.SphericTopology;
 import ge.edu.freeuni.sdp.snake.presenter.PresenterFactory;
 import ge.edu.freeuni.sdp.snake.view.ViewController;
 import ge.edu.freeuni.sdp.snake.view.ViewFactory;
-import ge.edu.freeuni.sdp.snake.view.swing.SwingScreen;
 import ge.edu.freeuni.sdp.snake.view.swing.SwingViewFactory;
+import ge.edu.freeuni.sdp.snake.view.swing.screen.SwingScreenWhite;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -26,10 +26,10 @@ import com.googlecode.lanterna.terminal.TerminalSize;
 
 public class App {
 
-	private static final int SIZE = 20;
+	private static final int SIZE = 15;
 
 	public static void main(String[] args) {
-		Size size = new Size(40, 20);
+		Size size = new Size(50, 30);
 		List<Level> levels = new ArrayList<Level>();
 
 		Level level1 = new Level("Very Simple Level", new SphericTopology(),
@@ -40,7 +40,7 @@ public class App {
 
 		Configuration.init(size, levels);
 
-		SwingScreen screen = new SwingScreen(size, SIZE);
+		SwingScreenWhite screen = new SwingScreenWhite(size, SIZE);
 		screen.setFocusable(true);
 		screen.setPreferredSize(new Dimension(size.getWidth() * SIZE, size
 				.getHeight() * SIZE));

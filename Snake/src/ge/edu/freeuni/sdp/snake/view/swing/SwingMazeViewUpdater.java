@@ -3,11 +3,12 @@ package ge.edu.freeuni.sdp.snake.view.swing;
 import ge.edu.freeuni.sdp.snake.presenter.CellContent;
 import ge.edu.freeuni.sdp.snake.presenter.CellPosition;
 import ge.edu.freeuni.sdp.snake.presenter.CellUpdateListener;
+import ge.edu.freeuni.sdp.snake.view.swing.screen.Screen;
 
 public class SwingMazeViewUpdater implements CellUpdateListener {
-	private SwingScreen screen;
+	private Screen screen;
 
-	public SwingMazeViewUpdater(SwingScreen screen) {
+	public SwingMazeViewUpdater(Screen screen) {
 		this.screen = screen;
 	}
 
