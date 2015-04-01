@@ -7,9 +7,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 @SuppressWarnings("serial")
-public class SwingScreenWhite extends Screen {
+public class SwingWhiteScreen extends Screen {
 
-	public SwingScreenWhite(Size size, int cellSize) {
+	public SwingWhiteScreen(Size size, int cellSize) {
 		super(size, cellSize);
 	}
 

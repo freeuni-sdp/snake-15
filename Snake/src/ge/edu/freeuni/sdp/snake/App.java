@@ -9,7 +9,7 @@ import ge.edu.freeuni.sdp.snake.presenter.PresenterFactory;
 import ge.edu.freeuni.sdp.snake.view.ViewController;
 import ge.edu.freeuni.sdp.snake.view.ViewFactory;
 import ge.edu.freeuni.sdp.snake.view.swing.SwingViewFactory;
-import ge.edu.freeuni.sdp.snake.view.swing.screen.SwingScreenWhite;
+import ge.edu.freeuni.sdp.snake.view.swing.screen.SwingWhiteScreen;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -40,7 +40,7 @@ public class App {
 
 		Configuration.init(size, levels);
 
-		SwingScreenWhite screen = new SwingScreenWhite(size, SIZE);
+		SwingWhiteScreen screen = new SwingWhiteScreen(size, SIZE);
 		screen.setFocusable(true);
 		screen.setPreferredSize(new Dimension(size.getWidth() * SIZE, size
 				.getHeight() * SIZE));

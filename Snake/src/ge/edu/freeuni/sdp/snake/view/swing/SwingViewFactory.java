@@ -10,14 +10,14 @@ import ge.edu.freeuni.sdp.snake.view.GameOverView;
 import ge.edu.freeuni.sdp.snake.view.LevelView;
 import ge.edu.freeuni.sdp.snake.view.MazeView;
 import ge.edu.freeuni.sdp.snake.view.ViewFactory;
-import ge.edu.freeuni.sdp.snake.view.swing.screen.SwingScreenWhite;
+import ge.edu.freeuni.sdp.snake.view.swing.screen.SwingWhiteScreen;
 
 /**
  * @author Giorgi
  *
  */
 public class SwingViewFactory implements ViewFactory {
-	private SwingScreenWhite screen;
+	private SwingWhiteScreen screen;
 
 	/**
 	 * Constructor for different Swing views
@@ -26,7 +26,7 @@ public class SwingViewFactory implements ViewFactory {
 	 *            on which will be painted elements
 	 * @param screen
 	 */
-	public SwingViewFactory(SwingScreenWhite screen) {
+	public SwingViewFactory(SwingWhiteScreen screen) {
 		this.screen = screen;
 	}
 
