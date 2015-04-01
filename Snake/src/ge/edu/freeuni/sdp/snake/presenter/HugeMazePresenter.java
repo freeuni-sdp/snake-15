@@ -1,10 +1,10 @@
 package ge.edu.freeuni.sdp.snake.presenter;
 
 import ge.edu.freeuni.sdp.snake.model.BeingKind;
+import ge.edu.freeuni.sdp.snake.model.Configuration;
 import ge.edu.freeuni.sdp.snake.model.Direction;
 import ge.edu.freeuni.sdp.snake.model.GameFacade;
 import ge.edu.freeuni.sdp.snake.model.Point;
-import ge.edu.freeuni.sdp.snake.model.Size;
 
 public class HugeMazePresenter implements MazePresenter {
 
@@ -143,8 +143,7 @@ public class HugeMazePresenter implements MazePresenter {
 	}
 	
 	private Camera getCamera() {
-		//TODO get camera size
-		Size camSize = new Size(_game.getSize().getWidth()/2, _game.getSize().getHeight()/2);
-		return new Camera(_game.getSnakeHead(), camSize, _game.getSize());
+
+		return new Camera(_game.getSnakeHead(), Configuration.getInstance().getCameraSize(), _game.getSize());
 	}
 }

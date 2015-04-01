@@ -7,6 +7,7 @@ public class Configuration {
 	private List<Level> _levels;
 	private Level _selectedLevel;
 	private Size _size;
+	private Size _cameraSize;
 
 	private static Configuration _singleton;
 
@@ -26,10 +27,15 @@ public class Configuration {
 	private Configuration(Size size, List<Level> levels) {
 		_size = size;
 		_levels = levels;
+		_cameraSize = new Size(_size.getWidth()/2, _size.getHeight()/2);
 	}
 
 	public Size getSize() {
 		return _size;
+	}
+	
+	public Size getCameraSize(){
+		return _cameraSize;
 	}
 	public Level getSelectedLevel() {
 		return _selectedLevel;
