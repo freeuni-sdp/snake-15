@@ -16,7 +16,6 @@ public class Caretaker {
 	public Caretaker() {
 		if (mementoFile.exists()) {
 			restoreMementoFromFile();
-//			mementoFile.delete();
 		}
 	}
 

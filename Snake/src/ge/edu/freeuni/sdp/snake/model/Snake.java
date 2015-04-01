@@ -49,10 +49,6 @@ public class Snake extends MovingBeing {
 			_body.removeLast();
 	}
 	
-	public void setLength(int length){
-		_length = length;
-	}
-	
 	public Memento saveToMemento(){
 		return new Memento(_length,getDirection(),getHead(),Configuration.getInstance().getSelectedLevelIndex());
 	}

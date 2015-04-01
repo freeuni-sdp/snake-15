@@ -21,9 +21,9 @@ public class MazePresenter {
 		_cellsCache = initCells();
 		File f = new File("memento.txt");
 		if(f.exists()){
-			System.out.println("slkfjalksjda");
 			Caretaker caretaker = new Caretaker();
 			restoreState();
+			f.delete();
 			_currentDirection = caretaker.getMemento().getDirection();
 		}
 		
