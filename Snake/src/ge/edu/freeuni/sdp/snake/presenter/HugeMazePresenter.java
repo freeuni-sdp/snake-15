@@ -34,7 +34,7 @@ public class HugeMazePresenter implements MazePresenter {
 		Direction newDirection = convertToDirection(key);
 		tryChangeDirection(newDirection);
 		_game.makeMove(_currentDirection);
-		_camera.step(_currentDirection);
+		_camera.update(_game.getSnakeHead());
 	}
 
 	private void tryChangeDirection(Direction newDirection) {
@@ -124,9 +124,10 @@ public class HugeMazePresenter implements MazePresenter {
 	
 	private Camera getCamera() {
 		//TODO get snake head
-		Point center = new Point(_game.getSize().getWidth()/2, _game.getSize().getHeight()/2);
+//		Point center = new Point(_game.getSize().getWidth()/2, _game.getSize().getHeight()/2);
+
 		//TODO get camera size
 		Size camSize = new Size(_game.getSize().getWidth()/5, _game.getSize().getHeight()/5);
-		return new Camera(center, camSize, _game.getSize());
+		return new Camera(_game.getSnakeHead(), camSize, _game.getSize());
 	}
 }

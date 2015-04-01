@@ -48,4 +48,9 @@ public class GameFacade {
 	public Size getSize() {
 		return Configuration.getInstance().getSize();
 	}
+	
+	//I think this is not good way
+	public Point getSnakeHead(){
+		return _snake.getHead();
+	}
 }

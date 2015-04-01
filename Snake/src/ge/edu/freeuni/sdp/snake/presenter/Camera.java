@@ -1,6 +1,5 @@
 package ge.edu.freeuni.sdp.snake.presenter;
 
-import ge.edu.freeuni.sdp.snake.model.Direction;
 import ge.edu.freeuni.sdp.snake.model.Point;
 import ge.edu.freeuni.sdp.snake.model.Size;
 
@@ -22,8 +21,9 @@ public class Camera {
 	}
 	
 	
-	public void step(Direction direction){
-		center = direction.addTo(center);
+	public void update(Point center){
+		//BUG
+		this.center = center;
 	}
 	
 	
