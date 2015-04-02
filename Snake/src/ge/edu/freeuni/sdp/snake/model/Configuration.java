@@ -31,8 +31,13 @@ public class Configuration {
 	public Size getSize() {
 		return _size;
 	}
+	
 	public Level getSelectedLevel() {
 		return _selectedLevel;
+	}
+	
+	public String getSelectedLevelDescription() {
+		return _selectedLevel.getDescription();
 	}
 
 	public void selectLevel(int index) {
