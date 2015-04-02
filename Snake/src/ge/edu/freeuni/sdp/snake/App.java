@@ -51,16 +51,21 @@ public class App {
 				new SingleMousePopulator(),
 				new HungrySnakeFactory() );
 
-		Populator[] populators = {new GhostMousePopulator(), new GhostPoisonPopulator()};
 		Level level4 = new Level(
 				"Ghost mouse and poison", 
 				new SphericTopology(),
-				new CompositePopulator(populators));
+				new CompositePopulator(
+						new Populator[] {
+								new GhostMousePopulator(), 
+								new GhostPoisonPopulator()}));
 
 		Level level5 = new Level(
 				"Wormhole", 
 				new WormHoleTopology(),
-				new WormHolePopulator());
+				new CompositePopulator(
+						new Populator[] {
+								new SingleMousePopulator(), 
+								new WormHolePopulator()}));
 		
 		levels.add(level1);
 		levels.add(level2);

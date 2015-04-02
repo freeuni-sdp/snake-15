@@ -5,7 +5,6 @@ public class WormHolePopulator extends RandomPositionPopulator {
 	private static Point firstHole;
 	private static Point secondHole;
 	private boolean firstTime = true;
-	private MouseBeing _mouse;
 	
 	
 	@Override
@@ -19,13 +18,6 @@ public class WormHolePopulator extends RandomPositionPopulator {
 		}
 		
 		surroundWithPoisons(universe);
-			
-		if (_mouse == null || !_mouse.isAlive()) {
-			Point point = getRandomUnocupied(universe);
-			_mouse = new MouseBeing(point);
-			universe.addBeing(_mouse);
-		}
-		
 	}
 	
 	
@@ -68,5 +60,4 @@ public class WormHolePopulator extends RandomPositionPopulator {
 	public static Point getSecond(){
 		return secondHole;
 	}
-
 }
