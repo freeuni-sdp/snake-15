@@ -17,6 +17,7 @@ import ge.edu.freeuni.sdp.snake.model.WormHolePopulator;
 import ge.edu.freeuni.sdp.snake.model.WormHoleTopology;
 import ge.edu.freeuni.sdp.snake.view.ViewController;
 import ge.edu.freeuni.sdp.snake.view.terminal.TerminalViewFactory;
+import ge.edu.freeuni.sdp.snake.model.EvilSnakePopulator;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -68,20 +69,26 @@ public class App {
 						new Populator[] {
 								new SingleMousePopulator(), 
 								new WormHolePopulator(wormhole)}));
-		
+
+		Level level6 = new Level(
+				"Evil snake", 
+				new SphericTopology(),
+				new CompositePopulator(
+						new Populator[] {
+								new SingleMousePopulator(), 
+								new EvilSnakePopulator()}));
+
 		levels.add(level1);
 		levels.add(level2);
 		levels.add(level3);
 		levels.add(level4);
 		levels.add(level5);
+		levels.add(level6);
 
-		
 		Configuration.init(size, levels);
-		
 		TerminalViewFactory viewFactory = new TerminalViewFactory(terminal);
 		ViewController controller = new ViewController(viewFactory);
 		controller.run();
-		
 		terminal.exitPrivateMode();
 	}
 

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class Snake extends MovingBeing {
 
-	private LinkedList<Point> _body;
+	protected LinkedList<Point> _body;
 	protected int _length;
 
 	public Snake(Point head) {
@@ -45,11 +45,11 @@ public class Snake extends MovingBeing {
 		trim();
 	};
 
-	private void grow() {
+	protected void grow() {
 		_length++;
 	}
 
-	private void trim() {
+	protected void trim() {
 		while (_body.size() > _length)
 			_body.removeLast();
 	}
