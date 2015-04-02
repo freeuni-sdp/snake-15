@@ -2,6 +2,7 @@ package ge.edu.freeuni.sdp.snake.view.terminal;
 
 import ge.edu.freeuni.sdp.snake.presenter.CellUpdateListener;
 import ge.edu.freeuni.sdp.snake.presenter.DirectionKey;
+import ge.edu.freeuni.sdp.snake.presenter.LivesUpdateListener;
 import ge.edu.freeuni.sdp.snake.presenter.MazePresenter;
 import ge.edu.freeuni.sdp.snake.view.MazeView;
 
@@ -19,6 +20,8 @@ public class TerminalMazeView implements MazeView {
 		_presenter = presenter;
 		CellUpdateListener updater = new TerminalMazeViewUpdater(terminal);
 		_presenter.setCellUpdateListener(updater);
+		LivesUpdateListener livesUpdater = new TerminalLivesViewUpdater(terminal);
+		_presenter.setLivesUpdateListener(livesUpdater);
 	}
 
 	@Override

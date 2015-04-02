@@ -3,6 +3,7 @@ package ge.edu.freeuni.sdp.snake;
 import ge.edu.freeuni.sdp.snake.model.Configuration;
 import ge.edu.freeuni.sdp.snake.model.Level;
 import ge.edu.freeuni.sdp.snake.model.SingleMousePopulator;
+import ge.edu.freeuni.sdp.snake.model.SinglePoisonPopulator;
 import ge.edu.freeuni.sdp.snake.model.Size;
 import ge.edu.freeuni.sdp.snake.model.SphericTopology;
 import ge.edu.freeuni.sdp.snake.view.ViewController;
@@ -29,9 +30,16 @@ public class App {
 				"Very Simple Level", 
 				new SphericTopology(),
 				new SingleMousePopulator());
+		
+		Level level2 = new Level(
+				"Poison food Level", 
+				new SphericTopology(),
+				new SinglePoisonPopulator());
+		
 
 		//TODO Add other levels here
 		levels.add(level1);
+		levels.add(level2);
 
 		Configuration.init(size, levels);
 		

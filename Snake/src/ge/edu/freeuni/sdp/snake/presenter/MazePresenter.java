@@ -9,6 +9,7 @@ public class MazePresenter {
 
 	private GameFacade _game;
 	private CellUpdateListener _listener;
+	private LivesUpdateListener _livesUpdateListener;
 	private CellContent[][] _cellsCache;
 	private Direction _currentDirection;
 
@@ -43,6 +44,7 @@ public class MazePresenter {
 	}
 
 	private void scanAndNotify() {
+		_livesUpdateListener.updateLives(_game.getLives());
 		for (int i = 0; i < _cellsCache.length; i++) {
 			for (int j = 0; j < _cellsCache[i].length; j++) {
 
@@ -109,5 +111,9 @@ public class MazePresenter {
 		default:
 			return CellContent.None;
 		}
+	}
+
+	public void setLivesUpdateListener(LivesUpdateListener updater) {
+		_livesUpdateListener = updater;
 	}
 }
