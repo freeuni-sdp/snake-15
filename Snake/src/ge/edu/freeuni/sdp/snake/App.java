@@ -7,6 +7,7 @@ import ge.edu.freeuni.sdp.snake.model.GhostMousePopulator;
 import ge.edu.freeuni.sdp.snake.model.GhostPoisonPopulator;
 import ge.edu.freeuni.sdp.snake.model.Level;
 import ge.edu.freeuni.sdp.snake.model.Populator;
+import ge.edu.freeuni.sdp.snake.model.RandomWormHole;
 import ge.edu.freeuni.sdp.snake.model.SingleMousePopulator;
 import ge.edu.freeuni.sdp.snake.model.SinglePoisonPopulator;
 import ge.edu.freeuni.sdp.snake.model.Size;
@@ -59,13 +60,14 @@ public class App {
 								new GhostMousePopulator(), 
 								new GhostPoisonPopulator()}));
 
+		RandomWormHole wormhole = new RandomWormHole();
 		Level level5 = new Level(
 				"Wormhole", 
-				new WormHoleTopology(),
+				new WormHoleTopology(wormhole),
 				new CompositePopulator(
 						new Populator[] {
 								new SingleMousePopulator(), 
-								new WormHolePopulator()}));
+								new WormHolePopulator(wormhole)}));
 		
 		levels.add(level1);
 		levels.add(level2);

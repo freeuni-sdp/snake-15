@@ -2,26 +2,25 @@ package ge.edu.freeuni.sdp.snake.model;
 
 public class WormHoleTopology implements Topology {
 
+	private final RandomWormHole _wormhole;
+
+	public WormHoleTopology(RandomWormHole wormhole) {
+		_wormhole = wormhole;
+	}
+
 	@Override
 	public Point getNextTo(Point point, Direction direction) {
-		
-//		Point result = super.getNextTo(point, direction);
-		Point firstHole = WormHolePopulator.getFirst();
-		Point secondHole = WormHolePopulator.getSecond();
+		Point left = _wormhole.getLeft();
+		Point right = _wormhole.getRight();
 		Point tempPoint;
-		if (point.equals(firstHole)){
-			tempPoint = new Point(secondHole.X+1,secondHole.Y);
-		}else if(point.equals(secondHole)){
-			tempPoint = new Point(firstHole.X-1,firstHole.Y);
-		}else{
-			tempPoint = new SphericTopology().getNextTo(point , direction);
+		if (point.equals(left)) {
+			tempPoint = new Point(right.X + 1, right.Y);
+		} else if (point.equals(right)) {
+			tempPoint = new Point(left.X - 1, left.Y);
+		} else {
+			tempPoint = new SphericTopology().getNextTo(point, direction);
 		}
 
 		return tempPoint;
 	}
-
-
-
-
-	
 }
