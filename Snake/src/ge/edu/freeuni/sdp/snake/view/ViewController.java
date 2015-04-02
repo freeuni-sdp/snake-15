@@ -20,7 +20,6 @@ public class ViewController {
 
 	public void run() {
 
-		// LevelView --> MazeView --> GameOverView
 		while(true){
 			LevelPresenter levelPresenter = _presenterRegistry.getLevelPresenter();
 			LevelView levelView = _viewFactory.getLevelView(levelPresenter);
@@ -30,6 +29,10 @@ public class ViewController {
 			MazeView mazeView = _viewFactory.getMazeView(mazePresenter);
 			mazeView.show();
 	
+			HighScorePresenter highPresenter = _presenterRegistry.getHighScorePresenter();
+			HighScoreView highScoreView = _viewFactory.getHighScoreView(highPresenter);
+			highScoreView.show();
+
 			GameOverPresenter gameOverPresenter = _presenterRegistry.getGameOverPresenter();
 			GameOverView gameOverView = _viewFactory.getGameOverView(gameOverPresenter);
 			gameOverView.show();

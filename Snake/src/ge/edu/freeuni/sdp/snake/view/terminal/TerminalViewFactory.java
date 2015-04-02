@@ -1,9 +1,11 @@
 package ge.edu.freeuni.sdp.snake.view.terminal;
 
 import ge.edu.freeuni.sdp.snake.presenter.GameOverPresenter;
+import ge.edu.freeuni.sdp.snake.presenter.HighScorePresenter;
 import ge.edu.freeuni.sdp.snake.presenter.LevelPresenter;
 import ge.edu.freeuni.sdp.snake.presenter.MazePresenter;
 import ge.edu.freeuni.sdp.snake.view.GameOverView;
+import ge.edu.freeuni.sdp.snake.view.HighScoreView;
 import ge.edu.freeuni.sdp.snake.view.LevelView;
 import ge.edu.freeuni.sdp.snake.view.MazeView;
 import ge.edu.freeuni.sdp.snake.view.ViewFactory;
@@ -32,5 +34,12 @@ public class TerminalViewFactory implements ViewFactory {
 	public GameOverView getGameOverView(GameOverPresenter presenter) {
 		return new TerminalGameOverView(presenter, _terminal);
 	}
+
+	@Override
+	public HighScoreView getHighScoreView(HighScorePresenter presenter) {
+		return new TerminalHighScoreView(presenter,_terminal);
+	}
+	
+	
 
 }
