@@ -2,7 +2,7 @@ package ge.edu.freeuni.sdp.snake.model;
 
 public class GhostMousePopulator extends RandomPositionPopulator {
 	
-	private GhostMouseBeing _poison;
+	private GhostBeing _poison;
 	
 	@Override
 	public void populate(Universe universe) {
