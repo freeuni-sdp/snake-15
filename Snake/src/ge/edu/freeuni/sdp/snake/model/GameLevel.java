@@ -10,8 +10,9 @@ package ge.edu.freeuni.sdp.snake.model;
  * @author toka
  */
 public interface GameLevel {
-    public String getName();
-    public Topology getTopology();
-    public Populator getFoodGenerator();
-    public Snake getSnake(Point head);
+    String getName();
+    Topology getTopology();
+    Populator getFoodGenerator();
+    Snake getSnake(Point head);
+	String getDescription();
 }

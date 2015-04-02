@@ -7,6 +7,7 @@ package ge.edu.freeuni.sdp.snake.model;
 public class Level implements GameLevel{
 
     private final String _name;
+    private final String _description;
     private final Topology _topology;
     private final Populator _populator;
     private final SnakeFactory _snakeFactory;
@@ -17,12 +18,24 @@ public class Level implements GameLevel{
 
     
     public Level(String name, Topology topology, Populator generator, SnakeFactory snakeFactory) {
-            _name = name;
-            _topology = topology;
-            _populator = generator;
-            _snakeFactory = snakeFactory;
+    	this(name, "No description provided.", topology, generator, snakeFactory); 
     }
 
+
+	public Level(String name, String description, Topology topology, Populator generator, SnakeFactory snakeFactory) {
+		_name = name;
+		_description = description;
+		_topology = topology;
+		_populator = generator;
+		_snakeFactory = snakeFactory;
+	}
+
+	
+	@Override
+	public String getDescription() {
+		return _description;
+	}
+	
     @Override
     public String getName() {
             return _name;
