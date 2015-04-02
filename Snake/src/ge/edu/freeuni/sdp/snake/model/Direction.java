@@ -1,5 +1,7 @@
 package ge.edu.freeuni.sdp.snake.model;
 
+import java.util.Random;
+
 public class Direction {
 
 	// Note there is no Direction.NONE
@@ -8,6 +10,9 @@ public class Direction {
 	public static Direction UP = new Direction(0, -1);
 	public static Direction DOWN = new Direction(0, 1);
 
+	private static Direction[] ALL = {Direction.LEFT,Direction.RIGHT,Direction.UP,Direction.DOWN};
+
+	
 	private int _dx;
 	private int _dy;
 
@@ -25,5 +30,14 @@ public class Direction {
 				|| (this == DOWN && other == UP)
 				|| (other == LEFT && this == RIGHT)
 				|| (other == DOWN && this == UP);
+	}
+	
+	public Direction getNextRandomDirection(Random random){
+		Direction candidate = this;
+		while(candidate==this || candidate.isOppositeTo(this)) {
+			int index = random.nextInt(4);
+			candidate = Direction.ALL[index];
+		}
+		return candidate;
 	}
 }
