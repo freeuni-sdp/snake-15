@@ -21,17 +21,21 @@ public class ViewController {
 	public void run() {
 
 		// LevelView --> MazeView --> GameOverView
-
-		LevelPresenter levelPresenter = _presenterRegistry.getLevelPresenter();
-		LevelView levelView = _viewFactory.getLevelView(levelPresenter);
-		levelView.show();
-
-		MazePresenter mazePresenter = _presenterRegistry.getMazePresenter();
-		MazeView mazeView = _viewFactory.getMazeView(mazePresenter);
-		mazeView.show();
-
-		/*
-		 * The same for GameOverView
-		 */
+		while(true){
+			LevelPresenter levelPresenter = _presenterRegistry.getLevelPresenter();
+			LevelView levelView = _viewFactory.getLevelView(levelPresenter);
+			levelView.show();
+	
+			MazePresenter mazePresenter = _presenterRegistry.getMazePresenter();
+			MazeView mazeView = _viewFactory.getMazeView(mazePresenter);
+			mazeView.show();
+	
+			GameOverPresenter gameOverPresenter = _presenterRegistry.getGameOverPresenter();
+			GameOverView gameOverView = _viewFactory.getGameOverView(gameOverPresenter);
+			gameOverView.show();
+			if(!gameOverView.continueGameOrNot()){
+				break;
+			}
+		}
 	}
 }

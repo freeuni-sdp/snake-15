@@ -30,8 +30,7 @@ public class TerminalViewFactory implements ViewFactory {
 
 	@Override
 	public GameOverView getGameOverView(GameOverPresenter presenter) {
-		// TODO Auto-generated method stub
-		return null;
+		return new TerminalGameOverView(presenter, _terminal);
 	}
 
 }
