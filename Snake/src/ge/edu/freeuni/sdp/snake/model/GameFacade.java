@@ -22,7 +22,7 @@ public class GameFacade {
 		Point snakeHead = new Point(
 				config.getSize().getWidth() / 2,
 				config.getSize().getHeight() / 2);
-		_snake = new ThreeLivesSnake(snakeHead);
+        _snake = level.getSnake(snakeHead);
 		_universe.addBeing(_snake);
 	}
 
