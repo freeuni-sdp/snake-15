@@ -8,6 +8,11 @@ public class Snake extends MovingBeing {
 	private int _length;
 
 	public Snake(Point head) {
+		this(head, 1);
+	}
+	
+	public Snake(Point head, int lives) {
+		super(lives);
 		_body = new LinkedList<Point>();
 		_body.add(head);
 		_length = 3;

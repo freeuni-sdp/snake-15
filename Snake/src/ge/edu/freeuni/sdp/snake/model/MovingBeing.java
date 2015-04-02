@@ -6,6 +6,14 @@ package ge.edu.freeuni.sdp.snake.model;
 public abstract class MovingBeing extends Being {
 
 	private Direction _direction;
+	
+	MovingBeing() {
+		this(1);
+	}
+	
+	MovingBeing(int lives) {
+		super(lives);
+	}
 
 	@Override
 	public final void move(Topology topology) {

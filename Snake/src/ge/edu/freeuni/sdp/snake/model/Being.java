@@ -10,14 +10,10 @@ public abstract class Being {
 	
 	public Being(){
 		// usual beings live for once.
-		_numLives = 1;
+		this(1);
 	}
 	
 	public Being(int numLives){
-		_numLives = numLives;
-	}
-	
-	public void setLives(int numLives){
 		_numLives = numLives;
 	}
 	
