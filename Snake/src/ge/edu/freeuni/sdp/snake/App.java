@@ -12,6 +12,8 @@ import ge.edu.freeuni.sdp.snake.model.SinglePoisonPopulator;
 import ge.edu.freeuni.sdp.snake.model.Size;
 import ge.edu.freeuni.sdp.snake.model.SphericTopology;
 import ge.edu.freeuni.sdp.snake.model.ThreeLivesSnakeFactory;
+import ge.edu.freeuni.sdp.snake.model.WormHolePopulator;
+import ge.edu.freeuni.sdp.snake.model.WormHoleTopology;
 import ge.edu.freeuni.sdp.snake.view.ViewController;
 import ge.edu.freeuni.sdp.snake.view.terminal.TerminalViewFactory;
 
@@ -49,18 +51,23 @@ public class App {
 				new SingleMousePopulator(),
 				new HungrySnakeFactory() );
 
-
 		Populator[] populators = {new GhostMousePopulator(), new GhostPoisonPopulator()};
-	
 		Level level4 = new Level(
 				"Ghost mouse and poison", 
 				new SphericTopology(),
 				new CompositePopulator(populators));
+
+		Level level5 = new Level(
+				"Wormhole", 
+				new WormHoleTopology(),
+				new WormHolePopulator());
 		
 		levels.add(level1);
 		levels.add(level2);
 		levels.add(level3);
 		levels.add(level4);
+		levels.add(level5);
+
 		
 		Configuration.init(size, levels);
 		
