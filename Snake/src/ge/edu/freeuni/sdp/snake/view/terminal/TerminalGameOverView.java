@@ -5,22 +5,16 @@ import com.googlecode.lanterna.input.Key.Kind;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.TerminalSize;
 
-import ge.edu.freeuni.sdp.snake.model.Configuration;
-import ge.edu.freeuni.sdp.snake.model.Size;
 import ge.edu.freeuni.sdp.snake.presenter.GameOverPresenter;
-import ge.edu.freeuni.sdp.snake.presenter.LevelPresenter;
 import ge.edu.freeuni.sdp.snake.view.GameOverView;
-import ge.edu.freeuni.sdp.snake.view.ViewController;
 
 public class TerminalGameOverView implements GameOverView {
 
 	private Terminal _terminal;
-	private GameOverPresenter _presenter;
-	private boolean continueGame;
+	private boolean _continueGame;
 	public TerminalGameOverView(GameOverPresenter presenter, Terminal terminal) {
-		_presenter = presenter;
 		_terminal = terminal;
-		continueGame = false;
+		_continueGame = false;
 	}
 
 	@Override
@@ -47,14 +41,14 @@ public class TerminalGameOverView implements GameOverView {
 			if(p.getKind() == Kind.Escape || ch == 'n')
 				break;
 			if(ch == 'y'){
-				continueGame = true;
+				_continueGame = true;
 				break;
 			}
 		}
 	}
 	@Override
 	public boolean continueGameOrNot(){
-		return continueGame;
+		return _continueGame;
 	}
 	private void writeLine(String print) {
 		char[] printToChar = print.toCharArray();

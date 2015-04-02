@@ -1,6 +1,5 @@
 package ge.edu.freeuni.sdp.snake.presenter;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import ge.edu.freeuni.sdp.snake.model.GameFacade;
 import ge.edu.freeuni.sdp.snake.model.HighScoreData;
 
