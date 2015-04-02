@@ -1,11 +1,13 @@
 package ge.edu.freeuni.sdp.snake;
 
 import ge.edu.freeuni.sdp.snake.model.Configuration;
+import ge.edu.freeuni.sdp.snake.model.HungrySnakeFactory;
 import ge.edu.freeuni.sdp.snake.model.Level;
 import ge.edu.freeuni.sdp.snake.model.SingleMousePopulator;
 import ge.edu.freeuni.sdp.snake.model.SinglePoisonPopulator;
 import ge.edu.freeuni.sdp.snake.model.Size;
 import ge.edu.freeuni.sdp.snake.model.SphericTopology;
+import ge.edu.freeuni.sdp.snake.model.ThreeLivesSnakeFactory;
 import ge.edu.freeuni.sdp.snake.view.ViewController;
 import ge.edu.freeuni.sdp.snake.view.terminal.TerminalViewFactory;
 
@@ -27,19 +29,27 @@ public class App {
 		List<Level> levels = new ArrayList<Level>();
 
 		Level level1 = new Level(
-				"Very Simple Level", 
+				"Very simple", 
 				new SphericTopology(),
 				new SingleMousePopulator());
 		
 		Level level2 = new Level(
-				"Poison food Level", 
+				"Poison food", 
 				new SphericTopology(),
-				new SinglePoisonPopulator());
-		
+				new SinglePoisonPopulator(),
+				new ThreeLivesSnakeFactory());
+
+		Level level3 = new Level(
+				"Hungry snake", 
+				new SphericTopology(),
+				new SingleMousePopulator(),
+				new HungrySnakeFactory() );
+
 
 		//TODO Add other levels here
 		levels.add(level1);
 		levels.add(level2);
+		levels.add(level3);
 
 		Configuration.init(size, levels);
 		
