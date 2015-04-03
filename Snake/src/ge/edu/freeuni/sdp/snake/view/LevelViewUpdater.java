@@ -1,6 +1,6 @@
-package ge.edu.freeuni.sdp.snake.presenter;
+package ge.edu.freeuni.sdp.snake.view;
 
-import ge.edu.freeuni.sdp.snake.view.LevelView;
+import ge.edu.freeuni.sdp.snake.presenter.LevelSelectionListener;
 
 public class LevelViewUpdater implements LevelSelectionListener {
 	

@@ -15,7 +15,10 @@ public class Level implements GameLevel{
     public Level(String name, Topology topology, Populator generator) {
     	this(name, topology, generator, new SimpleSnakeFactory());
     }
-
+    
+    public Level(String name, String description, Topology topology, Populator generator) {
+    	this(name, description, topology, generator, new SimpleSnakeFactory());
+    }
     
     public Level(String name, Topology topology, Populator generator, SnakeFactory snakeFactory) {
     	this(name, "No description provided.", topology, generator, snakeFactory); 

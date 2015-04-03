@@ -37,18 +37,21 @@ public class App {
 		List<Level> levels = new ArrayList<Level>();
 
 		Level level1 = new Level(
-				"Very simple", 
+				"Very simple",
+				"Mice appair one by one on random positions.",
 				new SphericTopology(),
 				new SingleMousePopulator());
 		
 		Level level2 = new Level(
 				"Poison food", 
+				"Snake has three lives.",
 				new SphericTopology(),
 				new SinglePoisonPopulator(),
 				new ThreeLivesSnakeFactory());
 
 		Level level3 = new Level(
-				"Hungry snake", 
+				"Hungry snake",
+				"Snake will shrink if it will get no food during 10 moves.",
 				new SphericTopology(),
 				new SingleMousePopulator(),
 				new HungrySnakeFactory() );

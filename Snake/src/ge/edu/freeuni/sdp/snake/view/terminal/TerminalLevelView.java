@@ -2,8 +2,8 @@ package ge.edu.freeuni.sdp.snake.view.terminal;
 
 import ge.edu.freeuni.sdp.snake.presenter.LevelPresenter;
 import ge.edu.freeuni.sdp.snake.presenter.LevelSelectionListener;
-import ge.edu.freeuni.sdp.snake.presenter.LevelViewUpdater;
 import ge.edu.freeuni.sdp.snake.view.LevelView;
+import ge.edu.freeuni.sdp.snake.view.LevelViewUpdater;
 
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.terminal.Terminal;
