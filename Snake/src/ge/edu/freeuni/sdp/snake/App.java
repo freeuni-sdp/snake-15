@@ -36,27 +36,27 @@ public class App {
 
 		List<Level> levels = new ArrayList<Level>();
 
-		Level level1 = new Level(
+		Level levelVerySimple = new Level(
 				"Very simple",
 				"Mice appair one by one on random positions.",
 				new SphericTopology(),
 				new SingleMousePopulator());
 		
-		Level level2 = new Level(
+		Level levelPoisonFood = new Level(
 				"Poison food", 
 				"Snake has three lives.",
 				new SphericTopology(),
 				new SinglePoisonPopulator(),
 				new ThreeLivesSnakeFactory());
 
-		Level level3 = new Level(
+		Level levelHungrySnake = new Level(
 				"Hungry snake",
 				"Snake will shrink if it will get no food during 10 moves.",
 				new SphericTopology(),
 				new SingleMousePopulator(),
 				new HungrySnakeFactory() );
 
-		Level level4 = new Level(
+		Level levelGhostMouse = new Level(
 				"Ghost mouse and poison", 
 				new SphericTopology(),
 				new CompositePopulator(
@@ -65,7 +65,7 @@ public class App {
 								new GhostPoisonPopulator()}));
 
 		RandomWormHole wormhole = new RandomWormHole();
-		Level level5 = new Level(
+		Level levelWormhole = new Level(
 				"Wormhole", 
 				new WormHoleTopology(wormhole),
 				new CompositePopulator(
@@ -73,7 +73,7 @@ public class App {
 								new SingleMousePopulator(), 
 								new WormHolePopulator(wormhole)}));
 
-		Level level6 = new Level(
+		Level levelEvilSnake = new Level(
 				"Evil snake", 
 				new SphericTopology(),
 				new CompositePopulator(
@@ -81,12 +81,12 @@ public class App {
 								new SingleMousePopulator(), 
 								new EvilSnakePopulator()}));
 
-		levels.add(level1);
-		levels.add(level2);
-		levels.add(level3);
-		levels.add(level4);
-		levels.add(level5);
-		levels.add(level6);
+		levels.add(levelVerySimple);
+		levels.add(levelPoisonFood);
+		levels.add(levelHungrySnake);
+		levels.add(levelGhostMouse);
+		levels.add(levelWormhole);
+		levels.add(levelEvilSnake);
 
 		Configuration.init(size, levels);
 		TerminalViewFactory viewFactory = new TerminalViewFactory(terminal);
