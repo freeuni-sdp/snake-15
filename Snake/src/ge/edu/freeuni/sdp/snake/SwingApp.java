@@ -8,7 +8,7 @@ import ge.edu.freeuni.sdp.snake.view.ViewController;
 import ge.edu.freeuni.sdp.snake.view.ViewFactory;
 import ge.edu.freeuni.sdp.snake.view.swing.SwingViewFactory;
 import ge.edu.freeuni.sdp.snake.view.swing.screen.Screen;
-import ge.edu.freeuni.sdp.snake.view.swing.screen.SwingWhiteScreen;
+import ge.edu.freeuni.sdp.snake.view.swing.screen.SwingBlackScreen;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -28,14 +28,12 @@ public class SwingApp {
 		
 		Configuration.init(size, levels);
 
-		// This can be created by factory and screen theme
-		// can by changed dynamically
-		Screen screen = new SwingWhiteScreen(size, SIZE);
-		//Screen screen = new SwingBlackScreen(size, SIZE);
-
+		Screen screen = new SwingBlackScreen(size, SIZE);
 		screen.setFocusable(true);
-		screen.setPreferredSize(new Dimension(size.getWidth() * SIZE, size
-				.getHeight() * SIZE));
+		screen.setPreferredSize(
+				new Dimension(
+						size.getWidth() * SIZE, 
+						size.getHeight() * SIZE));
 
 		createFrame(size, screen);
 		ViewFactory viewFactory = new SwingViewFactory(screen);
