@@ -12,14 +12,14 @@ import ge.edu.freeuni.sdp.snake.view.HighScoreView;
 import ge.edu.freeuni.sdp.snake.view.LevelView;
 import ge.edu.freeuni.sdp.snake.view.MazeView;
 import ge.edu.freeuni.sdp.snake.view.ViewFactory;
-import ge.edu.freeuni.sdp.snake.view.swing.screen.Screen;
+import javax.swing.JFrame;
 
 /**
  * @author Giorgi
  *
  */
 public class SwingViewFactory implements ViewFactory {
-	private Screen screen;
+	private JFrame frame;
 
 	/**
 	 * Constructor for different Swing views
@@ -28,8 +28,9 @@ public class SwingViewFactory implements ViewFactory {
 	 *            on which will be painted elements
 	 * @param screen
 	 */
-	public SwingViewFactory(Screen screen) {
-		this.screen = screen;
+	public SwingViewFactory(JFrame frame) {
+		this.frame = frame;
+		
 	}
 
 	/*
@@ -41,7 +42,7 @@ public class SwingViewFactory implements ViewFactory {
 	 */
 	@Override
 	public LevelView getLevelView(LevelPresenter presenter) {
-		return new SwingLevelView(presenter);
+		return new SwingLevelView(presenter, frame);
 	}
 
 	/*
@@ -53,7 +54,7 @@ public class SwingViewFactory implements ViewFactory {
 	 */
 	@Override
 	public MazeView getMazeView(MazePresenter presenter) {
-		return new SwingMazeView(presenter, screen);
+		return new SwingMazeView(presenter, frame);
 	}
 
 	/*
@@ -70,7 +71,7 @@ public class SwingViewFactory implements ViewFactory {
 
 	@Override
 	public HighScoreView getHighScoreView(HighScorePresenter presenter) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

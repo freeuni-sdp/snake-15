@@ -31,6 +31,7 @@ public class SwingBlackScreen extends Screen {
 						graphics.fillRect(i * cellSize, j * cellSize, cellSize,
 								cellSize);
 						break;
+						
 					case FoodPoison:
 						flush(graphics, i, j);
 						graphics.setColor(Color.RED);
