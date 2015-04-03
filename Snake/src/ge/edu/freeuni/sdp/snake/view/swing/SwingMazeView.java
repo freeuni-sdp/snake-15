@@ -1,16 +1,25 @@
 package ge.edu.freeuni.sdp.snake.view.swing;
 
+import ge.edu.freeuni.sdp.snake.model.Configuration;
+import ge.edu.freeuni.sdp.snake.model.Size;
 import ge.edu.freeuni.sdp.snake.presenter.DirectionKey;
 import ge.edu.freeuni.sdp.snake.presenter.MazePresenter;
 import ge.edu.freeuni.sdp.snake.view.MazeView;
 import ge.edu.freeuni.sdp.snake.view.swing.screen.Screen;
+import ge.edu.freeuni.sdp.snake.view.swing.screen.SwingBlackScreen;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JFrame;
+
 public class SwingMazeView implements MazeView, KeyListener {
+	
 	private DirectionKey key;
 	private MazePresenter presenter;
+	private JFrame frame;
 
 	private void sleep() {
 		try {
@@ -20,23 +29,45 @@ public class SwingMazeView implements MazeView, KeyListener {
 		}
 	}
 
-	public SwingMazeView(MazePresenter presenter, Screen screen) {
-		screen.addKeyListener(this);
+	public SwingMazeView(MazePresenter presenter, JFrame frame) {
+	
+		this.frame = frame;
 		this.presenter = presenter;
 		this.key = DirectionKey.None;
-		this.presenter.setCellUpdateListener(new SwingMazeViewUpdater(screen));
-		this.presenter.setLivesUpdateListener(new SwingLivesViewUpdater());
 	}
-
+		
 	@Override
 	public void show() {
+
+		Size size = Configuration.getInstance().getSize();
+		Screen screen = new SwingBlackScreen(size, 15);
+		frame.addKeyListener(this);
+		frame.add(screen);
+		frame.pack();
+		center();
+		frame.setVisible(true);
+		
+		
+		this.presenter.setCellUpdateListener(new SwingMazeViewUpdater(screen));
+		this.presenter.setLivesUpdateListener(new SwingLivesViewUpdater());
+
+		
 		while (true) {
 			if (presenter.isGameOver())
-				return;
+				break;
 			presenter.tick(key);
 			key = DirectionKey.None;
 			this.sleep();
 		}
+		
+		frame.setVisible(false);
+	}
+
+	public void center() {
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setLocation(
+				dim.width/2-frame.getSize().width/2, 
+				dim.height/2-frame.getSize().height/2);
 	}
 
 	@Override
@@ -74,5 +105,4 @@ public class SwingMazeView implements MazeView, KeyListener {
 	public void keyTyped(KeyEvent e) {
 
 	}
-
 }
