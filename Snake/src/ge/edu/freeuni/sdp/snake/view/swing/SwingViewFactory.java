@@ -71,8 +71,7 @@ public class SwingViewFactory implements ViewFactory {
 
 	@Override
 	public HighScoreView getHighScoreView(HighScorePresenter presenter) {
-		
-		return null;
+		return new SwingHighScoreView();
 	}
 
 }
