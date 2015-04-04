@@ -1,26 +1,30 @@
 package ge.edu.freeuni.sdp.snake.presenter;
 
-import ge.edu.freeuni.sdp.snake.model.CommonGameFacade;
+import ge.edu.freeuni.sdp.snake.model.CommonGameFacadeFactory;
 import ge.edu.freeuni.sdp.snake.model.GameFacade;
+import ge.edu.freeuni.sdp.snake.model.GameFacadeFactory;
 import ge.edu.freeuni.sdp.snake.model.HighScoreData;
 
 public class PresenterFactory {
 
 	private GameFacade game;
+	private GameFacadeFactory gameFacadeFactory;
 	
 	public PresenterFactory() {
-		this.game = new CommonGameFacade();
+		this(new CommonGameFacadeFactory());
 	}
-
-	public PresenterFactory(GameFacade game) {
-		this.game = game;
+	
+	public PresenterFactory(GameFacadeFactory gameFacadeFactory) {
+		this.gameFacadeFactory = gameFacadeFactory;
+		
 	}
-
+	
 	public LevelPresenter getLevelPresenter() {
 		return new LevelPresenter();
 	}
-	
+
 	public MazePresenter getMazePresenter() {
+		game = gameFacadeFactory.getGameFacade();
 		return new MazePresenter(game);
 	}
 

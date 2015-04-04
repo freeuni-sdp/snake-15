@@ -81,4 +81,7 @@ public class CommonGameFacade implements GameFacade {
 		return _snake.getLength();
 	}
 	
+	protected Point getSnakeHead() {
+		return _snake.getHead();
+	}
 }
