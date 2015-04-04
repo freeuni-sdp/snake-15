@@ -30,5 +30,4 @@ public abstract class FixedBeing extends Being {
 	@Override
 	public final void setDirection(Direction direction) {
 	}
-
 }
