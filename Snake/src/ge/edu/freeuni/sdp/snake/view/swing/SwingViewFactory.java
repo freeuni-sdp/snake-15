@@ -66,7 +66,7 @@ public class SwingViewFactory implements ViewFactory {
 	 */
 	@Override
 	public GameOverView getGameOverView(GameOverPresenter presenter) {
-		return new SwingGameOverView();
+		return new SwingGameOverView(frame);
 	}
 
 	@Override
