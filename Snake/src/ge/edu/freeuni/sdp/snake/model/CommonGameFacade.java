@@ -84,4 +84,16 @@ public class CommonGameFacade implements GameFacade {
 	protected Point getSnakeHead() {
 		return _snake.getHead();
 	}
+
+	@Override
+	public void saveState() {
+		Caretaker caretaker = new Caretaker();
+		caretaker.addMemento(_snake.saveToMemento());	
+	}
+
+	@Override
+	public void restoreState() {
+		Caretaker caretaker = new Caretaker();
+		_snake.restoreFromMemento(caretaker.getMemento());
+	}
 }

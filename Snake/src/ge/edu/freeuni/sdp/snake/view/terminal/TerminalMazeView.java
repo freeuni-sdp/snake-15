@@ -24,6 +24,8 @@ public class TerminalMazeView implements MazeView {
 		_presenter.setLivesUpdateListener(livesUpdater);
 	}
 
+	private boolean isStoped = false;
+	private final char Space = ' ';
 	@Override
 	public void show() {
 		_terminal.clearScreen();
@@ -31,9 +33,15 @@ public class TerminalMazeView implements MazeView {
 			Key key = _terminal.readInput();
 			if (_presenter.isGameOver())
 				return;
-			if (key != null && key.getKind() == Kind.Escape)
+			if(key != null && key.getCharacter() == Space){
+				isStoped = !isStoped;
+			}
+			if (key != null && key.getKind() == Kind.Escape){
+				if(isStoped)_presenter.saveState();
 				return;
-			_presenter.tick(convertToDirection(key));
+			}
+			if(!isStoped)
+				_presenter.tick(convertToDirection(key));
 			Sleep();
 		}
 	}
@@ -62,5 +70,8 @@ public class TerminalMazeView implements MazeView {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	public void restoreState(){
+		_presenter.restoreState();
 	}
 }
