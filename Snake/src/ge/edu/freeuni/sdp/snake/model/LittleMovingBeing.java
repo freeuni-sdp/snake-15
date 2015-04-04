@@ -2,36 +2,45 @@ package ge.edu.freeuni.sdp.snake.model;
 
 import java.util.Random;
 
-public abstract class LittleMovingBeing extends MovingBeing{
+public abstract class LittleMovingBeing extends MovingBeing {
 	private Point point;
-	private long lastChange;
-	
-	public LittleMovingBeing(Point point) {
-		this.point = point;
-		setRandomDirection();
-		lastChange = System.currentTimeMillis();
+	protected long lastMove;
+	private Random _random;
+	private boolean _slowDownTrigger;
+
+	public LittleMovingBeing(Point head) {
+		this(head, new Random());
 	}
-	
-	private void setRandomDirection() {
-		Random random = new Random();
-		Direction [] array = {Direction.LEFT,Direction.RIGHT,Direction.UP,Direction.DOWN};
-		int index = random.nextInt(4);
-	    setDirection(array[index]);
+
+	public LittleMovingBeing(Point head, Random random) {
+		super();
+		this.point = head;
+		_random = random;
+		setDirection(Direction.LEFT);
 	}
-	
+
 	@Override
 	protected void moveTo(Point point) {
-		this.point = point;
-		long currentTime = System.currentTimeMillis();
-		if (currentTime-lastChange >= 5*1000){
+		_slowDownTrigger = !_slowDownTrigger;
+		if (_slowDownTrigger) return;
+		boolean isTimeToChangeDirection = System.currentTimeMillis() - lastMove >= 5 * 1000;
+		if (isTimeToChangeDirection) {
 			setRandomDirection();
-			lastChange = currentTime;
+			lastMove = System.currentTimeMillis();
 		}
+		this.point=point;
+	}
+
+	public void setRandomDirection() {
+		Direction currentDirection = this.getDirection();
+		Direction newDirection = currentDirection
+				.getNextRandomDirection(_random);
+		this.setDirection(newDirection);
 	}
 
 	@Override
 	public boolean contains(Point point) {
-		return this.point.equals(point);
+		return point.equals(this.point);
 	}
 
 	@Override
