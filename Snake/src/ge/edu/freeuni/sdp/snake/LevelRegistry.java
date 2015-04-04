@@ -6,6 +6,8 @@ import ge.edu.freeuni.sdp.snake.model.GhostMousePopulator;
 import ge.edu.freeuni.sdp.snake.model.GhostPoisonPopulator;
 import ge.edu.freeuni.sdp.snake.model.HungrySnakeFactory;
 import ge.edu.freeuni.sdp.snake.model.Level;
+import ge.edu.freeuni.sdp.snake.model.MovingMousePopulator;
+import ge.edu.freeuni.sdp.snake.model.MovingPoisonPopulator;
 import ge.edu.freeuni.sdp.snake.model.Populator;
 import ge.edu.freeuni.sdp.snake.model.RandomWormHole;
 import ge.edu.freeuni.sdp.snake.model.SingleMousePopulator;
@@ -28,7 +30,13 @@ public class LevelRegistry {
 				"Mice appair one by one on random positions.",
 				new SphericTopology(),
 				new SingleMousePopulator());
-		
+
+		Populator[] array = {new MovingMousePopulator(),new MovingPoisonPopulator()};
+		Level levelMoving = new Level(
+					"Moving Poison & Mouse", 
+					new SphericTopology(),
+					new CompositePopulator(array));		
+	
 		Level levelPoisonFood = new Level(
 				"Poison food", 
 				"Snake has three lives.",
@@ -69,6 +77,7 @@ public class LevelRegistry {
 								new EvilSnakePopulator()}));
 
 		levels.add(levelVerySimple);
+		levels.add(levelMoving);
 		levels.add(levelPoisonFood);
 		levels.add(levelHungrySnake);
 		levels.add(levelGhostMouse);
