@@ -1,5 +1,6 @@
 package ge.edu.freeuni.sdp.snake.presenter;
 
+import ge.edu.freeuni.sdp.snake.model.CommonGameFacade;
 import ge.edu.freeuni.sdp.snake.model.GameFacade;
 import ge.edu.freeuni.sdp.snake.model.HighScoreData;
 
@@ -7,12 +8,19 @@ public class PresenterFactory {
 
 	private GameFacade game;
 	
+	public PresenterFactory() {
+		this.game = new CommonGameFacade();
+	}
+
+	public PresenterFactory(GameFacade game) {
+		this.game = game;
+	}
+
 	public LevelPresenter getLevelPresenter() {
 		return new LevelPresenter();
 	}
-
+	
 	public MazePresenter getMazePresenter() {
-		game = new GameFacade();
 		return new MazePresenter(game);
 	}
 

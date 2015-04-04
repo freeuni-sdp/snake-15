@@ -1,60 +1,17 @@
 package ge.edu.freeuni.sdp.snake.model;
 
-/**
- * Hides inner structure of model from presenter and provides 
- * simplified interface to it.
- * @author George Mamaladze
- *
- */
-public class GameFacade {
+public interface GameFacade {
 
-	private Universe _universe;
-	private Snake _snake;
-	private Populator _populator;
+	public abstract int getLives();
 
-	public GameFacade() {
-		Configuration config = Configuration.getInstance();
-		Level level = Configuration.getInstance().getSelectedLevel();
-		Topology topology = level.getTopology();
-		_populator = level.getFoodGenerator();
-		_universe = new Universe(topology);
+	public abstract BeingKind getBeingKindAt(Point point);
 
-		Point snakeHead = new Point(
-				config.getSize().getWidth() / 2,
-				config.getSize().getHeight() / 2);
-        _snake = level.getSnake(snakeHead);
-		_universe.addBeing(_snake);
-	}
+	public abstract void makeMove(Direction direction);
 
-	public int getLives(){
-		return _snake.getLives();
-	}
-	
-	public BeingKind getBeingKindAt(Point point) {
-		Being being = _universe.getBeingAt(point);
-		if (being == null)
-			return BeingKind.None;
-		return being.getKind();
-	}
+	public abstract boolean isGameOver();
 
-	public void makeMove(Direction direction) {
-		_snake.setDirection(direction);
-		_universe.move();
-		_universe.interact();
-		_universe.removeZombies();
-		_populator.populate(_universe);
-	}
+	public abstract Size getSize();
 
-	public boolean isGameOver() {
-		return !_snake.isAlive();
-	}
-	
-	public Size getSize() {
-		return Configuration.getInstance().getSize();
-	}
-	
-	public int getScore(){
-		return _snake.getLength();
-	}
-	
+	public abstract int getScore();
+
 }

@@ -30,7 +30,6 @@ public class SwingViewFactory implements ViewFactory {
 	 */
 	public SwingViewFactory(JFrame frame) {
 		this.frame = frame;
-		
 	}
 
 	/*
