@@ -25,7 +25,7 @@ public abstract class MovingBeing extends Being {
 	protected abstract void moveTo(Point point);
 
 	@Override
-	public final void setDirection(Direction direction) {
+	public void setDirection(Direction direction) {
 		_direction = direction;
 	}
 	

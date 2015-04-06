@@ -40,4 +40,10 @@ public class Direction {
 		}
 		return candidate;
 	}
+
+	public static Direction getDirection(Point from, Point to) {
+		return new Direction(
+				(int)Math.signum(to.X - from.X),
+				(int)Math.signum(to.Y - from.Y));
+	}
 }

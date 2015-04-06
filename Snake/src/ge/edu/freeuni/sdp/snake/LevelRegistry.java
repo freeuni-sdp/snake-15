@@ -8,11 +8,13 @@ import ge.edu.freeuni.sdp.snake.model.HungrySnakeFactory;
 import ge.edu.freeuni.sdp.snake.model.Level;
 import ge.edu.freeuni.sdp.snake.model.MovingMousePopulator;
 import ge.edu.freeuni.sdp.snake.model.MovingPoisonPopulator;
+import ge.edu.freeuni.sdp.snake.model.ObservableSnakeFactory;
 import ge.edu.freeuni.sdp.snake.model.Populator;
 import ge.edu.freeuni.sdp.snake.model.RandomWormHole;
 import ge.edu.freeuni.sdp.snake.model.SingleMousePopulator;
 import ge.edu.freeuni.sdp.snake.model.SinglePoisonPopulator;
 import ge.edu.freeuni.sdp.snake.model.SphericTopology;
+import ge.edu.freeuni.sdp.snake.model.SwapSidesPopulator;
 import ge.edu.freeuni.sdp.snake.model.ThreeLivesSnakeFactory;
 import ge.edu.freeuni.sdp.snake.model.WormHolePopulator;
 import ge.edu.freeuni.sdp.snake.model.WormHoleTopology;
@@ -75,6 +77,13 @@ public class LevelRegistry {
 						new Populator[] {
 								new SingleMousePopulator(), 
 								new EvilSnakePopulator()}));
+		
+		ObservableSnakeFactory snakeFactory =  new ObservableSnakeFactory();
+		Level levelSwapSides = new Level(
+				"Swap sides", 
+				new SphericTopology(),
+				new SwapSidesPopulator(snakeFactory),
+				snakeFactory);
 
 		levels.add(levelVerySimple);
 		levels.add(levelMoving);
@@ -83,6 +92,7 @@ public class LevelRegistry {
 		levels.add(levelGhostMouse);
 		levels.add(levelWormhole);
 		levels.add(levelEvilSnake);
+		levels.add(levelSwapSides);
 		return levels;
 	}
 }
