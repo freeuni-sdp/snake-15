@@ -21,10 +21,10 @@ public class Memento {
 	}
 
 	private void saveDirection(Direction d) {
-		if(d.isOppositeTo(d.DOWN)) direction = "up";
-		if(d.isOppositeTo(d.UP)) direction = "down";
-		if(d.isOppositeTo(d.RIGHT)) direction = "left";
-		if(d.isOppositeTo(d.LEFT)) direction = "right";
+		if(d.isOppositeTo(Direction.DOWN)) direction = "up";
+		if(d.isOppositeTo(Direction.UP)) direction = "down";
+		if(d.isOppositeTo(Direction.RIGHT)) direction = "left";
+		if(d.isOppositeTo(Direction.LEFT)) direction = "right";
 	}
 
 
