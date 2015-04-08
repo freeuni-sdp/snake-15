@@ -27,7 +27,7 @@ public abstract class Being {
 		return _numLives > 0;
 	}
 
-	public final void kill() {
+	public void kill() {
 		_numLives--;
 	}
 

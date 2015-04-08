@@ -2,7 +2,6 @@
 import ge.edu.freeuni.sdp.snake.model.*;
 import static org.easymock.EasyMock.*;
 
-import org.easymock.MockType;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -15,14 +14,15 @@ public class TestX {
 	
 	@Test
 	public void testWithMock() {
-		PoisonBeing target = new PoisonBeing(null);
+		PoisonBeing targetPoison = new PoisonBeing(new Point(0,0));
 		
-		Being mock = createMock(MockType.NICE, MouseBeing.class);
-		/* expect */ mock.kill();
-		replay(mock);
+		Being mockOther = createStrictMock(Being.class);
+		/* expect */ mockOther.kill();
+		expectLastCall().once();
+		replay(mockOther);
 		
-		target.interactWith(mock);
-		verify(mock);;
+		targetPoison.interactWith(mockOther);
+		verify(mockOther);;
 	}
 
 }
