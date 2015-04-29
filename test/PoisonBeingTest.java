@@ -1,28 +1,33 @@
-
 import ge.edu.freeuni.sdp.snake.model.*;
-import static org.easymock.EasyMock.*;
+import static org.mockito.Mockito.*;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.*;
+import static org.junit.Assert.*;
 
-public class TestX {
+public class PoisonBeingTest {
 
 	@Test
-	public void testClassic() {
-		Assert.assertTrue(true);
-	}
-	
-	@Test
-	public void testWithMock() {
-		PoisonBeing targetPoison = new PoisonBeing(new Point(0,0));
-		
-		Being mockOther = createStrictMock(Being.class);
-		/* expect */ mockOther.kill();
-		expectLastCall().once();
-		replay(mockOther);
-		
-		targetPoison.interactWith(mockOther);
-		verify(mockOther);;
+	public void kind_is_FoodPoison() {
+		// Classic
+		PoisonBeing target = new PoisonBeing(new Point(0, 0));
+		BeingKind actual = target.getKind();
+		assertEquals(BeingKind.FoodPoison, actual);
 	}
 
+	@Test
+	public void interact_with_other__make_sure_other_is_killed() {
+		// Using mock
+		PoisonBeing target = new PoisonBeing(new Point(0, 0));
+		Being other = mock(Being.class);
+		target.interactWith(other);
+		verify(other).kill();
+	}
+
+	@Test
+	public void constructor_sets_head() {
+		// Using fake + classic
+		Point point = mock(Point.class);
+		PoisonBeing target = new PoisonBeing(point);
+		assertEquals(point, target.getHead());
+	}
 }
