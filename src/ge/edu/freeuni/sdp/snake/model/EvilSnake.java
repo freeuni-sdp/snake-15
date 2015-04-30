@@ -29,7 +29,7 @@ public class EvilSnake extends Snake {
 
 	public void setRandomDirection() {
 		Direction currentDirection = this.getDirection();
-		Direction newDirection = currentDirection.getNextRandomDirection(_random); 
+		Direction newDirection = currentDirection.getNextRandomDirection(_random);
 		this.setDirection(newDirection);
 	}
 }
