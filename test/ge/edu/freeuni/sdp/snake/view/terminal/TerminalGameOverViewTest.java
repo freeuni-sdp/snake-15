@@ -1,6 +1,7 @@
 package ge.edu.freeuni.sdp.snake.view.terminal;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import ge.edu.freeuni.sdp.snake.presenter.GameOverPresenter;
 
 import org.junit.Before;
@@ -27,26 +28,77 @@ public class TerminalGameOverViewTest {
 		terminalSize = Mockito.mock(TerminalSize.class);
 		presenter = Mockito.mock(GameOverPresenter.class);
 		gameOver = Mockito.spy(new TerminalGameOverView(presenter, terminal));
+
+		Mockito.when(terminalSize.getRows()).thenReturn(100);
+		Mockito.when(terminalSize.getColumns()).thenReturn(100);
+		Mockito.when(terminal.getTerminalSize()).thenReturn(terminalSize);
 	}
 
 	/*
-	 * 
+	 * Should throw null pointer runtime exception if terminal size is null.
+	 * (P.S Don't know how correct it is but its so in this code.)
+	 */
+	@Test(expected = NullPointerException.class)
+	public void testShowNullPointerException() {
+		Mockito.when(terminal.getTerminalSize()).thenReturn(null);
+		gameOver.show();
+	}
+
+	/*
+	 * This method is used mainly for getting information from user after
+	 * loosing game. It should change boolean continueGame. I'll test different
+	 * cases of getting user input in other methods.
 	 */
 
 	@Test
-	public void testShow() {
-		Mockito.when(terminalSize.getColumns()).thenReturn(0).thenReturn(1);
-		Mockito.when(terminalSize.getRows()).thenReturn(0).thenReturn(7);
+	public void testShowWithUserAsnwerNoCharacter() {
+		// First this boolean should be false
+		assertFalse(gameOver.continueGameOrNot());
+		// Stub key to return yes
+		Mockito.when(key.getCharacter()).thenReturn('n');
+		Mockito.when(terminal.readInput()).thenReturn(key);
+		gameOver.show();
+		// Second call of this boolean should be false
+		assertFalse(gameOver.continueGameOrNot());
+	}
 
-		Mockito.when(key.getKind()).thenReturn(Kind.ArrowDown)
-				.thenReturn(Kind.Escape);
-		Mockito.when(key.getCharacter()).thenReturn('s').thenReturn('y')
-				.thenReturn('n');
+	@Test
+	public void testShowWithUserAsnwerNoEscape() {
+		// First this boolean should be false
+		assertFalse(gameOver.continueGameOrNot());
+		// Stub key to return yes
+		Mockito.when(key.getKind()).thenReturn(Kind.Escape);
+		Mockito.when(terminal.readInput()).thenReturn(key);
+		gameOver.show();
+		// Second call of this boolean should be false
+		assertFalse(gameOver.continueGameOrNot());
+	}
 
+	@Test
+	public void testShowWithUserAsnwerStrangeSymbol() {
+		// First this boolean should be false
+		assertFalse(gameOver.continueGameOrNot());
+		// Stub key to return yes
+		Mockito.when(key.getCharacter()).thenReturn('\n').thenReturn('n');
+		Mockito.when(terminal.readInput()).thenReturn(key);
+		gameOver.show();
+		// Second call of this boolean should be false
+		assertFalse(gameOver.continueGameOrNot());
+	}
+
+	@Test
+	public void testShowWithTerminalSizeChanges() {
+		// First this boolean should be false
+		assertFalse(gameOver.continueGameOrNot());
+		// Prepare stub for terminal size
+		Mockito.when(terminalSize.getRows()).thenReturn(0).thenReturn(10);
+		Mockito.when(terminalSize.getColumns()).thenReturn(0).thenReturn(10);
+		// Stub key to return yes
+		Mockito.when(key.getCharacter()).thenReturn('y');
 		Mockito.when(terminal.getTerminalSize()).thenReturn(terminalSize);
 		Mockito.when(terminal.readInput()).thenReturn(null).thenReturn(key);
-
 		gameOver.show();
+		assertTrue(gameOver.continueGameOrNot());
 	}
 
 	/*
@@ -66,16 +118,17 @@ public class TerminalGameOverViewTest {
 
 	@Test
 	public void testContinueGameOrNotTrue() {
-		// Stub terminal size
-		Mockito.when(terminalSize.getColumns()).thenReturn(10);
-		Mockito.when(terminalSize.getRows()).thenReturn(10);
-		// Stub key
+		// Stub key to return 'y'
 		Mockito.when(key.getCharacter()).thenReturn('y');
-		// Stub terminal
-		Mockito.when(terminal.getTerminalSize()).thenReturn(terminalSize);
 		Mockito.when(terminal.readInput()).thenReturn(key);
-		// Call necessary methods
+		// Call necessary methods in this case show
 		gameOver.show();
+		// Verify method calls occurrence
+		Mockito.verify(key).getCharacter();
+		Mockito.verify(terminal).readInput();
+		Mockito.verify(terminal).getTerminalSize();
+		Mockito.verify(terminalSize, Mockito.atLeast(1)).getRows();
+		Mockito.verify(terminalSize, Mockito.atLeast(1)).getColumns();
 		// Check if method worked correctly
 		assertTrue(gameOver.continueGameOrNot());
 	}
