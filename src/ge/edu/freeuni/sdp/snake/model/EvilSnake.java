@@ -19,10 +19,10 @@ public class EvilSnake extends Snake {
 	
 	@Override
 	protected void moveTo(Point point){
-		boolean isTimeToChangeDirection = System.currentTimeMillis()-lastMove >= 5*1000;
+		boolean isTimeToChangeDirection = Clock.getInstance().currentTimeMillis() - lastMove >= 5*1000;
 		if (isTimeToChangeDirection){
 			setRandomDirection();
-			lastMove = System.currentTimeMillis();
+			lastMove = Clock.getInstance().currentTimeMillis();
 		}
 		super.moveTo(point);
 	}
