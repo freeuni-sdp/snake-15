@@ -16,13 +16,13 @@ public class EndlessAndSphericTopologyTest {
 	
 	@BeforeClass
 	public static void setUpClass(){
-		Size size = new Size(100, 30);
+		Size size = new Size(100, 30); 
 		List<Level> levels = LevelRegistry.getLevels();
 		Configuration.init(size, levels);
 	}
 	
 	@Before
-	public void setUp(){
+	public void setUp(){ 
 		topology = new SphericTopology();
 	}
 	
@@ -35,7 +35,8 @@ public class EndlessAndSphericTopologyTest {
 		
 		Point result =  topology.getNextTo(testPoint, leftDir);
 		
-		Assert.assertEquals(true, actualResult.equals(result));	
+		Assert.assertEquals(actualResult.X, result.X);
+		Assert.assertEquals(actualResult.Y, result.Y);
 	}
 	
 	@Test
@@ -48,7 +49,8 @@ public class EndlessAndSphericTopologyTest {
 		
 		Point result =  topology.getNextTo(testPoint, rightDir);
 		
-		Assert.assertEquals(true, actualResult.equals(result));
+		Assert.assertEquals(actualResult.X, result.X);
+		Assert.assertEquals(actualResult.Y, result.Y);
 	}
 	
 	@Test
@@ -60,7 +62,8 @@ public class EndlessAndSphericTopologyTest {
 		
 		Point result =  topology.getNextTo(testPoint, upDir);
 		
-		Assert.assertEquals(true, actualResult.equals(result));
+		Assert.assertEquals(actualResult.X, result.X);
+		Assert.assertEquals(actualResult.Y, result.Y);
 	}
 	
 	@Test
@@ -72,7 +75,7 @@ public class EndlessAndSphericTopologyTest {
 		
 		Point result =  topology.getNextTo(testPoint, downDir);
 		
-		Assert.assertEquals(true, actualResult.equals(result));
-		
+		Assert.assertEquals(actualResult.X, result.X);
+		Assert.assertEquals(actualResult.Y, result.Y);	
 	}
 }
