@@ -9,7 +9,7 @@ public class LevelPresenterTest {
 
 	
 	@BeforeClass
-	public void setUpClass(){
+	public static void setUpClass(){
 	}
 	
 	@Before
