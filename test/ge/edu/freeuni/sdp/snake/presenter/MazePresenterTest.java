@@ -1,15 +1,27 @@
 package ge.edu.freeuni.sdp.snake.presenter;
 
 import static org.junit.Assert.*;
+import ge.edu.freeuni.sdp.snake.model.BeingKind;
+import ge.edu.freeuni.sdp.snake.model.Direction;
+import ge.edu.freeuni.sdp.snake.model.GameFacade;
+import ge.edu.freeuni.sdp.snake.model.Point;
+import ge.edu.freeuni.sdp.snake.model.Size;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 public class MazePresenterTest {
 
+	private static GameFacade game;
+	private static MazePresenter mazePresenter;
+
 	@Before
 	public void setUp() throws Exception {
+		game = Mockito.mock(GameFacade.class);
+		Mockito.when(game.getSize()).thenReturn(new Size(10, 10));
+		mazePresenter = Mockito.spy(new MazePresenter(game));
 	}
 
 	@After
@@ -17,38 +29,33 @@ public class MazePresenterTest {
 	}
 
 	@Test
-	public void testMazePresenter() {
-		// fail("Not yet implemented");
-	}
-
-	@Test
 	public void testSetCellUpdateListener() {
-		// fail("Not yet implemented");
+
 	}
 
 	@Test
 	public void testIsGameOver() {
-		// fail("Not yet implemented");
+
 	}
 
 	@Test
 	public void testTick() {
-		// fail("Not yet implemented");
+
 	}
 
 	@Test
 	public void testSetLivesUpdateListener() {
-		// fail("Not yet implemented");
+
 	}
 
 	@Test
 	public void testSaveState() {
-		// fail("Not yet implemented");
+
 	}
 
 	@Test
 	public void testRestoreState() {
-		// fail("Not yet implemented");
+
 	}
 
 }
