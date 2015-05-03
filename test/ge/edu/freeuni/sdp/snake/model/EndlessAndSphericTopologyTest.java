@@ -12,18 +12,25 @@ import static org.mockito.Mockito.*;
 
 public class EndlessAndSphericTopologyTest {
 	
+	private static Configuration conf;
 	private SphericTopology topology; 
+	private static Size size;
 
 	
 	@BeforeClass
-	public static void setUpClass(){
-		Size size = new Size(100, 30); 
+	public static void setUpClass(){ 
+		conf = mock(Configuration.class);
+		size = mock(Size.class); 
 		List<Level> levels = mock(List.class);
-		Configuration.init(size, levels);
+		conf.init(size, levels);
+		
 	}
 	
 	@Before
 	public void setUp(){ 
+		when(conf.getSize()).thenReturn(size);
+		when(size.getWidth()).thenReturn(100);
+		when(size.getHeight()).thenReturn(30);
 		topology = new SphericTopology();
 	}
 	
@@ -33,6 +40,7 @@ public class EndlessAndSphericTopologyTest {
 		Direction leftDir = Direction.LEFT;
 		
 		Point actualResult = new Point(99,16);
+		
 		
 		Point result =  topology.getNextTo(testPoint, leftDir);
 		
