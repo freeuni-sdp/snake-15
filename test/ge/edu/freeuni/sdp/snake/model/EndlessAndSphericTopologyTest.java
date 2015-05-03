@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.mockito.Mockito.*;
 
 public class EndlessAndSphericTopologyTest {
 	
@@ -18,7 +19,7 @@ public class EndlessAndSphericTopologyTest {
 	@BeforeClass
 	public static void setUpClass(){
 		Size size = new Size(100, 30); 
-		List<Level> levels = LevelRegistry.getLevels();;
+		List<Level> levels = mock(List.class);
 		Configuration.init(size, levels);
 	}
 	
