@@ -12,7 +12,7 @@ public class ObservableSnakeAdapter extends Snake implements PositionObserver {
 	@Override
 	public void setDirection(Direction direction) {
 		if (directionObserver!=null) {
-			directionObserver.notifyDurectionSet(direction);
+			directionObserver.notifyDirectionSet(direction);
 		}
 	}
 	

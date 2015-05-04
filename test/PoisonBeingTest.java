@@ -30,4 +30,13 @@ public class PoisonBeingTest {
 		PoisonBeing target = new PoisonBeing(point);
 		assertEquals(point, target.getHead());
 	}
+	
+	@Test
+	public void asserting_isAlive_value_on_stub_without_mocking_the_method() {
+		Being other = spy(Being.class);
+		assertTrue(other.isAlive());
+		other.kill();
+		assertFalse(other.isAlive());
+	}
+
 }

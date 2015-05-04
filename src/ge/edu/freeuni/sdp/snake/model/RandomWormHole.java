@@ -12,19 +12,24 @@ public class RandomWormHole {
 	private Point _left;
 	private Point _right;
 	private Random _random;
+	private Configuration _configuration;
 
 	public RandomWormHole() {
 		this(new Random());
 	}
 
 	public RandomWormHole(Random random) {
+		this(random,Configuration.getInstance());
+	}
+	
+	public RandomWormHole(Random random, Configuration configuration){
 		_random = random;
+		_configuration = configuration;
 	}
 
 	private void generate() {
-		Configuration config = Configuration.getInstance();
-		int halfWidth = config.getSize().getWidth() / 2;
-		int height = config.getSize().getHeight();
+		int halfWidth = _configuration.getSize().getWidth() / 2;
+		int height = _configuration.getSize().getHeight();
 
 		_left = getRandomInside(3, 3, halfWidth, height-3, _random);
 		_right = getRandomInside(halfWidth, 3, 2 * halfWidth -3, height-3, _random);

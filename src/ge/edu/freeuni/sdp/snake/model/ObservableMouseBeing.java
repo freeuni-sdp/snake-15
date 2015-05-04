@@ -23,7 +23,7 @@ public class ObservableMouseBeing extends MovingMouseBeing implements DirectionO
 	}
 
 	@Override
-	public void notifyDurectionSet(Direction direction) {
+	public void notifyDirectionSet(Direction direction) {
 		setDirection(direction);
 	}
 	
