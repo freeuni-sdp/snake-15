@@ -6,16 +6,22 @@ public class Snake extends MovingBeing {
 
 	private LinkedList<Point> _body;
 	protected int _length;
+	private Configuration _configuration;
 
 	public Snake(Point head) {
 		this(head, 1);
 	}
 	
-	public Snake(Point head, int lives) {
+	public Snake(Point head,int lives){
+		this(head,lives,Configuration.getInstance());
+	}
+	
+	public Snake(Point head, int lives,Configuration configuration) {
 		super(lives);
 		_body = new LinkedList<Point>();
 		_body.add(head);
 		_length = 3;
+		_configuration = configuration;
 	}
 
 	@Override
@@ -59,13 +65,13 @@ public class Snake extends MovingBeing {
 	}
 	
 	public Memento saveToMemento(){
-		return new Memento(_length,getDirection(),getHead(),Configuration.getInstance().getSelectedLevelIndex());
+		return new Memento(_length,getDirection(),getHead(),_configuration.getSelectedLevelIndex());
 	}
 	
 	public void restoreFromMemento (Memento m){
 		_length = m.getLength();
 		setDirection(m.getDirection());
 		moveTo(m.getHead());
-		Configuration.getInstance().selectLevel(0);
+		_configuration.selectLevel(0);
 	}
 }
