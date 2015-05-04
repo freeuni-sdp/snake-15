@@ -1,14 +1,12 @@
 package ge.edu.freeuni.sdp.snake.presenter;
 
 import ge.edu.freeuni.sdp.snake.model.Configuration;
-import ge.edu.freeuni.sdp.snake.model.Level;
-import ge.edu.freeuni.sdp.snake.model.Size;
+
 
 import java.util.Arrays;
-import java.util.List;
 
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.mockito.Mockito.*;
@@ -16,20 +14,20 @@ import static org.mockito.Mockito.*;
 
 public class LevelPresenterTest {
 
-	private static Configuration conf;
-	
+	private Configuration conf;
+	private LevelPresenter presenter;
 	private String[] names = { "level 1",
 			"level 2", "level 3",
 			"level 4" };
 	
-	@BeforeClass
-	public static void setUpClass(){
+	@Before
+	public void setUpClass(){
 		conf = mock(Configuration.class);
+		presenter = new LevelPresenter(conf);
 	}
 	
 	@Test
 	public void testMethodGetLevelNames(){
-		LevelPresenter presenter = new LevelPresenter(conf);
 		
 		when(conf.getLevelNames()).thenReturn(names);
 		String[] result = presenter.getLevelNames();
@@ -41,7 +39,6 @@ public class LevelPresenterTest {
 	@Test
 	public void testSetSelectionInvalidIndex(){	
 		
-		LevelPresenter presenter = new LevelPresenter(conf);
 		LevelPresenter presenterSpy = spy(presenter);
 		
 		when(presenterSpy.getLevelNames()).thenReturn(names);
@@ -63,7 +60,6 @@ public class LevelPresenterTest {
 	@Test
 	public void testSetSelectionNotifyLevelSelectionOnNull(){	
 		
-		LevelPresenter presenter = new LevelPresenter(conf);
 		LevelPresenter presenterSpy = spy(presenter);
 				
 		when(presenterSpy.getLevelNames()).thenReturn(names);

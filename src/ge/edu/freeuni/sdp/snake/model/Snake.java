@@ -13,7 +13,7 @@ public class Snake extends MovingBeing {
 	}
 	
 	public Snake(Point head,int lives){
-		this(head,lives,Configuration.getInstance());
+		this(head,lives,null);
 	}
 	
 	public Snake(Point head, int lives,Configuration configuration) {
@@ -24,6 +24,14 @@ public class Snake extends MovingBeing {
 		_configuration = configuration;
 	}
 
+	private Configuration getConfig() {
+		if (_configuration==null) {
+			return Configuration.getInstance();
+		} else {
+			return _configuration;
+		}
+	}
+	
 	@Override
 	public Point getHead() {
 		return _body.getFirst();
@@ -65,13 +73,13 @@ public class Snake extends MovingBeing {
 	}
 	
 	public Memento saveToMemento(){
-		return new Memento(_length,getDirection(),getHead(),_configuration.getSelectedLevelIndex());
+		return new Memento(_length,getDirection(),getHead(),getConfig().getSelectedLevelIndex());
 	}
 	
 	public void restoreFromMemento (Memento m){
 		_length = m.getLength();
 		setDirection(m.getDirection());
 		moveTo(m.getHead());
-		_configuration.selectLevel(0);
+		getConfig().selectLevel(0);
 	}
 }

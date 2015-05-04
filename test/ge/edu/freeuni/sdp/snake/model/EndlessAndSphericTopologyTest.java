@@ -1,37 +1,28 @@
 package ge.edu.freeuni.sdp.snake.model;
 
 
-import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.mockito.Mockito.*;
 
 public class EndlessAndSphericTopologyTest {
 	
-	private static Configuration conf;
+	private Configuration conf;
 	private SphericTopology topology; 
-	private static Size size;
+	private Size size;
 
-	
-	@BeforeClass
-	public static void setUpClass(){ 
-		conf = mock(Configuration.class);
-		size = mock(Size.class); 
-		List<Level> levels = mock(List.class);
-		conf.init(size, levels);
-		
-	}
 	
 	@Before
 	public void setUp(){ 
+		conf = mock(Configuration.class);
+		size = mock(Size.class); 
 		when(conf.getSize()).thenReturn(size);
 		when(size.getWidth()).thenReturn(100);
 		when(size.getHeight()).thenReturn(30);
-		topology = new SphericTopology();
+		topology = new SphericTopology(conf);
 	}
 	
 	@Test
