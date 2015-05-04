@@ -80,6 +80,6 @@ public class Snake extends MovingBeing {
 		_length = m.getLength();
 		setDirection(m.getDirection());
 		moveTo(m.getHead());
-		getConfig().selectLevel(0);
+		getConfig().selectLevel(m.getLevelIndex());
 	}
 }
