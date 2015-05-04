@@ -8,11 +8,11 @@ public class EvilSnake extends Snake {
 	private Random _random;
 	private Clock _clock;
 	public EvilSnake(Point head) {
-		this(head, new Random(),new Clock());
+		this(head, 1, Configuration.getInstance(), new Random(),new Clock());
 	}
 
-	public EvilSnake(Point head, Random random,Clock clock) {
-		super(head);
+	public EvilSnake(Point head, int lives, Configuration config, Random random,Clock clock) {
+		super(head, 1, config);
 		_random = random;
 		_clock = clock;
 		setDirection(Direction.LEFT);

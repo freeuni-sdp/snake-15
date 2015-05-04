@@ -11,12 +11,15 @@ public class EvilSnakeTest {
 	private MyRandom rand;
 	private EvilSnake target;
 	private Topology top;
+	private Configuration config;
+	
 	@Before
 	public void setUp(){
 		top = mock(SphericTopology.class);
 		clock = mock(Clock.class);
 		rand = mock(MyRandom.class);
-		target = new EvilSnake(new Point(2,2),rand,clock);
+		config = mock(Configuration.class);
+		target = new EvilSnake(new Point(2,2), 1, config, rand,clock);
 	}
 
 	//EvilSnake Is Going Left and than still going Left . Doesn't Change Direction
@@ -49,7 +52,7 @@ public class EvilSnakeTest {
 	@Test
 	public void constructorSetsHead() {
 		Point point = mock(Point.class);
-		EvilSnake target = new EvilSnake(point);
+		EvilSnake target = new EvilSnake(point, 1, config, rand,clock);
 		assertEquals(point, target.getHead());
 	}
 }
