@@ -21,6 +21,11 @@ public class TerminalGameOverViewTest {
 	private static GameOverPresenter presenter;
 	private static TerminalGameOverView gameOver;
 
+	/*
+	 * General setup for tests some of these stubbed methods will be overridden
+	 * in the test methods but generally this return values will work.
+	 */
+
 	@Before
 	public void setUp() throws Exception {
 		key = Mockito.mock(Key.class);
@@ -36,7 +41,7 @@ public class TerminalGameOverViewTest {
 
 	/*
 	 * Should throw null pointer runtime exception if terminal size is null.
-	 * (P.S Don't know how correct it is but its so in this code.)
+	 * (P.S Don't know how correct it is but it's so in this code.)
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testShowNullPointerException() {
@@ -54,7 +59,7 @@ public class TerminalGameOverViewTest {
 	public void testShowWithUserAsnwerNoCharacter() {
 		// First this boolean should be false
 		assertFalse(gameOver.continueGameOrNot());
-		// Stub key to return yes
+		// Stub key to return no
 		Mockito.when(key.getCharacter()).thenReturn('n');
 		Mockito.when(terminal.readInput()).thenReturn(key);
 		gameOver.show();
@@ -66,7 +71,7 @@ public class TerminalGameOverViewTest {
 	public void testShowWithUserAsnwerNoEscape() {
 		// First this boolean should be false
 		assertFalse(gameOver.continueGameOrNot());
-		// Stub key to return yes
+		// Stub key to return no
 		Mockito.when(key.getKind()).thenReturn(Kind.Escape);
 		Mockito.when(terminal.readInput()).thenReturn(key);
 		gameOver.show();
@@ -78,7 +83,7 @@ public class TerminalGameOverViewTest {
 	public void testShowWithUserAsnwerStrangeSymbol() {
 		// First this boolean should be false
 		assertFalse(gameOver.continueGameOrNot());
-		// Stub key to return yes
+		// Stub key first returns strange character then no
 		Mockito.when(key.getCharacter()).thenReturn('\n').thenReturn('n');
 		Mockito.when(terminal.readInput()).thenReturn(key);
 		gameOver.show();
@@ -114,6 +119,8 @@ public class TerminalGameOverViewTest {
 	/*
 	 * After construction when user will select continue game (Y/y)
 	 * continueGameOrNot() should return true.
+	 * 
+	 * (P.S doesn't work on upper case 'Y')
 	 */
 
 	@Test
