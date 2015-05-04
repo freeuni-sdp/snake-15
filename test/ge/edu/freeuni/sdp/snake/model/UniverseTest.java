@@ -108,26 +108,27 @@ public class UniverseTest {
         verify(being, times(0)).interactWith(being);   
     }
     
-//    @Test
-//    public void removeZombieTest(){
-//        Being being1 = mock(Being.class);
-//        Being being2 = mock(Being.class);
-//        
-//        when(being1.isAlive()).thenReturn(Boolean.FALSE);
-//        when(being2.isAlive()).thenReturn(Boolean.TRUE);
-//        _population.add(being1);
-//        _population.add(being2);
-//        
-//        _universe.removeZombies();
-//        
-//        assertEquals(_population.size(), 1);
-//        
-//        verify(being1).isAlive();
-//        verify(being2).isAlive();
-//        assertFalse(_population.contains(being1));
-//        assertTrue(_population.contains(being2));
-//        
-//    }
+    @Test
+    public void removeZombieTest(){
+        Being being1 = spy(Being.class);
+        Being being2 = spy(Being.class);
+        assertTrue(being1.isAlive());
+        assertTrue(being2.isAlive());
+        
+        being1.kill();
+        assertFalse(being1.isAlive());
+        
+        _population.add(being1);
+        _population.add(being2);
+        
+        _universe.removeZombies();
+        
+        assertEquals(_population.size(), 1);
+        
+        assertFalse(_population.contains(being1));
+        assertTrue(_population.contains(being2));
+        
+    }
     
     @Test
     public void getExistingBeingTest(){
