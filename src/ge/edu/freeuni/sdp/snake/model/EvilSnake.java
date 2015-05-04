@@ -6,23 +6,24 @@ public class EvilSnake extends Snake {
 
 	protected long lastMove;
 	private Random _random;
-	
+	private Clock _clock;
 	public EvilSnake(Point head) {
-		this(head, new Random());
+		this(head, new Random(),new Clock());
 	}
-	
-	public EvilSnake(Point head, Random random) {
+
+	public EvilSnake(Point head, Random random,Clock clock) {
 		super(head);
 		_random = random;
+		_clock = clock;
 		setDirection(Direction.LEFT);
 	}
 	
 	@Override
 	protected void moveTo(Point point){
-		boolean isTimeToChangeDirection = Clock.getInstance().currentTimeMillis() - lastMove >= 5*1000;
+		boolean isTimeToChangeDirection = _clock.currentTimeMillis() - lastMove >= 5*1000;
 		if (isTimeToChangeDirection){
 			setRandomDirection();
-			lastMove = Clock.getInstance().currentTimeMillis();
+			lastMove = _clock.currentTimeMillis();
 		}
 		super.moveTo(point);
 	}
