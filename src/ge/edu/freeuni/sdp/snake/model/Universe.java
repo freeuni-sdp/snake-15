@@ -9,7 +9,11 @@ public class Universe {
 	private Topology _topology;
 
 	public Universe(Topology topology) {
-		_population = new ArrayList<Being>();
+		this(topology, new ArrayList<Being>());
+	}
+        
+        public Universe(Topology topology, List<Being> population) {
+		_population = population;
 		_topology = topology;
 	}
 
