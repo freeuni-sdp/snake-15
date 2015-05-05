@@ -38,7 +38,7 @@ public class Universe {
 
 				Point head = current.getHead();
 				// Skip if its own head, but don't skip own ass
-				if (current == other && head == other.getHead())
+				if (current == other)
 					continue;
 				if (other.contains(head)) {
 					current.interactWith(other);
@@ -46,6 +46,7 @@ public class Universe {
 			}
 		}
 	}
+        
 
 	/**
 	 * Iterates population and remove those beings which have .isAlive()==false

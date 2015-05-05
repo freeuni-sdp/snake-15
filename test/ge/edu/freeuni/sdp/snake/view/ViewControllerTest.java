@@ -10,12 +10,8 @@ import ge.edu.freeuni.sdp.snake.presenter.HighScorePresenter;
 import ge.edu.freeuni.sdp.snake.presenter.LevelPresenter;
 import ge.edu.freeuni.sdp.snake.presenter.MazePresenter;
 import ge.edu.freeuni.sdp.snake.presenter.PresenterFactory;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**
@@ -40,7 +36,7 @@ public class ViewControllerTest {
     
 
     @Test
-    public void levelPresenterTest() {
+    public void loopTest1() {
         LevelPresenter levelPresenter = mock(LevelPresenter.class);
         LevelView levelView = mock(LevelView.class);
         when(_presenterRegistry.getLevelPresenter()).thenReturn(levelPresenter);
@@ -68,6 +64,37 @@ public class ViewControllerTest {
         verify(mazeView, times(1)).show();
         verify(highScoreView, times(1)).show();
         verify(gameOverView, times(1)).show();
+    }
+    
+    @Test
+    public void loopTest2(){
+        LevelPresenter levelPresenter = mock(LevelPresenter.class);
+        LevelView levelView = mock(LevelView.class);
+        when(_presenterRegistry.getLevelPresenter()).thenReturn(levelPresenter);
+        when(_viewFactory.getLevelView(levelPresenter)).thenReturn(levelView);
+        
+        MazePresenter mazePresenter = mock(MazePresenter.class);
+        MazeView mazeView = mock(MazeView.class);
+        when(_presenterRegistry.getMazePresenter()).thenReturn(mazePresenter);
+        when(_viewFactory.getMazeView(mazePresenter)).thenReturn(mazeView);
+        
+        HighScorePresenter highScorePresenter = mock(HighScorePresenter.class);
+        HighScoreView highScoreView = mock(HighScoreView.class);
+        when(_presenterRegistry.getHighScorePresenter()).thenReturn(highScorePresenter);
+        when(_viewFactory.getHighScoreView(highScorePresenter)).thenReturn(highScoreView); 
+        
+        GameOverPresenter gameOverPresenter = mock(GameOverPresenter.class);
+        GameOverView gameOverView = mock(GameOverView.class);
+        when(gameOverView.continueGameOrNot()).thenReturn(Boolean.TRUE).thenReturn(Boolean.FALSE);
+        when(_presenterRegistry.getGameOverPresenter()).thenReturn(gameOverPresenter);
+        when(_viewFactory.getGameOverView(gameOverPresenter)).thenReturn(gameOverView);
+        
+        _controller.run();
+        
+        verify(levelView, times(2)).show();
+        verify(mazeView, times(2)).show();
+        verify(highScoreView, times(2)).show();
+        verify(gameOverView, times(2)).show();
     }
 
 }
