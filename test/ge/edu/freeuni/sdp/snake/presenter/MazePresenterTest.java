@@ -166,6 +166,20 @@ public class MazePresenterTest {
 				lives);
 	}
 
+	@Test
+	public void testTickNone() {
+		int lives = 7;
+		mazePresenter.setLivesUpdateListener(livesUpdateListener);
+		Mockito.when(game.getLives()).thenReturn(lives);
+		Mockito.when(game.getBeingKindAt((Point) Mockito.any()))
+				.thenReturn(BeingKind.FoodMouse)
+				.thenReturn(BeingKind.FoodPoison).thenReturn(BeingKind.Snake)
+				.thenReturn(BeingKind.None);
+
+		mazePresenter.tick(DirectionKey.None);
+		Mockito.verify(livesUpdateListener).updateLives(lives);
+	}
+
 	@Test(expected = NullPointerException.class)
 	public void testTickNull() {
 		int lives = 7;
