@@ -87,12 +87,14 @@ public class MazePresenterTest {
 
 	@Test
 	public void testSaveState() {
-
+		mazePresenter.saveState();
+		Mockito.verify(game).saveState();
 	}
 
 	@Test
 	public void testRestoreState() {
-
+		mazePresenter.restoreState();
+		Mockito.verify(game).restoreState();
 	}
 
 }
