@@ -53,8 +53,20 @@ public class Snake extends MovingBeing {
 		grow();
 	};
 
+	public boolean biteItself(Point point){
+		for(Point p : _body){
+			if(p.equals(point))
+				return true;
+		}
+		return false;
+	}
 	@Override
 	protected void moveTo(Point point) {
+		if(_length > 3){
+			if(biteItself(point)){
+				this.kill();
+			}
+		}
 		_body.addFirst(point);
 		trim();
 	};
