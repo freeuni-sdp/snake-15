@@ -17,7 +17,7 @@ public class SnakeTest {
 	
 	
 	@Test
-	public void checkTwoParameterConstructor(){
+	public void checkObjectCreation(){
 		Being mockBeing = mock(Being.class);
 		when(mockBeing.getLives()).thenReturn(6);
 				
