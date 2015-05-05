@@ -11,6 +11,12 @@ public class CommonGameFacade implements GameFacade {
 	private Universe _universe;
 	private Snake _snake;
 	private Populator _populator;
+	
+	public CommonGameFacade(Universe universe, Snake snake, Populator populator) {
+		_universe = universe;
+		_populator = populator;
+		_snake = snake;
+	}
 
 	public CommonGameFacade() {
 		Configuration config = Configuration.getInstance();
