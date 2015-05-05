@@ -1,21 +1,18 @@
 package ge.edu.freeuni.sdp.snake.presenter;
 
-import static org.junit.Assert.*;
-
-import java.io.File;
-
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import ge.edu.freeuni.sdp.snake.model.BeingKind;
 import ge.edu.freeuni.sdp.snake.model.Caretaker;
-import ge.edu.freeuni.sdp.snake.model.Direction;
 import ge.edu.freeuni.sdp.snake.model.GameFacade;
 import ge.edu.freeuni.sdp.snake.model.Memento;
 import ge.edu.freeuni.sdp.snake.model.Point;
 import ge.edu.freeuni.sdp.snake.model.Size;
 
-import org.junit.After;
+import java.io.File;
+
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 public class MazePresenterTest {
@@ -96,8 +93,73 @@ public class MazePresenterTest {
 	}
 
 	@Test
-	public void testTick() {
+	public void testTickDown() {
+		int lives = 7;
+		mazePresenter.setLivesUpdateListener(livesUpdateListener);
+		Mockito.when(game.getLives()).thenReturn(lives);
+		Mockito.when(game.getBeingKindAt((Point) Mockito.any()))
+				.thenReturn(BeingKind.FoodMouse)
+				.thenReturn(BeingKind.FoodPoison).thenReturn(BeingKind.Snake)
+				.thenReturn(BeingKind.None);
 
+		mazePresenter.tick(DirectionKey.Down);
+		Mockito.verify(livesUpdateListener).updateLives(lives);
+	}
+
+	@Test
+	public void testTickLeft() {
+		int lives = 7;
+		mazePresenter.setLivesUpdateListener(livesUpdateListener);
+		Mockito.when(game.getLives()).thenReturn(lives);
+		Mockito.when(game.getBeingKindAt((Point) Mockito.any()))
+				.thenReturn(BeingKind.FoodMouse)
+				.thenReturn(BeingKind.FoodPoison).thenReturn(BeingKind.Snake)
+				.thenReturn(BeingKind.None);
+
+		mazePresenter.tick(DirectionKey.Left);
+		Mockito.verify(livesUpdateListener).updateLives(lives);
+	}
+
+	@Test
+	public void testTickRight() {
+		int lives = 7;
+		mazePresenter.setLivesUpdateListener(livesUpdateListener);
+		Mockito.when(game.getLives()).thenReturn(lives);
+		Mockito.when(game.getBeingKindAt((Point) Mockito.any()))
+				.thenReturn(BeingKind.FoodMouse)
+				.thenReturn(BeingKind.FoodPoison).thenReturn(BeingKind.Snake)
+				.thenReturn(BeingKind.None);
+
+		mazePresenter.tick(DirectionKey.Right);
+		Mockito.verify(livesUpdateListener).updateLives(lives);
+	}
+
+	@Test
+	public void testTickUp() {
+		int lives = 7;
+		mazePresenter.setLivesUpdateListener(livesUpdateListener);
+		Mockito.when(game.getLives()).thenReturn(lives);
+		Mockito.when(game.getBeingKindAt((Point) Mockito.any()))
+				.thenReturn(BeingKind.FoodMouse)
+				.thenReturn(BeingKind.FoodPoison).thenReturn(BeingKind.Snake)
+				.thenReturn(BeingKind.None);
+
+		mazePresenter.tick(DirectionKey.Up);
+		Mockito.verify(livesUpdateListener).updateLives(lives);
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testTickNull() {
+		int lives = 7;
+		mazePresenter.setLivesUpdateListener(livesUpdateListener);
+		Mockito.when(game.getLives()).thenReturn(lives);
+		Mockito.when(game.getBeingKindAt((Point) Mockito.any()))
+				.thenReturn(BeingKind.FoodMouse)
+				.thenReturn(BeingKind.FoodPoison).thenReturn(BeingKind.Snake)
+				.thenReturn(BeingKind.None);
+
+		mazePresenter.tick(null);
+		Mockito.verify(livesUpdateListener).updateLives(lives);
 	}
 
 	@Test
