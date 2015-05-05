@@ -1,18 +1,22 @@
 package ge.edu.freeuni.sdp.snake.model;
 
+import ge.edu.freeuni.sdp.snake.BoardSize;
+
 import java.util.Random;
+
+import com.google.inject.Inject;
 
 public class EvilSnake extends Snake {
 
 	protected long lastMove;
+	
 	private Random _random;
+	
 	private Clock _clock;
-	public EvilSnake(Point head) {
-		this(head, 1, Configuration.getInstance(), new Random(),new Clock());
-	}
-
-	public EvilSnake(Point head, int lives, Configuration config, Random random,Clock clock) {
-		super(head, 1, config);
+	
+	@Inject
+	public EvilSnake(@BoardSize Size size, Random random, Clock clock) {
+		super(size);
 		_random = random;
 		_clock = clock;
 		setDirection(Direction.LEFT);

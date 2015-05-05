@@ -3,16 +3,19 @@ package ge.edu.freeuni.sdp.snake.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.inject.Inject;
+
 public class Universe {
 
 	private List<Being> _population;
 	private Topology _topology;
 
+	@Inject
 	public Universe(Topology topology) {
 		this(topology, new ArrayList<Being>());
 	}
-        
-        public Universe(Topology topology, List<Being> population) {
+
+	public Universe(Topology topology, List<Being> population) {
 		_population = population;
 		_topology = topology;
 	}

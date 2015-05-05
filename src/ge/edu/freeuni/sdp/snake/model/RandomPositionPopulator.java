@@ -1,6 +1,10 @@
 package ge.edu.freeuni.sdp.snake.model;
 
+import ge.edu.freeuni.sdp.snake.BoardSize;
+
 import java.util.Random;
+
+import com.google.inject.Inject;
 
 /*
  * A base class for any populator which requires finding a random empty cell
@@ -9,15 +13,11 @@ import java.util.Random;
 public abstract class RandomPositionPopulator implements Populator {
 
 	private Random _random;
+	protected Size _size;
 
-	public RandomPositionPopulator() {
-		this(new Random());
-	}
-
-	/*
-	 * This constructor is required to avoid randomness in tests
-	 */
-	public RandomPositionPopulator(Random random) {
+	@Inject
+	public RandomPositionPopulator(@BoardSize Size size, Random random) {
+		_size = size;
 		_random = random;
 	}
 
@@ -29,9 +29,8 @@ public abstract class RandomPositionPopulator implements Populator {
 	 */
 	protected Point getRandomUnocupied(Universe universe) {
 		while (true) {
-			Configuration config = Configuration.getInstance();
-			int randomX = _random.nextInt(config.getSize().getWidth());
-			int randomY = _random.nextInt(config.getSize().getHeight());
+			int randomX = _random.nextInt(_size.getWidth());
+			int randomY = _random.nextInt(_size.getHeight());
 			Point candidate = new Point(randomX, randomY);
 			if (universe.getBeingAt(candidate) == null)
 				return candidate;

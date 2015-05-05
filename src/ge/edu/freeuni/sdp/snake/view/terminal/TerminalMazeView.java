@@ -6,6 +6,7 @@ import ge.edu.freeuni.sdp.snake.presenter.LivesUpdateListener;
 import ge.edu.freeuni.sdp.snake.presenter.MazePresenter;
 import ge.edu.freeuni.sdp.snake.view.MazeView;
 
+import com.google.inject.Inject;
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.input.Key.Kind;
 import com.googlecode.lanterna.terminal.Terminal;
@@ -15,6 +16,7 @@ public class TerminalMazeView implements MazeView {
 	private Terminal _terminal;
 	private MazePresenter _presenter;
 
+	@Inject
 	public TerminalMazeView(MazePresenter presenter, Terminal terminal) {
 		_terminal = terminal;
 		_presenter = presenter;
@@ -37,7 +39,6 @@ public class TerminalMazeView implements MazeView {
 				isStoped = !isStoped;
 			}
 			if (key != null && key.getKind() == Kind.Escape){
-				if(isStoped)_presenter.saveState();
 				return;
 			}
 			if(!isStoped)
@@ -70,8 +71,5 @@ public class TerminalMazeView implements MazeView {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-	}
-	public void restoreState(){
-		_presenter.restoreState();
 	}
 }

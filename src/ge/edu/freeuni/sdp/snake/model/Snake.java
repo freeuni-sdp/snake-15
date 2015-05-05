@@ -1,37 +1,32 @@
 package ge.edu.freeuni.sdp.snake.model;
 
+import ge.edu.freeuni.sdp.snake.BoardSize;
+
 import java.util.LinkedList;
+
+import com.google.inject.Inject;
 
 public class Snake extends MovingBeing {
 
 	private LinkedList<Point> _body;
 	protected int _length;
-	private Configuration _configuration;
-
+	
+	@Inject
+	public Snake(@BoardSize Size size) {
+		this(new Point(size.getWidth() / 2, size.getHeight() / 2 ));
+	}
+	
 	public Snake(Point head) {
 		this(head, 1);
 	}
 	
-	public Snake(Point head,int lives){
-		this(head,lives,null);
-	}
-	
-	public Snake(Point head, int lives,Configuration configuration) {
+	public Snake(Point head, int lives) {
 		super(lives);
 		_body = new LinkedList<Point>();
 		_body.add(head);
 		_length = 3;
-		_configuration = configuration;
 	}
 
-	private Configuration getConfig() {
-		if (_configuration==null) {
-			return Configuration.getInstance();
-		} else {
-			return _configuration;
-		}
-	}
-	
 	@Override
 	public Point getHead() {
 		return _body.getFirst();
@@ -70,16 +65,5 @@ public class Snake extends MovingBeing {
 	
 	public int getLength(){
 		return _length;
-	}
-	
-	public Memento saveToMemento(){
-		return new Memento(_length,getDirection(),getHead(),getConfig().getSelectedLevelIndex());
-	}
-	
-	public void restoreFromMemento (Memento m){
-		_length = m.getLength();
-		setDirection(m.getDirection());
-		moveTo(m.getHead());
-		getConfig().selectLevel(0);
 	}
 }

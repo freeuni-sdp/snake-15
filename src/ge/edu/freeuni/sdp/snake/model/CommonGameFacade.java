@@ -1,5 +1,9 @@
 package ge.edu.freeuni.sdp.snake.model;
 
+import ge.edu.freeuni.sdp.snake.BoardSize;
+
+import com.google.inject.Inject;
+
 /**
  * Hides inner structure of model from presenter and provides 
  * simplified interface to it.
@@ -11,18 +15,15 @@ public class CommonGameFacade implements GameFacade {
 	private Universe _universe;
 	private Snake _snake;
 	private Populator _populator;
+	
+	@Inject @BoardSize
+	private Size _size;
 
-	public CommonGameFacade() {
-		Configuration config = Configuration.getInstance();
-		Level level = Configuration.getInstance().getSelectedLevel();
-		Topology topology = level.getTopology();
-		_populator = level.getFoodGenerator();
-		_universe = new Universe(topology);
-
-		Point snakeHead = new Point(
-				config.getSize().getWidth() / 2,
-				config.getSize().getHeight() / 2);
-        _snake = level.getSnake(snakeHead);
+	@Inject
+	public CommonGameFacade(Universe universe, Populator populator, Snake snake) {
+		_universe = universe;
+		_populator = populator;
+		_snake = snake;
 		_universe.addBeing(_snake);
 	}
 
@@ -70,7 +71,7 @@ public class CommonGameFacade implements GameFacade {
 	 */
 	@Override
 	public Size getSize() {
-		return Configuration.getInstance().getSize();
+		return _size;
 	}
 	
 	/* (non-Javadoc)
@@ -83,17 +84,5 @@ public class CommonGameFacade implements GameFacade {
 	
 	protected Point getSnakeHead() {
 		return _snake.getHead();
-	}
-
-	@Override
-	public void saveState() {
-		Caretaker caretaker = new Caretaker();
-		caretaker.addMemento(_snake.saveToMemento());	
-	}
-
-	@Override
-	public void restoreState() {
-		Caretaker caretaker = new Caretaker();
-		_snake.restoreFromMemento(caretaker.getMemento());
 	}
 }

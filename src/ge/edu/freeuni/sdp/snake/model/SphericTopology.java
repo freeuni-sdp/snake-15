@@ -1,34 +1,21 @@
 package ge.edu.freeuni.sdp.snake.model;
 
-import java.util.Random;
+import ge.edu.freeuni.sdp.snake.BoardSize;
+
+import com.google.inject.Inject;
 
 
 public class SphericTopology extends EndlessTopology {
 
-	private Configuration _configuration;
+	@Inject @BoardSize
+	private Size _size;
 
-	public SphericTopology() {
-		this(null);
-	}
-
-	public SphericTopology(Configuration config) {
-		_configuration = config;
-	}
-	
-	private Configuration getConfig() {
-		if (_configuration == null) {
-			return Configuration.getInstance();
-		} else {
-			return _configuration;
-		}
-	}
-	
 	@Override
 	public Point getNextTo(Point point, Direction direction) {
 		Point result = super.getNextTo(point, direction);
 		return new Point(
-				mod(result.X, getConfig().getSize().getWidth()), 
-				mod(result.Y, getConfig().getSize().getHeight()));
+				mod(result.X, _size.getWidth()), 
+				mod(result.Y, _size.getHeight()));
 	}
 
 	private static int mod(int x, int n) {

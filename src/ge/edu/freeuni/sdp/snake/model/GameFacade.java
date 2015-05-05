@@ -14,8 +14,4 @@ public interface GameFacade {
 
 	public abstract int getScore();
 
-	public abstract void saveState();
-
-	public abstract void restoreState();
-
 }
