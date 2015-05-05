@@ -26,6 +26,8 @@ public class MazePresenterTest {
 	private static GameFacade game;
 	private static Memento memento;
 	private static MazePresenter mazePresenter;
+	private static CellUpdateListener cellUpdateListener;
+	private static LivesUpdateListener livesUpdateListener;
 
 	@Before
 	public void setUp() throws Exception {
@@ -34,6 +36,8 @@ public class MazePresenterTest {
 		care = Mockito.mock(Caretaker.class);
 		game = Mockito.mock(GameFacade.class);
 		memento = Mockito.mock(Memento.class);
+		cellUpdateListener = Mockito.mock(CellUpdateListener.class);
+		livesUpdateListener = Mockito.mock(LivesUpdateListener.class);
 
 		Mockito.when(size.getHeight()).thenReturn(10);
 		Mockito.when(size.getWidth()).thenReturn(10);
@@ -66,13 +70,29 @@ public class MazePresenterTest {
 	}
 
 	@Test
-	public void testSetCellUpdateListener() {
-
+	public void testSetCellUpdateListenerWithNull() {
+		mazePresenter.setCellUpdateListener(null);
+		Mockito.verify(mazePresenter).setCellUpdateListener(null);
 	}
 
 	@Test
-	public void testIsGameOver() {
+	public void testSetCellUpdateListenerWithMock() {
+		mazePresenter.setCellUpdateListener(cellUpdateListener);
+		Mockito.verify(mazePresenter).setCellUpdateListener(cellUpdateListener);
+	}
 
+	@Test
+	public void testIsGameOverFase() {
+		Mockito.when(game.isGameOver()).thenReturn(false);
+		assertFalse(mazePresenter.isGameOver());
+		Mockito.verify(game).isGameOver();
+	}
+
+	@Test
+	public void testIsGameOverTrue() {
+		Mockito.when(game.isGameOver()).thenReturn(true);
+		assertTrue(mazePresenter.isGameOver());
+		Mockito.verify(game).isGameOver();
 	}
 
 	@Test
@@ -81,8 +101,16 @@ public class MazePresenterTest {
 	}
 
 	@Test
-	public void testSetLivesUpdateListener() {
+	public void testSetLivesUpdateListenerWithNull() {
+		mazePresenter.setLivesUpdateListener(null);
+		Mockito.verify(mazePresenter).setLivesUpdateListener(null);
+	}
 
+	@Test
+	public void testSetLivesUpdateListenerWithMock() {
+		mazePresenter.setLivesUpdateListener(livesUpdateListener);
+		Mockito.verify(mazePresenter).setLivesUpdateListener(
+				livesUpdateListener);
 	}
 
 	@Test
