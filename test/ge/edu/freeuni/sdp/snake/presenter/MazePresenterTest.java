@@ -148,6 +148,24 @@ public class MazePresenterTest {
 		Mockito.verify(livesUpdateListener).updateLives(lives);
 	}
 
+	@Test
+	public void testTickChangingDirections() {
+		int lives = 7;
+		mazePresenter.setCellUpdateListener(cellUpdateListener);
+		mazePresenter.setLivesUpdateListener(livesUpdateListener);
+		Mockito.when(game.getLives()).thenReturn(lives);
+		Mockito.when(game.getBeingKindAt((Point) Mockito.any()))
+				.thenReturn(BeingKind.FoodMouse)
+				.thenReturn(BeingKind.FoodPoison).thenReturn(BeingKind.Snake)
+				.thenReturn(BeingKind.None);
+
+		mazePresenter.tick(DirectionKey.Up);
+		mazePresenter.tick(DirectionKey.Down);
+		mazePresenter.tick(DirectionKey.Left);
+		Mockito.verify(livesUpdateListener, Mockito.atLeast(3)).updateLives(
+				lives);
+	}
+
 	@Test(expected = NullPointerException.class)
 	public void testTickNull() {
 		int lives = 7;
