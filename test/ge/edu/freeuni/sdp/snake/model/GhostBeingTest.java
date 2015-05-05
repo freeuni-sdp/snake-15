@@ -2,6 +2,7 @@ package ge.edu.freeuni.sdp.snake.model;
 
 import org.junit.Test;
 
+
 public class GhostBeingTest {
 
 	@Test
