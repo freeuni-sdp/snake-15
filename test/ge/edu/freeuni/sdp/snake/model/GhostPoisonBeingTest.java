@@ -28,7 +28,9 @@ public class GhostPoisonBeingTest {
 
 	@Test
 	public void testGhostPoisonBeing() {
-		
+		Point point = Mockito.mock(Point.class);
+		GhostPoisonBeing ghostPoison = new GhostPoisonBeing(point);
+		assertEquals(point, ghostPoison.getHead());
 	}
 
 }

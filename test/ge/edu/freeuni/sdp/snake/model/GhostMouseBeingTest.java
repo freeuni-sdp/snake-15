@@ -20,12 +20,14 @@ public class GhostMouseBeingTest {
 
 	@Test
 	public void testInteractWith() {
-		
+		//nothing to test
 	}
 
 	@Test
 	public void testGhostMouseBeing() {
-		
+		Point point = Mockito.mock(Point.class);
+		GhostMouseBeing ghostMouse = new GhostMouseBeing(point);
+		assertEquals(point, ghostMouse.getHead());
 	}
 
 }
