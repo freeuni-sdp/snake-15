@@ -1,8 +1,9 @@
 package ge.edu.freeuni.sdp.snake.model;
 
 /**
- * Hides inner structure of model from presenter and provides 
- * simplified interface to it.
+ * Hides inner structure of model from presenter and provides simplified
+ * interface to it.
+ * 
  * @author George Mamaladze
  *
  */
@@ -11,45 +12,50 @@ public class CommonGameFacade implements GameFacade {
 	private Universe _universe;
 	private Snake _snake;
 	private Populator _populator;
-	
-	public CommonGameFacade(Universe universe, Snake snake, Populator populator) {
-		init(universe, snake, populator);
+	private Configuration _configInstance;
+
+	public CommonGameFacade(Universe universe, Snake snake,
+			Populator populator, Configuration configInstance) {
+		init(universe, snake, populator, configInstance);
 	}
 
 	public CommonGameFacade() {
-//		this(new Universe((Configuration.getInstance().getSelectedLevel()).getTopology()),
-//				Configuration.getInstance().getSelectedLevel().getSnake(new Point(
-//						Configuration.getInstance().getSize().getWidth() / 2,
-//						Configuration.getInstance().getSize().getHeight() / 2)),
-//				Configuration.getInstance().getSelectedLevel().getFoodGenerator());
 		Configuration config = Configuration.getInstance();
 		Level level = Configuration.getInstance().getSelectedLevel();
 		Topology topology = level.getTopology();
 
-		Point snakeHead = new Point(
-				config.getSize().getWidth() / 2,
-				config.getSize().getHeight() / 2);
+		Point snakeHead = new Point(config.getSize().getWidth() / 2, config
+				.getSize().getHeight() / 2);
 
-		init(new Universe(topology), level.getSnake(snakeHead), level.getFoodGenerator());
+		init(new Universe(topology), level.getSnake(snakeHead),
+				level.getFoodGenerator(), config);
 	}
-	
-	private void init(Universe universe, Snake snake, Populator populator) {
+
+	private void init(Universe universe, Snake snake, Populator populator,
+			Configuration configInstance) {
 		_universe = universe;
 		_populator = populator;
 		_snake = snake;
 		_universe.addBeing(snake);
+		_configInstance = configInstance;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see ge.edu.freeuni.sdp.snake.model.GameFacade#getLives()
 	 */
 	@Override
-	public int getLives(){
+	public int getLives() {
 		return _snake.getLives();
 	}
-	
-	/* (non-Javadoc)
-	 * @see ge.edu.freeuni.sdp.snake.model.GameFacade#getBeingKindAt(ge.edu.freeuni.sdp.snake.model.Point)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * ge.edu.freeuni.sdp.snake.model.GameFacade#getBeingKindAt(ge.edu.freeuni
+	 * .sdp.snake.model.Point)
 	 */
 	@Override
 	public BeingKind getBeingKindAt(Point point) {
@@ -59,8 +65,12 @@ public class CommonGameFacade implements GameFacade {
 		return being.getKind();
 	}
 
-	/* (non-Javadoc)
-	 * @see ge.edu.freeuni.sdp.snake.model.GameFacade#makeMove(ge.edu.freeuni.sdp.snake.model.Direction)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * ge.edu.freeuni.sdp.snake.model.GameFacade#makeMove(ge.edu.freeuni.sdp
+	 * .snake.model.Direction)
 	 */
 	@Override
 	public void makeMove(Direction direction) {
@@ -71,30 +81,36 @@ public class CommonGameFacade implements GameFacade {
 		_populator.populate(_universe);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see ge.edu.freeuni.sdp.snake.model.GameFacade#isGameOver()
 	 */
 	@Override
 	public boolean isGameOver() {
 		return !_snake.isAlive();
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see ge.edu.freeuni.sdp.snake.model.GameFacade#getSize()
 	 */
 	@Override
 	public Size getSize() {
-		return Configuration.getInstance().getSize();
+		return _configInstance.getSize();
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see ge.edu.freeuni.sdp.snake.model.GameFacade#getScore()
 	 */
 	@Override
-	public int getScore(){
+	public int getScore() {
 		return _snake.getLength();
 	}
-	
+
 	protected Point getSnakeHead() {
 		return _snake.getHead();
 	}
@@ -102,7 +118,7 @@ public class CommonGameFacade implements GameFacade {
 	@Override
 	public void saveState() {
 		Caretaker caretaker = new Caretaker();
-		caretaker.addMemento(_snake.saveToMemento());	
+		caretaker.addMemento(_snake.saveToMemento());
 	}
 
 	@Override
