@@ -24,7 +24,7 @@ public class GhostBeingTest {
 		random = Mockito.mock(Random.class);
 		systemTime = Mockito.mock(SystemTime.class);
 		point = Mockito.mock(Point.class);
-		Mockito.when(random.nextInt(Mockito.anyInt())).thenReturn(0);
+		Mockito.when(random.nextInt(Mockito.anyInt())).thenReturn(1);
 		Mockito.when(systemTime.getCurrentTime()).thenReturn(CURR_TIME);
 	}
 
@@ -72,6 +72,7 @@ public class GhostBeingTest {
 	@Test
 	public void testSetDirection() {
 		//nothing to test
+		assertTrue(true);
 	}
 
 	@Test
@@ -85,6 +86,7 @@ public class GhostBeingTest {
 			public BeingKind getKind() { return null; }
 		};
 		assertEquals(point, ghostBeing.getHead());
+		assertEquals(1, ghostBeing.getLives());
 	}
 
 	@Test
