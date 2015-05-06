@@ -27,7 +27,8 @@ public class TerminalMazeViewTest {
 
 		terminal = Mockito.mock(Terminal.class);
 		presenter = Mockito.mock(MazePresenter.class);
-		mazeView = Mockito.spy(new TerminalMazeView(presenter, terminal));
+//		mazeView = Mockito.spy(new TerminalMazeView(presenter, terminal));
+		mazeView = new TerminalMazeView(presenter, terminal);
 		key = Mockito.mock(Key.class);
 	}
 
@@ -41,37 +42,28 @@ public class TerminalMazeViewTest {
 
 	@Test
 	public void testConvertToDirectionDown() {
-		Mockito.when(presenter.isGameOver()).thenReturn(false)
-				.thenReturn(true);
+		Mockito.when(presenter.isGameOver()).thenReturn(false).thenReturn(true);
 		Mockito.when(terminal.readInput()).thenReturn(key);
-		Mockito.when(key.getCharacter()).thenReturn('\0');
 		Mockito.when(key.getKind()).thenReturn(Kind.ArrowDown);
 		
 		mazeView.show();
 		Mockito.verify(presenter).tick(DirectionKey.Down);
-		//Mockito.when(presenter.tick((DirectionKey) Mockito.any())
-
 	}
 	
 	@Test
 	public void testConvertToDirectionUp() {
-		Mockito.when(presenter.isGameOver()).thenReturn(false)
-				.thenReturn(true);
+		Mockito.when(presenter.isGameOver()).thenReturn(false).thenReturn(true);
 		Mockito.when(terminal.readInput()).thenReturn(key);
-		Mockito.when(key.getCharacter()).thenReturn('\0');
 		Mockito.when(key.getKind()).thenReturn(Kind.ArrowUp);
 		
 		mazeView.show();
 		Mockito.verify(presenter).tick(DirectionKey.Up);
-		//Mockito.when(presenter.tick((DirectionKey) Mockito.any())
 	}
 	
 	@Test
 	public void testConvertToDirectionLeft() {
-		Mockito.when(presenter.isGameOver()).thenReturn(false)
-				.thenReturn(true);
+		Mockito.when(presenter.isGameOver()).thenReturn(false).thenReturn(true);
 		Mockito.when(terminal.readInput()).thenReturn(key);
-		Mockito.when(key.getCharacter()).thenReturn('\0');
 		Mockito.when(key.getKind()).thenReturn(Kind.ArrowLeft);
 		
 		mazeView.show();
@@ -80,10 +72,8 @@ public class TerminalMazeViewTest {
 	
 	@Test
 	public void testConvertToDirectionRight() {
-		Mockito.when(presenter.isGameOver()).thenReturn(false)
-				.thenReturn(true);
+		Mockito.when(presenter.isGameOver()).thenReturn(false).thenReturn(true);
 		Mockito.when(terminal.readInput()).thenReturn(key);
-		Mockito.when(key.getCharacter()).thenReturn('\0');
 		Mockito.when(key.getKind()).thenReturn(Kind.ArrowRight);
 		
 		mazeView.show();
@@ -92,10 +82,8 @@ public class TerminalMazeViewTest {
 	
 	@Test
 	public void testConvertToDirectionNone() {
-		Mockito.when(presenter.isGameOver()).thenReturn(false)
-				.thenReturn(true);
+		Mockito.when(presenter.isGameOver()).thenReturn(false).thenReturn(true);
 		Mockito.when(terminal.readInput()).thenReturn(key);
-		Mockito.when(key.getCharacter()).thenReturn('\0');
 		Mockito.when(key.getKind()).thenReturn(Kind.Enter);
 		
 		mazeView.show();
