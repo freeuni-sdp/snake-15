@@ -17,7 +17,7 @@ public class EvilSnake extends Snake {
 		_clock = clock;
 		setDirection(Direction.LEFT);
 	}
-	
+
 	@Override
 	protected void moveTo(Point point){
 		boolean isTimeToChangeDirection = _clock.currentTimeMillis() - lastMove >= 5*1000;
