@@ -13,23 +13,31 @@ public class CommonGameFacade implements GameFacade {
 	private Populator _populator;
 	
 	public CommonGameFacade(Universe universe, Snake snake, Populator populator) {
-		_universe = universe;
-		_populator = populator;
-		_snake = snake;
+		init(universe, snake, populator);
 	}
 
 	public CommonGameFacade() {
+//		this(new Universe((Configuration.getInstance().getSelectedLevel()).getTopology()),
+//				Configuration.getInstance().getSelectedLevel().getSnake(new Point(
+//						Configuration.getInstance().getSize().getWidth() / 2,
+//						Configuration.getInstance().getSize().getHeight() / 2)),
+//				Configuration.getInstance().getSelectedLevel().getFoodGenerator());
 		Configuration config = Configuration.getInstance();
 		Level level = Configuration.getInstance().getSelectedLevel();
 		Topology topology = level.getTopology();
-		_populator = level.getFoodGenerator();
-		_universe = new Universe(topology);
 
 		Point snakeHead = new Point(
 				config.getSize().getWidth() / 2,
 				config.getSize().getHeight() / 2);
-        _snake = level.getSnake(snakeHead);
-		_universe.addBeing(_snake);
+
+		init(new Universe(topology), level.getSnake(snakeHead), level.getFoodGenerator());
+	}
+	
+	private void init(Universe universe, Snake snake, Populator populator) {
+		_universe = universe;
+		_populator = populator;
+		_snake = snake;
+		_universe.addBeing(snake);
 	}
 
 	/* (non-Javadoc)
