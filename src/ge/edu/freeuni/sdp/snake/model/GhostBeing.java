@@ -24,6 +24,8 @@ public abstract class GhostBeing extends Being {
 		return point.equals(_point);
 	}
 
+	
+	
 	@Override
 	public Point getHead() {
 		return _point;
