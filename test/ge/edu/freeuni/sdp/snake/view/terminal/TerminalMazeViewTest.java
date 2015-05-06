@@ -112,4 +112,64 @@ public class TerminalMazeViewTest {
 		mazeView.show();
 		Mockito.verify(terminal, Mockito.times(2)).readInput();
 	}
+	
+	
+	@Test
+	public void testIsStopped(){
+		Mockito.when(presenter.isGameOver()).thenReturn(false).thenReturn(true);
+		Mockito.when(terminal.readInput()).thenReturn(key);
+		Mockito.when(key.getCharacter()).thenReturn(' ');
+		mazeView.show();
+		Mockito.verify(presenter, Mockito.times(0)).tick((DirectionKey) Mockito.any());
+	}
+	
+	@Test
+	public void testResumeAfterStop(){
+		Mockito.when(presenter.isGameOver()).thenReturn(false).thenReturn(false).thenReturn(true);
+		Mockito.when(terminal.readInput()).thenReturn(key);
+		Mockito.when(key.getKind()).thenReturn(Kind.ArrowDown);
+		Mockito.when(key.getCharacter()).thenReturn(' ');
+		mazeView.show();
+		Mockito.verify(presenter, Mockito.times(1)).tick(DirectionKey.Down);
+	}
+	
+	
+	@Test
+	public void testIsNotStopped(){
+		Mockito.when(presenter.isGameOver()).thenReturn(false).thenReturn(true);
+		mazeView.show();
+		Mockito.verify(presenter, Mockito.times(1)).tick((DirectionKey) Mockito.any());
+	}
+	
+	
+	@Test
+	public void testQuitStopped(){
+		Mockito.when(presenter.isGameOver()).thenReturn(false);
+		Mockito.when(terminal.readInput()).thenReturn(key);
+		//send stop character on first iteration and something different on second
+		Mockito.when(key.getCharacter()).thenReturn(' ').thenReturn('\0');
+		//send something different kind on first iteration and escape key on second
+		Mockito.when(key.getKind()).thenReturn(Kind.Enter).thenReturn(Kind.Escape);
+		mazeView.show();
+		//check if state is saved
+		Mockito.verify(presenter).saveState();
+		//check that loop iterated twice
+		Mockito.verify(terminal, Mockito.times(2)).readInput();
+	}
+	
+	@Test
+	public void testQuitNotStopped(){
+		Mockito.when(presenter.isGameOver()).thenReturn(false);
+		Mockito.when(terminal.readInput()).thenReturn(key);
+		Mockito.when(key.getKind()).thenReturn(Kind.Escape);
+		mazeView.show();
+		//check that loop iterated only once
+		Mockito.verify(terminal, Mockito.times(1)).readInput();
+	}
+	
+	
+	@Test
+	public void testSleep(){
+		
+	}
 }
