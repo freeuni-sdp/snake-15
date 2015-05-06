@@ -16,18 +16,21 @@ public class MazePresenter {
 	private CellContent[][] _cellsCache;
 	private Direction _currentDirection;
 
-	public MazePresenter(GameFacade game) {
+	public MazePresenter(GameFacade game, File file, Caretaker care) {
 		_game = game;
 		_currentDirection = Direction.RIGHT;
 		_cellsCache = initCells();
-		File f = new File("memento.txt");
+		File f = file;
 		if (f.exists()) {
-			Caretaker caretaker = new Caretaker();
+			Caretaker caretaker = care;
 			restoreState();
 			f.delete();
 			_currentDirection = caretaker.getMemento().getDirection();
 		}
+	}
 
+	public MazePresenter(GameFacade game) {
+		this(game, new File("memento.txt"), new Caretaker());
 	}
 
 	public void setCellUpdateListener(CellUpdateListener listener) {

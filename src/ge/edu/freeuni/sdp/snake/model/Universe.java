@@ -9,7 +9,11 @@ public class Universe {
 	private Topology _topology;
 
 	public Universe(Topology topology) {
-		_population = new ArrayList<Being>();
+		this(topology, new ArrayList<Being>());
+	}
+        
+        public Universe(Topology topology, List<Being> population) {
+		_population = population;
 		_topology = topology;
 	}
 
@@ -34,7 +38,7 @@ public class Universe {
 
 				Point head = current.getHead();
 				// Skip if its own head, but don't skip own ass
-				if (current == other && head == other.getHead())
+				if (current == other)
 					continue;
 				if (other.contains(head)) {
 					current.interactWith(other);
@@ -42,6 +46,7 @@ public class Universe {
 			}
 		}
 	}
+        
 
 	/**
 	 * Iterates population and remove those beings which have .isAlive()==false

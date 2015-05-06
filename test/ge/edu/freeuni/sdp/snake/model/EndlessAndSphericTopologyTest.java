@@ -1,31 +1,28 @@
 package ge.edu.freeuni.sdp.snake.model;
 
 
-import ge.edu.freeuni.sdp.snake.LevelRegistry;
-
-import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
+
 import static org.mockito.Mockito.*;
 
 public class EndlessAndSphericTopologyTest {
 	
+	private Configuration conf;
 	private SphericTopology topology; 
+	private Size size;
 
-	
-	@BeforeClass
-	public static void setUpClass(){
-		Size size = new Size(100, 30); 
-		List<Level> levels = mock(List.class);
-		Configuration.init(size, levels);
-	}
 	
 	@Before
 	public void setUp(){ 
-		topology = new SphericTopology();
+		conf = mock(Configuration.class);
+		size = mock(Size.class); 
+		when(conf.getSize()).thenReturn(size);
+		when(size.getWidth()).thenReturn(100);
+		when(size.getHeight()).thenReturn(30);
+		topology = new SphericTopology(conf);
 	}
 	
 	@Test
@@ -34,6 +31,7 @@ public class EndlessAndSphericTopologyTest {
 		Direction leftDir = Direction.LEFT;
 		
 		Point actualResult = new Point(99,16);
+		
 		
 		Point result =  topology.getNextTo(testPoint, leftDir);
 		
