@@ -6,14 +6,22 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 public class HighScoreData {
 
 	private ArrayList<HighScoreDataPair> pairsList;
-
+	private FileIOWrapper filesIO;
+	
 	public HighScoreData() {
+		this(new FileIOWrapper());
+	}
+	
+	public HighScoreData(FileIOWrapper filesIO){
+		this.filesIO = filesIO;
 		pairsList = new ArrayList<>();
 	}
 
@@ -30,7 +38,7 @@ public class HighScoreData {
 	public void readFile() {
 		pairsList.clear();
 		try {
-			for (String line : Files.readAllLines(
+			for (String line : filesIO.readAllLines(
 					Paths.get("HighScoresTop5.txt"), Charset.defaultCharset())) {
 				int startIndex = line.indexOf('.');
 				int index = line.lastIndexOf('-');
@@ -82,9 +90,8 @@ public class HighScoreData {
 	}
 
 	private void writeToFile(String content) {
-		File file = new File("HighScoresTop5.txt");
 		try {
-			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			FileWriter fw = filesIO.getFileWriter(content);
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.write(content);
 			bw.close();
@@ -111,6 +118,28 @@ public class HighScoreData {
 			removeLastScores(score);
 			String content = getFileContent();
 			writeToFile(content);
+		}
+	}
+	
+	
+	
+	/**
+	 * Class that Wraps File IO
+	 * @author Ioane
+	 */
+	public static class FileIOWrapper {
+		
+		/**
+		 * @see java.nio.file.Files#readAllLines(Path, Charset)
+		 */
+		public List<String> readAllLines(Path path, Charset cs)
+		        throws IOException{
+			return Files.readAllLines(path, cs);
+		}
+		
+		public FileWriter getFileWriter(String pathname) throws IOException{
+			File file = new File(pathname);
+			return new FileWriter(file.getAbsoluteFile());
 		}
 	}
 }
