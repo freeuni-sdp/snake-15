@@ -4,6 +4,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import ge.edu.freeuni.sdp.snake.model.BeingKind;
 import ge.edu.freeuni.sdp.snake.model.Caretaker;
+import ge.edu.freeuni.sdp.snake.model.Direction;
 import ge.edu.freeuni.sdp.snake.model.GameFacade;
 import ge.edu.freeuni.sdp.snake.model.Memento;
 import ge.edu.freeuni.sdp.snake.model.Point;
@@ -105,33 +106,51 @@ public class MazePresenterTest {
 		mazePresenter.setLivesUpdateListener(livesUpdateListener);
 
 		mazePresenter.tick(DirectionKey.Down);
+		Mockito.verify(game).makeMove(Direction.DOWN);
 		Mockito.verify(livesUpdateListener).updateLives(lives);
 	}
 
+	/*
+	 * Case when tick is given direction key is left.
+	 */
 	@Test
 	public void testTickLeft() {
 		mazePresenter.setLivesUpdateListener(livesUpdateListener);
 
 		mazePresenter.tick(DirectionKey.Left);
+		// This is because this test tries to change direction opposite current
+		// direction and this is not allowed because snake would eat itself.
+		Mockito.verify(game).makeMove(Direction.RIGHT);
 		Mockito.verify(livesUpdateListener).updateLives(lives);
 	}
 
+	/*
+	 * Case when tick is given direction key right.
+	 */
 	@Test
 	public void testTickRight() {
 		mazePresenter.setLivesUpdateListener(livesUpdateListener);
 
 		mazePresenter.tick(DirectionKey.Right);
+		Mockito.verify(game).makeMove(Direction.RIGHT);
 		Mockito.verify(livesUpdateListener).updateLives(lives);
 	}
 
+	/*
+	 * Case when tick is given direction key up.
+	 */
 	@Test
 	public void testTickUp() {
 		mazePresenter.setLivesUpdateListener(livesUpdateListener);
 
 		mazePresenter.tick(DirectionKey.Up);
+		Mockito.verify(game).makeMove(Direction.UP);
 		Mockito.verify(livesUpdateListener).updateLives(lives);
 	}
 
+	/*
+	 * Case when tick is given different direction keys.
+	 */
 	@Test
 	public void testTickChangingDirections() {
 		mazePresenter.setCellUpdateListener(cellUpdateListener);
@@ -140,24 +159,40 @@ public class MazePresenterTest {
 		mazePresenter.tick(DirectionKey.Up);
 		mazePresenter.tick(DirectionKey.Down);
 		mazePresenter.tick(DirectionKey.Left);
+
+		Mockito.verify(game).makeMove(Direction.LEFT);
+		Mockito.verify(game, Mockito.times(2)).makeMove(Direction.UP);
 		Mockito.verify(livesUpdateListener, Mockito.atLeast(3)).updateLives(
 				lives);
 	}
 
+	/*
+	 * Case when tick is given direction key none.
+	 */
 	@Test
 	public void testTickNone() {
 		mazePresenter.setLivesUpdateListener(livesUpdateListener);
 
 		mazePresenter.tick(DirectionKey.None);
+		// Default direction in the start is right
+		Mockito.verify(game).makeMove(Direction.RIGHT);
 		Mockito.verify(livesUpdateListener).updateLives(lives);
 	}
 
+	/*
+	 * Just verifies if correct method is called have no idea how to test
+	 * otherwise.
+	 */
 	@Test
 	public void testSetLivesUpdateListenerWithNull() {
 		mazePresenter.setLivesUpdateListener(null);
 		Mockito.verify(mazePresenter).setLivesUpdateListener(null);
 	}
 
+	/*
+	 * Just verifies if correct method is called have no idea how to test
+	 * otherwise.
+	 */
 	@Test
 	public void testSetLivesUpdateListenerWithMock() {
 		mazePresenter.setLivesUpdateListener(livesUpdateListener);
@@ -165,16 +200,57 @@ public class MazePresenterTest {
 				livesUpdateListener);
 	}
 
+	/*
+	 * Just verifies if correct method is called have no idea how to test
+	 * otherwise.
+	 */
 	@Test
 	public void testSaveState() {
 		mazePresenter.saveState();
 		Mockito.verify(game).saveState();
 	}
 
+	/*
+	 * Just verifies if correct method is called have no idea how to test
+	 * otherwise.
+	 */
 	@Test
 	public void testRestoreState() {
 		mazePresenter.restoreState();
 		Mockito.verify(game).restoreState();
 	}
 
+	/*
+	 * Changing direction to the opposite should not work and this is test for
+	 * that case but only for up and down if this works left and right still
+	 * will be working
+	 */
+	@Test
+	public void testTryChangingDirectionToOpposite() {
+		mazePresenter.setCellUpdateListener(cellUpdateListener);
+		mazePresenter.setLivesUpdateListener(livesUpdateListener);
+
+		mazePresenter.tick(DirectionKey.Up);
+		mazePresenter.tick(DirectionKey.Down);
+
+		Mockito.verify(game, Mockito.atLeast(2)).makeMove(Direction.UP);
+		Mockito.verify(livesUpdateListener, Mockito.atLeast(2)).updateLives(
+				lives);
+	}
+
+	/*
+	 * Case when snake is on full screen
+	 */
+	@Test
+	public void testFullScreenIsSnake() {
+		Mockito.when(game.getBeingKindAt((Point) Mockito.any())).thenReturn(
+				BeingKind.Snake);
+		mazePresenter.setCellUpdateListener(cellUpdateListener);
+		mazePresenter.setLivesUpdateListener(livesUpdateListener);
+
+		mazePresenter.tick(DirectionKey.Up);
+
+		Mockito.verify(game).makeMove(Direction.UP);
+		Mockito.verify(livesUpdateListener).updateLives(lives);
+	}
 }
