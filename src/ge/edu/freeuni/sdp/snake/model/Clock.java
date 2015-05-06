@@ -7,7 +7,4 @@ public class Clock {
 	public long currentTimeMillis(){
 		return System.currentTimeMillis();
 	}
-	public static Clock getInstance(){
-		return new Clock();
-	}
 }
