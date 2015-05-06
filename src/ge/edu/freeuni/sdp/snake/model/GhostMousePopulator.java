@@ -10,9 +10,16 @@ public class GhostMousePopulator extends RandomPositionPopulator {
 		super();
 	}
 	
+	public GhostMousePopulator(Random random, Configuration configuration, GhostBeing poison) {
+		super(random,configuration);
+		_poison = poison;
+		
+	}
+	
 	public GhostMousePopulator(Random random, Configuration configuration) {
 		super(random,configuration);
 	}
+
 
 
 	@Override
