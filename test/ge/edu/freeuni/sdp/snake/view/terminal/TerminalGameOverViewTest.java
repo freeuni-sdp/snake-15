@@ -40,16 +40,6 @@ public class TerminalGameOverViewTest {
 	}
 
 	/*
-	 * Should throw null pointer runtime exception if terminal size is null.
-	 * (P.S Don't know how correct it is but it's so in this code.)
-	 */
-	@Test(expected = NullPointerException.class)
-	public void testShowNullPointerException() {
-		Mockito.when(terminal.getTerminalSize()).thenReturn(null);
-		gameOver.show();
-	}
-
-	/*
 	 * This method is used mainly for getting information from user after
 	 * loosing game. It should change boolean continueGame. I'll test different
 	 * cases of getting user input in other methods.
