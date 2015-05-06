@@ -62,7 +62,7 @@ public class Snake extends MovingBeing {
 	}
 	@Override
 	protected void moveTo(Point point) {
-		if(_length > 3){
+		if(_length > 4){
 			if(biteItself(point)){
 				this.kill();
 			}

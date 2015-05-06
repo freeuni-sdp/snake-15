@@ -4,11 +4,13 @@ import static org.mockito.Mockito.*;
 
 import org.junit.*;
 
+import java.util.Random;
+
 import static org.junit.Assert.*;
 
 public class EvilSnakeTest {
 	private Clock clock;
-	private MyRandom rand;
+	private Random rand;
 	private EvilSnake target;
 	private Topology top;
 	private Configuration config;
@@ -17,7 +19,7 @@ public class EvilSnakeTest {
 	public void setUp(){
 		top = mock(SphericTopology.class);
 		clock = mock(Clock.class);
-		rand = mock(MyRandom.class);
+		rand = mock(Random.class);
 		config = mock(Configuration.class);
 		target = new EvilSnake(new Point(2,2), 1, config, rand,clock);
 	}
@@ -55,4 +57,5 @@ public class EvilSnakeTest {
 		EvilSnake target = new EvilSnake(point, 1, config, rand,clock);
 		assertEquals(point, target.getHead());
 	}
+
 }
