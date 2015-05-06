@@ -5,8 +5,8 @@ import java.util.Random;
 public abstract class GhostBeing extends Being {
 
 	private Point _point;
-	private long _prevTime;
 	private Random _random;
+	private SystemTime systemTime;
 	
 	public GhostBeing(Point point) {
 		this(1, point, new Random(), new SystemTime());
@@ -14,9 +14,10 @@ public abstract class GhostBeing extends Being {
 	
 	public GhostBeing(int numLives, Point point, Random random, SystemTime systemTime) {
 		super(numLives);
-		_prevTime = systemTime.getCurrentTime();
 		_point = point;
 		_random = random;
+		this.systemTime = systemTime;
+		this.systemTime.setPreviousTime(systemTime.getCurrentTime());
 	}
 
 	@Override
@@ -31,25 +32,21 @@ public abstract class GhostBeing extends Being {
 
 	@Override
 	public void move(Topology topology) {
-		move(topology, new SystemTime(), Configuration.getInstance());
+		move(topology, systemTime, Configuration.getInstance());
 	}
 
 	public void move(Topology topology, SystemTime systemTime, Configuration config) {
 		long currTime = systemTime.getCurrentTime();
-		if(currTime - _prevTime < (_random.nextInt(10)+5)*1000) {
+		if(currTime - systemTime.getPreviousTime() < (_random.nextInt(10)+5)*1000) {
 			return;
 		}
 		int randomX = _random.nextInt(config.getSize().getWidth());
 		int randomY = _random.nextInt(config.getSize().getHeight());
 		Point candidate = new Point(randomX, randomY);
-		_prevTime = currTime;
+		systemTime.setPreviousTime(currTime);
 		setPosition(candidate);
 	}
 
-	public long getPreviousTime(){
-		return _prevTime;
-	}
-	
 	@Override
 	public void setDirection(Direction direction) {
 	}

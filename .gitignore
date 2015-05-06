@@ -30,6 +30,12 @@ local.properties
 .settings/
 .loadpath
 
+#Intellij Idea
+.idea
+.idea/*
+*.iml
+*/*.iml
+
 # Eclipse Core
 .project
 
