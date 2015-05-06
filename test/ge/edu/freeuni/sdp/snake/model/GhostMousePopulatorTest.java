@@ -16,7 +16,7 @@ public class GhostMousePopulatorTest {
 		
 	}
 	
-	//@Test
+	@Test
 	public void TestVerifyUniverseAddedBeing(){
 		Topology topology = mock(SphericTopology.class);
 		Random random = mock(Random.class);
