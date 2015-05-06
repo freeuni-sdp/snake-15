@@ -45,7 +45,7 @@ public class RandomWormHoleTest {
 		when(random.nextInt(anyInt())).thenReturn(0);
 	}
 	
-	//Following 8 tests are about checking distance from boundary and checking that
+	//Following 16 tests are about checking distance from boundary and checking that
 	// right point is in the right side and left in the left side.
 	@Test
 	public void must_be_left_top_point_on_oddHeightEvenWidth(){
@@ -102,6 +102,70 @@ public class RandomWormHoleTest {
 		assertTrue(50 == point.X);
 		assertTrue(3 == point.Y);
 	}
+	
+	@Test
+	public void must_be_middle_bottom_point_on_oddHeightEvenWidth(){
+		RandomTester myRandom = new RandomTester();
+		Point point= new RandomWormHole(myRandom,oddHeightEvenWidth).getLeft();
+		assertTrue(49 == point.X);
+		assertTrue(33 == point.Y);
+	}
+	
+	@Test
+	public void must_be_middle_bottom_point_on_evenHeightOddWidth(){
+		RandomTester myRandom = new RandomTester();
+		Point point= new RandomWormHole(myRandom,evenHeightOddWidth).getLeft();
+		assertTrue(17 == point.X);
+		assertTrue(96 == point.Y);
+	}
+	
+	@Test
+	public void must_be_middle_bottom_point_on_oddSquare(){
+		RandomTester myRandom = new RandomTester();
+		Point point= new RandomWormHole(myRandom,oddSquare).getLeft();
+		assertTrue(17 == point.X);
+		assertTrue(33 == point.Y);
+	}
+	
+	@Test
+	public void must_be_middle_bottom_point_on_evenSquare() {
+		RandomTester myRandom = new RandomTester();
+		Point point= new RandomWormHole(myRandom,evenSquare).getLeft();
+		assertTrue(49 == point.X);
+		assertTrue(96 == point.Y);
+	}
+	
+	@Test
+	public void must_be_bottom_right_point_on_oddHeightEvenWidth(){
+		RandomTester myRandom = new RandomTester();
+		Point point= new RandomWormHole(myRandom,oddHeightEvenWidth).getRight();
+		assertTrue(96 == point.X);
+		assertTrue(33 == point.Y);
+	}
+	
+	@Test
+	public void must_be_bottom_right_point_on_evenHeightOddWidth() {
+		RandomTester myRandom = new RandomTester();
+		Point point= new RandomWormHole(myRandom,evenHeightOddWidth).getRight();
+		assertTrue(32 == point.X);
+		assertTrue(96 == point.Y);
+	}
+	
+	@Test
+	public void must_be_bottom_right_point_on_oddSquare(){
+		RandomTester myRandom = new RandomTester();
+		Point point= new RandomWormHole(myRandom,oddSquare).getRight();
+		assertTrue(32 == point.X);
+		assertTrue(33 == point.Y);
+	}
+	
+	@Test
+	public void must_be_bottom_right_point_on_evenSquare(){
+		RandomTester myRandom = new RandomTester();
+		Point point= new RandomWormHole(myRandom,evenSquare).getRight();
+		assertTrue(96 == point.X);
+		assertTrue(96 == point.Y);
+	}
 
 	@Test
 	public void left_must_be_same_after_first_call(){
@@ -123,5 +187,13 @@ public class RandomWormHoleTest {
 		point=hole.getRight();
 		assertTrue(50 == point.X);
 		assertTrue(3 == point.Y);
+	}
+	
+	public class RandomTester extends Random{
+		
+		@Override
+		public int nextInt(int arg0){
+			return arg0-1;
+		}
 	}
 }
