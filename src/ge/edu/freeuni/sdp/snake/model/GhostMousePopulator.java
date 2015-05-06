@@ -1,9 +1,20 @@
 package ge.edu.freeuni.sdp.snake.model;
 
+import java.util.Random;
+
 public class GhostMousePopulator extends RandomPositionPopulator {
 	
 	private GhostBeing _poison;
 	
+	public GhostMousePopulator(){
+		super();
+	}
+	
+	public GhostMousePopulator(Random random, Configuration configuration) {
+		super(random,configuration);
+	}
+
+
 	@Override
 	public void populate(Universe universe) {
 		if (_poison == null || !_poison.isAlive()) {
@@ -12,5 +23,5 @@ public class GhostMousePopulator extends RandomPositionPopulator {
 			universe.addBeing(_poison);
 		}
 	}
-
+	
 }
