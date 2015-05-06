@@ -1,9 +1,6 @@
 package ge.edu.freeuni.sdp.snake.view.terminal;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import ge.edu.freeuni.sdp.snake.presenter.DirectionKey;
-import ge.edu.freeuni.sdp.snake.presenter.GameOverPresenter;
 import ge.edu.freeuni.sdp.snake.presenter.MazePresenter;
 
 import org.junit.Before;
@@ -13,7 +10,6 @@ import org.mockito.Mockito;
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.input.Key.Kind;
 import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.TerminalSize;
 
 public class TerminalMazeViewTest {
 	private Terminal terminal;
@@ -112,5 +108,20 @@ public class TerminalMazeViewTest {
 	public void testRestoreState(){
 		mazeView.restoreState();
 		Mockito.verify(presenter).restoreState();
+	}
+	
+	
+	@Test
+	public void testGameOverTrue(){
+		Mockito.when(presenter.isGameOver()).thenReturn(true);
+		mazeView.show();
+		Mockito.verify(terminal, Mockito.times(1)).readInput();
+	}
+	
+	@Test
+	public void testGameOverFalse(){
+		Mockito.when(presenter.isGameOver()).thenReturn(false).thenReturn(true);
+		mazeView.show();
+		Mockito.verify(terminal, Mockito.times(2)).readInput();
 	}
 }
