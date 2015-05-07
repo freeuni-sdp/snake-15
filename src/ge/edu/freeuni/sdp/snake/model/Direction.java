@@ -42,8 +42,20 @@ public class Direction {
 	}
 
 	public static Direction getDirection(Point from, Point to) {
-		return new Direction(
-				(int)Math.signum(to.X - from.X),
-				(int)Math.signum(to.Y - from.Y));
+		int newDx = (int)Math.signum(to.X - from.X);
+		int newDy = (int)Math.signum(to.Y - from.Y);
+		if(newDx == -1 && newDy == 0){
+			return Direction.LEFT;
+		}
+		else if(newDx == 1 && newDy == 0){
+			return Direction.RIGHT;
+		}
+		else if(newDx == 0 && newDy == -1){
+			return Direction.UP;
+		}
+		else if(newDx == 0 && newDy == 1){
+			return Direction.DOWN;
+		}
+		throw new IllegalStateException("no such direction");
 	}
 }

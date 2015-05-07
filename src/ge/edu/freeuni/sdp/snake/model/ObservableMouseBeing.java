@@ -5,8 +5,12 @@ public class ObservableMouseBeing extends MovingMouseBeing implements DirectionO
 	private PositionObserver positionObserver;
 
 	public ObservableMouseBeing(Point point) {
+		this(point,Direction.RIGHT);
+	}
+	
+	public ObservableMouseBeing(Point point, Direction direction) {
 		super(point);
-		setDirection(Direction.RIGHT);
+		setDirection(direction);
 	}
 	
 	@Override
@@ -21,7 +25,7 @@ public class ObservableMouseBeing extends MovingMouseBeing implements DirectionO
 		this.positionObserver = positionObserver;
 		
 	}
-
+	
 	@Override
 	public void notifyDirectionSet(Direction direction) {
 		setDirection(direction);

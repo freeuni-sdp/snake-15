@@ -5,8 +5,12 @@ public class ObservableSnakeAdapter extends Snake implements PositionObserver {
 	private DirectionObserver directionObserver;
 
 	public ObservableSnakeAdapter(Point head) {
+		this(head,Direction.RIGHT);
+	}
+	
+	public ObservableSnakeAdapter(Point head, Direction direction) {
 		super(head);
-		super.setDirection(Direction.RIGHT);
+		super.setDirection(direction);
 	}
 	
 	@Override
