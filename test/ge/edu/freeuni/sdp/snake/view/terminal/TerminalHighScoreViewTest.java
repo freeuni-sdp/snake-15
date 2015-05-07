@@ -32,7 +32,7 @@ public class TerminalHighScoreViewTest {
 	@Test
 	public void testMyScore() {
 		TerminalHighScoreView v=new TerminalHighScoreView(presenter, terminal);
-		
+		//score to check if it is printed
 		when(presenter.getScore()).thenReturn(100);
 		when(presenter.checkNewScore(100)).thenReturn(false);
 		//first return null and then return key
